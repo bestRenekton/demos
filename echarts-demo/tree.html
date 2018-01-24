@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>tree demo</title>
+  <style>
+  </style>
+  <script src="./jquery-1.8.3.min.js"></script>
+  <script src="./echarts.min.js"></script>
+  <script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
+</head>
+
+<body>
+  <div id="app" style="width:1200px;height:800px;"></div>
+
+  <script>
+
+    $.get('./tree.json', function (data) {
+      let myChart = echarts.init(document.getElementById('app'));
+      let option = {
+        title: {
+            text:'项目画像',
+            x:'center'
+          },
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove'
+        },
+        series: [
+          {
+            type: 'tree',
+            data: [data],
+            top: '1%',
+            left: '7%',
+            bottom: '1%',
+            right: '20%',
+            // layout: 'radial',//默认为正交，radial为径向布局
+            symbolSize: 15,//标记大小
+            expandAndCollapse: true,//收起
+            initialTreeDepth:2,//树图初始展开的层级（深度）
+            animationDuration: 550,
+            animationDurationUpdate: 750,
+            itemStyle:{//节点样式
+              color:'red',
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+              shadowBlur: 10
+            },
+            label: {//节点描述
+              normal: {
+                position: 'left',
+                verticalAlign: 'middle',
+                align: 'right',
+                fontSize: 9
+              }
+            },
+            lineStyle:{//树图边的样式
+              color:'#ccc',
+              curveness:.5//曲度
+            },
+            tooltip:{
+              // formatter: function (params, ticket, callback) {
+              //   console.log(params)
+              // }
+            }
+          }
+        ]
+      };
+      myChart.clear();
+      myChart.setOption(option);
+
+      myChart.on('click', function (params) {
+          console.log(params)
+      });
+    })
+
+
+  </script>
+</body>
+
+</html>
