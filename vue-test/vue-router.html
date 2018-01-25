@@ -12,8 +12,8 @@
 <body>
   <div id="app">
     <p>
-      <router-link to="/user/aa">Go to useraa</router-link>
-      <router-link to="/user/bb">Go to userbb</router-link>
+      <router-link to="/user">Go to useraa</router-link>
+      <router-link to="/user">Go to userbb</router-link>
     </p>
     <!-- 路由出口,路由匹配到的组件将渲染在这里 -->
     <router-view class="view one"></router-view>
@@ -24,19 +24,21 @@
 
 <script>
 //定义（路由）组件
-const not404 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
-const foo_1 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
-const foo_2 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
+const not404 = { template: '<div><h2>User:123</h2></div>' }
+const foo_1 = { template: '<div><h2>User:123</h2></div>' }
+const foo_2 = { template: '<div><h2>User:烦烦烦</h2></div>' }
 
 const routes = [
   {
-    path: '/user/:id',
+    path: '/user',
+    alias: '/b',
     components:{
       default:not404,
       foo_1:foo_1,
       foo_2:foo_2,
     }
-   }
+   },
+  //  {path:'/b/:id',component:not404}
 ]
 // 3. 创建 router 实例，然后传 `routes` 配置
 const router = new VueRouter({
@@ -46,7 +48,7 @@ const router = new VueRouter({
 const app = new Vue({
   router,
   created:function(){
-    this.$router.push({path:'user/3/foo_1'})
+    // this.$router.push({path:'user/3/foo_1'})
   }
 }).$mount('#app')
 

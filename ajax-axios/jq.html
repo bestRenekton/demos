@@ -101,6 +101,19 @@
             })
         })
 
+        //ajax实现长连接
+        (function aj(){
+            $.ajax({
+            url:url+'index/Aptitude/getDictionary',
+            success:()=>{
+            
+            },
+            error:()=>{
+                aj()
+            }
+            })
+        })()
+
 
 
     })
