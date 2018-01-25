@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>cookie demo</title>
+    <script src="jquery-1.8.3.min.js"></script>
+    <script src="jquery.cookie.js"></script>
+
+</head>
+<body>
+
+
+    <input id="input" type="text"/>
+    <a id="submit" href="javascript:;">ddd</a>
+
+
+</body>
+<script language="JavaScript">
+    let cook=$.cookie('input');
+    if(cook!=''){
+        $("#input").val(cook)
+    }
+
+  $("#submit").click(function(){
+      let value=$("#input").val();
+      $.cookie('input', value, { expires: 7});
+  })
+
+
+//    //创建7天的，路径；
+//    $.cookie('the_cookie', 'the_value', { expires: 7, path: '/' });
+//    $.cookie('text', JSON.stringify(zz_current), {expires: 7});
+//    //读取cookie：
+//    $.cookie('the_cookie'); // cookie存在 => 'the_value'
+//    $.cookie('not_existing'); // cookie不存在 => null
+//    //删除cookie，通过传递null作为cookie的值即可：
+//    $.cookie('the_cookie', null);
+
+//读取cookie
+export const getCookie=(cookieName)=>{
+     let cookie=document.cookie;
+     let c_start=cookie.indexOf(cookieName);
+     if(c_start!=-1){
+        c_start=c_start+cookieName.length+1;
+        let c_end=cookie.indexOf(";",c_start);    //第二个参数为开始位置，选填
+        if(c_end!=-1){
+          return cookie.slice(c_start,c_end);
+        }else{
+          return cookie.slice(c_start);
+        }
+    }
+}
+ //写入cookie
+export const setCookie=(cookieName,val,time)=>{//time为过期的秒数,不设置即为永久
+  if(time){
+    let date = new Date();
+    date.setTime(date.getTime()+time*1000);//获取时间戳
+    document.cookie=cookieName+'='+val+';expires='+date.toUTCString()+';';
+  }else{
+    document.cookie=cookieName+'='+val;
+  }
+}
+
+</script>
+</html>
