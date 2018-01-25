@@ -1,0 +1,12 @@
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-item {
+  margin: 10rpx;
+}
+
+
+.flex-wrp{display: flex;flex-direction:column;}
+.flex-item{flex:0 0 33%;}

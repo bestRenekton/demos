@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<script type="text/javascript">
+// H5 plus事件处理
+var ret=null;
+function plusReady(){
+	ret=plus.storage.getItem("uploader");
+	update();
+}
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+// DOM事件
+var ce=null;
+document.addEventListener("DOMContentLoaded",function(){
+	ce=document.getElementById("dcontent");
+	update();
+},false);
+// 更新内容
+var fs=null;
+function update(){
+	if(!ret||!ce)return;
+	var j=JSON.parse(ret);
+	var ih='<br/>Datas:<br/><div style="text-align:left;padding:10px 2%;">';
+	var ds=j.strings;
+	for(d in ds){
+		ih += d+" : "+ds[d]+"<br/>";
+	}
+	ih+='</div><hr/>Files:<br/><div id="fl">';
+	fs=j.files;
+	for(f in fs){
+		ih += '<a class="fitem" onclick="plus.runtime.openURL(\'http://demo.dcloud.net.cn/helloh5/uploader/'+fs[f].url+'\')">'+fs[f].name+'</a>';
+	}
+	ih+='</div>';
+	ce.innerHTML=ih;
+}
+// 清除上传返回的数据
+function resetUploader(){
+	plus.storage.setItem("uploader","");
+}
+// 删除上传的文件
+function deleteFiles(){
+	var url="http://demo.dcloud.net.cn/helloh5/uploader/delete.php?";
+	for(f in fs){
+		url += f+"="+fs[f].name+"&";
+	}
+	var r=new plus.net.XMLHttpRequest();
+	r.open('GET',url);
+	r.send();
+	document.getElementById('fl').innerHTML="";
+}
+		</script>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<style type="text/css">
+.fitem {
+	width: 96%;
+	overflow: hidden;
+	padding: 10px 2%;
+	border-bottom: 1px solid #c6c6c6;
+	color: #6c6c6c;
+	text-align: left;
+	text-decoration: none;
+	display: block;
+}
+.fitem:active {
+	background: #f4f4f4;
+}
+.fname {
+	font-weight: bolder;
+	height: 22px;
+	font-size: 16px;
+}
+.iclear {
+	background: no-repeat center center url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABYCAYAAAADWlKCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNy8xNy8xNGW7Pb8AAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAD3ElEQVR4nO2b0W3bSBCG/+Hy/dTBsYOQFvV8ugqsVBB3EHcQuQNdB3IH6uCUZxJYpQOmA+td3LmHIw+KjpIZh5R/w/MBBgxxOTujD9RyiKWoKgweotdOwPgRE0KGCSHDhJBhQsgwIWSYEDJMCBkmhAwTQoYJIcOEkGFCyDAhZJgQMkwIGSaEDBNChgkhw4SQYULIMCFkmBAyTAgZJoSM+LUTOEVEeo8timLunPvf1subm5uvfWOw7dwUuoR6CPHeTw6Hw98iknYdV9VdHMd/Zln29FwsuvrpEnpGyImMv1R1c3L+AsDnvlLo6qdL6IwQ731S1/UfqnovIqmqPsxms2XX2LIsV2ikiMjKOfc1y7Kqayxd/XQJHQnx3ichhE+qegcgORr2mOf53aU4ZVluANwefVSJyDqKosdjOXT10yXUCCmKYikinwFMToZ8c87Nsyx7Ol1Ljn+mvPeTuq63AD6cnP8kIqvpdPrQnDNuQT8JnZDdbndpwd4755IuGS0dUioAv50Gaselafrswn9N6ISUZbkUkS9nDm9EZAcAIYTFpbusKIo2zf8pgMWZcQ95ni8HSHswGPuQ5MLhhaoumnGXYqSNiF+Z61Wg69RVdX2tuZxzq2vN1Rc6IbPZbAvgI4D9iNPsAXzMsmw34hwvgm4NaX+KmkX7XkTuAPw+UPjvqrqO43jVNox09dMl1LE2eO/Tw+HQLuIp+gv6DmDX3FFtuq4IuvrpEur5cNF7nxwOh6TrWBzH1bnO/BS2+qGqVH8tRVEsvffJ0PV675OiKJas9dPd9h4xr+v6S/MIZNs8j3rRItw8B7sFsKjreg6g9+P5a0MrRETaDnqBf79IlGVZAaiaxu9JVasoiqrj80IIiYgkIYRJs+YkdV0nZ2LTQSukeVJ7e/JxAiARkXn78xZC6Dr34lqkqnS3uy10fcg1iKKI9gphFrIdK3AIwa4Qox/UfUhZlqMkl+f5f5Ow1W9XCBnsQr69kZiDQS1EVQe/Gxoj5pBQCxGR6i3EHBJqIapavYWYQ0ItZIwGjrkpBMiFjNHAMTeFALmQ9wh1YwgM3xweN4WANYYvYcjNDmNunBgEeiEico9hvsh9E4saeiHT6XTtnEsBPP5CmEfnXDKdTtcDpTUa9GvIMd77SQjhTlXnAObo2LPbsAewFZFtFEXrS++I0NVPl9BPvNLW7N36YctoHMe7Pm9OtdDVz5bQe4d+DXlvmBAyTAgZJoQME0KGCSHDhJBhQsgwIWSYEDJMCBkmhAwTQoYJIcOEkGFCyDAhZJgQMkwIGSaEDBNChgkhw4SQYULIMCFk/AMqfZUpSkU8pwAAAABJRU5ErkJggg==);
+	background-size: 50px 44px;
+}
+		</style>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+	</head>
+	<body>
+		<header id="header">
+			<div class="nvbt iback" onclick="resetUploader();back();"></div>
+			<div class="nvtt">Uploaded Data&amp;File</div>
+			<div class="nvbt iclear" onclick="deleteFiles()"></div>
+		</header>
+		<div id="dcontent" class="dcontent">
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+</html>

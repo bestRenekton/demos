@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<body>
+
+<div id="app" v-once v-color-swatch:1='color'>
+    {{message}}
+</div>
+
+<div id="app-2">
+  <span :title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+
+<div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+</div>
+
+<div id="app-4">
+    <ol>
+        <li v-for="li in lis">
+            {{li.text}}
+        </li>
+    </ol>
+</div>
+
+<div id="app-5">
+    <p>{{message}}</p>
+    <button v-on:click="reverseMessage">逆转消息</button>
+    <button v-on:click="say('hello',$event)">say-hi</button>
+</div>
+
+<div id="app-6">
+    <p>{{message}}</p>
+    <input type="text" v-model="message"/>
+</div>
+
+<div id="app-7">
+   <item v-for="abc in people" v-bind:message="abc"></item>
+</div>
+
+<div id="app-8" :class="classObject">
+    111
+</div>
+
+<div id="app-9">
+    <div v-if="Math.random() > 0.5">
+        Now you see me
+    </div>
+    <div v-else>
+        Now you don't
+    </div>
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </template>
+    <button @click="change">change</button>
+    <h1 v-show="show">Hello!</h1>
+</div>
+
+<ul id="app-10">
+    <li v-for="(li,index) in lis">
+        {{index}} -{{li.text}}
+    </li>
+</ul>
+<div id="example-2">
+  <p>{{total}}</p>
+  <input type="text" v-model.number="parentMsg">
+  <simple-counter :my-message="parentMsg" @add="totalCounter" @click.native='doTheThing'></simple-counter>
+  <simple-counter :my-message="parentMsg" @add="totalCounter"></simple-counter>
+  <simple-counter :my-message="parentMsg" @add="totalCounter"></simple-counter>
+</div>
+
+<script>
+    //子...必须放父前面
+    Vue.component('simple-counter', {
+    props: {
+      myMessage: {
+        validator: function (value) {
+          return value > 0
+        }
+      }
+    },
+    template: '<button @click="addCounter">{{ counter +myMessageNew}}</button>',
+    computed: {
+      myMessageNew: function () {
+        return this.myMessage+2
+      }
+    },
+    data: function () {
+      return {counter:99}
+    },
+    methods:{
+        addCounter:function(){
+          this.counter+=1;
+          this.$emit('add')//传父
+        }
+      }
+    })
+    //父
+    new Vue({
+      el: '#example-2',
+      data:{
+        parentMsg:1,
+        total:0
+      },
+      methods:{
+        totalCounter:function(){
+          this.total+=1;
+        },
+        doTheThing:function(){
+          alert(123123)
+        }
+      }
+    })
+    //自定义指令
+    Vue.directive('color-swatch',(el,binding)=>{
+      if(binding.arg=='1'){
+        el.style.color=binding.value;
+      }else{
+        el.style.backgroundColor=binding.value;
+      }
+    })
+    //路由
+    const NotFound = { template: '<p>Page not found123</p>' }
+    const Home = { template: '<p>home page</p>' }
+    const About = { template: '<p>about page</p>' }
+
+    const routes = {
+      '/': Home,
+      '/about': About
+    }
+    var app=new Vue({
+        el:"#app",
+        data:{
+            message:"hel1212lo",
+            color:'red',
+            currentRoute: window.location.pathname
+        },
+        computed: {
+          ViewComponent () {
+            console.log(this.currentView)
+            return routes[this.currentRoute] || NotFound
+          }
+        },
+        render (h) { return h(this.ViewComponent) }
+    })
+
+    var app2=new Vue({
+        el:"#app-2",
+        data:{
+            message:"页面加载"+new Date()
+        }
+    })
+
+    var app3=new Vue({
+        el:"#app-3",
+        data:{
+            seen:true
+        }
+    })
+
+    var app4=new Vue({
+        el:"#app-4",
+        data:{
+            lis:[
+                {text:"1"},
+                {text:"2"},
+                {text:"3"}
+            ]
+        }
+    })
+
+    var app5=new Vue({
+        el:"#app-5",
+        data:{
+            message:"hello123"
+        },
+        methods:{
+            reverseMessage:function(e){
+                this.message=this.message.split("").reverse().join("")
+                console.log(e)
+            },
+            say:function(word,e){
+              alert(word)
+              console.log(e)
+            }
+        }
+    })
+
+    var app6=new Vue({
+        el:"#app-6",
+        data:{
+            message:"hello"
+        }
+    })
+
+    var app7=new Vue({
+        el: '#app-7',
+        data:{
+            people:[
+                {text:"张三"},
+                {text:"李四"},
+                {text:"王麻子"}
+            ]
+        },
+        components: {
+            'item': {
+                props:["message"],
+                template: '<h1>{{message.text}}</h1>'
+            }
+        }
+    })
+
+    var app8=new Vue({
+        el:"#app-8",
+        data:{
+            classObject: {
+                abc: true,
+                cde: false
+            }
+        }
+    })
+
+    var app9=new Vue({
+        el:"#app-9",
+        data:{
+            loginType:"username",
+            show:false
+        },
+        methods:{
+            change:function(){
+                return this.loginType=this.loginType==='username'?'email':'username';
+            }
+        }
+    })
+
+    var app10=new Vue({
+        el:"#app-10",
+        data:{
+            lis:[
+                {text:"aaaa"},
+                {text:"bbbb"}
+            ]
+        }
+    })
+
+</script>
+</body>
+</html>

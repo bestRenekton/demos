@@ -1,0 +1,14 @@
+/* test.wxss */
+
+.flex-wrp{display: flex;flex-direction:row;}
+.flex-item{flex:1;height: 5rem}
+.bc_green{background: #2ECC40}
+.bc_red{background: #FF4136}
+.bc_blue{background:#0074D9 }
+.button-hover{background: #eee;}
+
+#green{background: #2ECC40;height: 100%;}
+#red{background: #FF4136;height: 100%;}
+#abc{background: yellow;height: 100%;}
+#blue{background: #0074D9;height: 100%;}
+image{width: 100%;}

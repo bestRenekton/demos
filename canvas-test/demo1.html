@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .header{width: 100%;height: 600px;overflow: hidden;position: relative;}
+        .content{height: 600px;width: 1920px;position:relative;left: 50%;margin-left: -960px;background: url(//combo.b.qq.com/store/src/themes/mpPortal/register/images/index/background.jpg) center bottom no-repeat;}
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="content">
+        <canvas id="canvas" width="1920" height="600"></canvas>
+    </div>
+</header>
+
+
+
+
+
+
+<script>
+    var canvas=document.getElementById('canvas');
+    var context=canvas.getContext("2d");
+
+
+    (function foo() {
+        var stars={},
+            particleIndex= 0,                 //序号
+            settings={
+                r: 1400,                      // 轨迹半径
+                height: 260,                  // 露出的圆弧的高度
+                density: 300,                 //稠密
+                leftWall: 0,                  //左边界
+                rightWall: canvas.width,      //右边界
+                alpha: 0.0,                   //亮度
+                maxAlpha: 1
+            }
+        //星星垂直方向实际上是个伪随机，越靠近地球，星星越密集，而越往上，越稀疏。其算法如下
+        var getMinRandom=function(){
+            var rand=Math.random();
+            var step=Math.ceil(1/(1-rand));
+            var arr=[];
+            for(var i=0;i<step;i++){
+                arr.push(Math.random());
+            }
+            return Math.min.apply(null,arr);
+        }
+        //画面刷新重绘，否则会产生运动轨迹
+        function redraw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.fillStyle = "rgba(0,0,0,0)";
+            context.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        //窗口尺寸变化
+        function resizeCanvas(){
+            canvas.width = 1920;
+            canvas.height = 600;
+            settings.rightWall = canvas.width;
+            settings.height = 260 + (canvas.height - 600) / 2;
+            redraw();
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        //星星的基本属性
+        function Star(){
+            // 圆的轨迹方程式为：(x-a)²+(y-b)²=r²
+            // 因此，已知x, 则y = Math.sqrt(r² - (x-a)²) + b;
+            // 其中，圆心是(a, b)
+            // 在本例子中
+            // 圆心坐标是(canvas.width/2, canvas.height - 600 + r);
+            var a = canvas.width/2, b = canvas.height - settings.height + settings.r;
+            // 因此，已知横坐标随机
+            this.x = Math.floor(Math.random() * canvas.width);
+            // 纵坐标需要在圆弧以上，因为getMinRandom所以越往上越稀疏
+            this.offsety = getMinRandom() * (canvas.height - settings.height);
+            this.y = b - Math.sqrt(settings.r * settings.r - (this.x - a) * (this.x - a)) - this.offsety;
+
+            this.vx = Math.random() * 0.05 + 0.025;    // 水平偏移，也是移动速度
+
+            // 星星的尺寸
+            this.particleSize = 0.5 + (Math.random() + 0.1 / 4);
+            particleIndex++;
+            stars[particleIndex] = this;
+            this.alpha = 0.0;
+            this.maxAlpha = 0.2 + (this.y/canvas.height) * Math.random() * 0.8;
+            //亮度的flag：1或者-1
+            this.alphaAction = 1;
+        }
+        //星星的draw属性:运动、亮度函数
+        Star.prototype.draw = function() {
+            // 横坐标移动
+            this.x += this.vx;
+            // 根据切线方向进行偏移
+            // y坐标
+            this.y = canvas.height - settings.height + settings.r - Math.sqrt(settings.r * settings.r - (this.x - canvas.width/2) * (this.x - canvas.width/2)) - this.offsety;
+
+            // 透明度慢慢起来
+            if (this.alphaAction == 1) {
+                if (this.alpha < this.maxAlpha ) {
+                    this.alpha += 0.005;
+                } else {
+                    this.alphaAction = -1;
+                }
+            } else {
+                if (this.alpha > 0.2 ) {
+                    this.alpha -= 0.002;
+                } else {
+                    this.alphaAction = 1;
+                }
+            }
+
+            if ( this.x + (this.particleSize*2) >= settings.rightWall ) {
+                // x到左侧
+                this.x = this.x - settings.rightWall;
+            }
+
+            // 绘制星星
+            context.beginPath();
+            context.fillStyle="rgba(255,255,255," + this.alpha.toString() + ")";
+            context.arc(this.x, this.y, this.particleSize, 0, Math.PI*2, true);
+            context.closePath();
+            context.fill();
+        }
+        function render() {
+            redraw();
+            // 星星的数目
+            // IE下CUP性能有限，数目小
+            var length = 400;
+            if (!history.pushState) {
+                // IE9
+                length = 200;
+            } else if (document.msHidden != undefined) {
+                // IE10+
+                length = 300;
+            }
+
+            if ( Object.keys(stars).length > length ) {
+                settings.density = 0;
+            }
+
+            for ( var i = 0; i < settings.density; i++ ) {
+                if ( Math.random() > 0.97 ) {
+                    new Star();
+                }
+            }
+
+            // 星星实时移动
+            for ( var i in stars ) {
+                stars[i].draw();
+            }
+
+            requestAnimationFrame(render);
+        }
+        if (!window.requestAnimationFrame) {
+            window.requestAnimationFrame = function(fn) {
+                setTimeout(fn, 17);
+            };
+        }
+        render();
+
+    })()
+</script>
+</body>
+</html>

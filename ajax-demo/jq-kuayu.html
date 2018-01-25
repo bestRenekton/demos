@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <!-- 防止IE8,7进入怪异模式 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="IE=Edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<meta http-equiv="refresh" content="5; url='http://www.qq.com/'">-->
+    <title>积极履行社会责任 助力川渝精准扶贫</title>
+    <!--<link rel="stylesheet" href="css/master.css"/>-->
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="js/snap.svg-min.js"></script>-->
+    <style>
+        p{margin: 0;}
+        /*清除浮动*/
+        /*父级*/
+        .clearfix:after { height: 0; content: ""; display: block; clear: both; visibility: hidden; font-size: 0; }
+        .clearfix { zoom: 1; }
+        /* 子级 */
+        .clear { clear: both; height: 0; font-size: 0;}
+        /* IE6 */
+        /** html .clearfix { zoom: 1; }*/
+        /**:first-child + html .clearfix { zoom: 1; }*/
+        .hold {
+            display: flex;
+            width: 1000px;height: 600px;border: 1px solid red;margin: 0 auto;
+
+        }
+        img{margin-right: 20px;align-self: center}
+        .body{flex: auto}
+
+    </style>
+</head>
+<body>
+<h1>查询</h1>
+<label for="">编号：</label>
+<input type="text" id="keyword">
+<button id="search">查询</button>
+<p id="searchResult"></p>
+
+<h1>创建</h1>
+<label for="">姓名：</label>
+<input type="text" id="staffName">
+<label for="">编号：</label>
+<input type="text" id="staffNumber">
+<label for="">性别：</label>
+<select name="" id="staffSex">
+    <option>男</option>
+    <option>女</option>
+</select>
+<label for="">职位：</label>
+<input type="text" id="staffJob">
+<button id="save">保存</button>
+<p id="createResult"></p>
+
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $('#search').click(function(){
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:8080/ajax-demo/JSON.php?number="+$('#keyword').val(),
+                dataType:"json",
+                success:function(data){
+                    if(data.success){
+                        $('#searchResult').html(data.msg);
+                    }else {
+                        $('#searchResult').html("错误"+data.msg)
+                    }
+                },
+                error:function(){
+                    alert("错误"+jqXHR.status)
+                }
+            })
+        });
+
+        $('#save').click(function(){
+            $.ajax({
+                type:"POST",
+                url:"JSON.php",
+                dataType:"json",
+                data:{
+                    name:$("#staffName").val(),
+                    number:$("#staffNumber").val(),
+                    sex:$("#staffSex").val(),
+                    job:$("#staffJob").val()
+                },
+                success:function(data){
+                    if(data.success){
+                        $('#createResult').html(data.msg);
+                    }else {
+                        $('#createResult').html("错误"+data.msg)
+                    }
+                },
+                error:function(){
+                    alert("错误"+jqXHR.status)
+                }
+            })
+        })
+
+
+
+    })
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

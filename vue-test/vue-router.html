@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue-router</title>
+  <script src="jquery-1.8.3.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>
+      <router-link to="/user/aa">Go to useraa</router-link>
+      <router-link to="/user/bb">Go to userbb</router-link>
+    </p>
+    <!-- 路由出口,路由匹配到的组件将渲染在这里 -->
+    <router-view class="view one"></router-view>
+    <router-view class="view two" name="foo_1"></router-view>
+    <router-view class="view three" name="foo_2"></router-view>
+  </div>
+
+
+<script>
+//定义（路由）组件
+const not404 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
+const foo_1 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
+const foo_2 = { template: '<div><h2>User:{{ $route.params.id }}</h2></div>' }
+
+const routes = [
+  {
+    path: '/user/:id',
+    components:{
+      default:not404,
+      foo_1:foo_1,
+      foo_2:foo_2,
+    }
+   }
+]
+// 3. 创建 router 实例，然后传 `routes` 配置
+const router = new VueRouter({
+  routes // （缩写）相当于 routes: routes
+})
+// 4. 创建和挂载根实例。记得要通过 router 配置参数注入路由，从而让整个应用都有路由功能
+const app = new Vue({
+  router,
+  created:function(){
+    this.$router.push({path:'user/3/foo_1'})
+  }
+}).$mount('#app')
+
+</script>
+</body>
+</html>

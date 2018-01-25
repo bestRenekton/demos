@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" charset="utf-8">
+var ws=null,embed=null;
+// 扩展API加载完毕，现在可以正常调用扩展API 
+function plusReady(){
+	ws=plus.webview.currentWebview();
+	ws.addEventListener('show',createEmbed,false);
+}
+// 判断扩展API是否准备，否则监听"plusready"事件
+if(window.plus){
+	plusReady();
+}else{
+	document.addEventListener("plusready",plusReady,false);
+}
+// 创建子Webview
+function createEmbed(){
+	var topoffset='45px';
+	if(plus.navigator.isImmersedStatusbar()){// 兼容immersed状态栏模式
+		topoffset=(Math.round(plus.navigator.getStatusbarHeight())+45)+'px';
+	}
+	plus.nativeUI.showWaiting('',{style:'black',modal:false,background:'rgba(0,0,0,0)'});
+	embed=plus.webview.create('http://m.weibo.cn/u/3196963860','embed',{top:topoffset,bottom:'0px',position:'dock',dock:'bottom',bounce:'vertical'});
+	ws.append(embed);
+	embed.addEventListener('loaded',function(){
+		plus.nativeUI.closeWaiting();
+	},false);
+	embed.addEventListener('loading',function(){
+		plus.nativeUI.showWaiting('',{style:'black',modal:false,background:'rgba(0,0,0,0)'});
+	},false);
+}
+// 打开网址
+function openUrl(){
+	var url=document.getElementById("url");
+	embed.loadURL(url.value);
+	url.blur();
+}
+// 页面加载后自动打开
+document.addEventListener("DOMContentLoaded",function(){
+	if(embed){
+		openUrl();
+	}else{
+		auto=true;
+	}
+},false);
+// 页面跳转完成事件
+function onBrowserLoading(){
+	document.getElementById("url").value=embed.getURL();
+}
+		</script>
+		<link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8"/>
+		<style type="text/css">
+#url{
+	width:98%;
+	-webkit-user-select:auto;
+	padding-left:0;
+	padding-right:0;
+	background: rgba(0,0,0,0);
+	border: 0px;
+	border-bottom:1px solid #ECB100;
+	border-radius: 0;
+	outline:none;
+}
+		</style>
+	</head>
+	<body>
+		<header id="header">
+			<div class="nvbt iback" onclick="back(),plus.nativeUI.closeWaiting();"></div>
+			<div class="nvtt">
+				<form action="?" method="get" onsubmit="openUrl();return false;">
+				<input id="url" type="url" value="http://m.weibo.cn/u/3196963860"/>
+				</form>
+			</div>
+			<div class="nvbt" onclick="openUrl();">Go</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../js/immersed.js" ></script>
+</html>

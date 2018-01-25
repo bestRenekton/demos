@@ -1,0 +1,16 @@
+<!--logs.wxml-->
+<!--<view class="container log-list">
+  <block wx:for="{{logs}}" wx:for-item="log">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>
+</view>-->
+
+
+<!-- navigator.wxml -->
+<view style="text-align:center"> {{title}} </view>
+<view> 点击左上角返回回到之前页面 </view>
+<!-- redirect.wxml -->
+<view style="text-align:center"> {{title}} </view>
+<view> 点击左上角返回回到上级页面 </view>
+
+

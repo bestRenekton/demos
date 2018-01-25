@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vue.js 简单多图上传图片</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        /*过度*/
+        .slide-fade-enter-active {
+            transition: all .3s ease;
+        }
+        .slide-fade-leave-active {
+            transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+        }
+        .slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+            transform: translateX(10px);
+            opacity: 0;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script src="jquery-1.8.3.js"></script>
+    <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="hide_numsheet" type="text/css">
+    <script src="https://unpkg.com/tween.js@16.3.4"></script>
+
+</head>
+<body>
+
+<h3>动态组件</h3>
+<!-- 定义三个temp模板，用于切换 -->
+<template id="temp-tab01">
+    <div>this is tab01
+    </div>
+</template>
+<template id="temp-tab02">
+    <div>this is tab02</div>
+</template>
+<template id="temp-tab03">
+    <div>this is tab03</div>
+</template>
+
+<div id="dr01">
+    <!-- 导航栏 -->
+    <!--<div class="border cf">-->
+        <!--<ul>-->
+            <!--<li><a href="javascript:void(0);" @click="toggleTabs(tab01Text);">{{tab01Text}}</a></li>-->
+            <!--<li><a href="javascript:void(0);" @click="toggleTabs(tab02Text);">{{tab02Text}}</a></li>-->
+            <!--<li><a href="javascript:void(0);" @click="toggleTabs(tab03Text);">{{tab03Text}}</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!-- 点击导航后要切换的内容 -->
+    <div class="border" style="height: 100px;">
+        <!-- 如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 keep-alive 指令参数 -->
+        <transition name="slide-fade">
+            <keep-alive>
+                <component :is="currentView" ></component>
+            </keep-alive>
+        </transition>
+
+        <a href="javascript:;" @click="next(tab02Text)">xiayibu</a>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    //扩展组件tab01
+    var tab01 = Vue.extend({
+        template: "#temp-tab01",
+    });
+    //扩展组件tab02
+    var tab02 = Vue.extend({
+        template: "#temp-tab02",
+    });
+    //扩展组件tab03
+    var tab03 = Vue.extend({
+        template: "#temp-tab03",
+    });
+    //新建vue实例
+    var dr01 = new Vue({
+        el: "#dr01",
+        data: {
+            tab01Text: "tab01", //导航栏文本1
+            tab02Text: "tab02", //导航栏文本2
+            tab03Text: "tab03", //导航栏文本3
+            currentView: 'tab01', //默认选中的导航栏
+        },
+        //局部注册组件
+        components: {
+            tab01: tab01,
+            tab02: tab02,
+            tab03: tab03,
+        },
+        methods: {
+            //绑定tab的切换事件
+            toggleTabs: function(tabText) {
+                this.currentView = tabText;
+            },
+            next:function(tabText){
+                this.currentView = tabText;
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

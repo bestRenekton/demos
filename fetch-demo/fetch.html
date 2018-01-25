@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>fetch_test</title>
+    <style>
+
+    </style>
+
+    <script src="jquery-1.8.3.min.js"></script>
+    <!--IE9以上兼容-->
+    <script src="fetch.js"></script>
+    <script src="es6-promise.auto.min.js"></script>
+</head>
+<body>
+
+<div id="test-promise-log"></div>
+<div id="test-promise-ajax-result"></div>
+<div id="c"></div>
+
+
+<script>
+
+var url1 = 'http://115.28.156.246/search_tree/public/Index/Action/getMax';
+var url = 'http://115.28.156.246/search_tree/public/Index/Search/checkResult';
+
+if(self.fetch) {
+    //普通提交:
+    fetch(url1,{
+        method:'post',
+        headers: { 'Accept': 'application/json'},
+        body:JSON.stringify({
+            id:77,
+            page:1,
+            rows:10
+        })
+    })
+    .then(function(res){
+        if(res.ok){
+//            return res.json();  //json
+            return res.text();   //字符串
+        }
+    })
+    .then(function(obj) {
+        console.log(obj)
+                alert(obj)
+    })
+    //模拟表单提交:
+    fetch(url,{
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+        body: 'id=77&page=1&rows=10'
+    })
+
+//    $.ajax({
+//        url:url,
+//        type:'post',
+//        dataType:'json',
+//        data:{
+//            id:77,
+//            page:1,
+//            rows:10
+//        },
+//        success:function(e){
+//            console.log(e)
+//        }
+//    })
+
+
+} else {
+    alert('GG')
+}
+
+
+</script>
+
+</body>
+</html>

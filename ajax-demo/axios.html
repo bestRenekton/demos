@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <!-- 防止IE8,7进入怪异模式 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="IE=Edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<meta http-equiv="refresh" content="5; url='http://www.qq.com/'">-->
+    <title>axios-test</title>
+    <!--<link rel="stylesheet" href="css/master.css"/>-->
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <!--<script src="js/snap.svg-min.js"></script>-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  //config
+  // import Qs from 'qs'
+  // {
+  //   url: '/user',
+  //   // 请求方法同上
+  //   method: 'get', // default
+  //   // 基础url前缀
+  //   baseURL: 'https://some-domain.com/api/',　　　
+  //   transformRequest: [function (data) {
+  //     // 这里可以在发送请求之前对请求数据做处理，比如form-data格式化等，这里可以使用开头引入的Qs（这个模块在安装axios的时候就已经安装了，不需要另外安装）
+  // 　　data = Qs.stringify({});
+  //     return data;
+  //   }],
+  //   transformResponse: [function (data) {
+  //     // 这里提前处理返回的数据
+  //     return data;
+  //   }],
+  //   // 请求头信息
+  //   headers: {'X-Requested-With': 'XMLHttpRequest'},
+  //   //parameter参数
+  //   params: {
+  //     ID: 12345
+  //   },
+  //   //post参数，使用axios.post(url,{},config);如果没有额外的也必须要用一个空对象，否则会报错
+  //   data: {
+  //     firstName: 'Fred'
+  //   },
+  //   //设置超时时间
+  //   timeout: 1000,
+  //   //返回数据类型
+  //   responseType: 'json', // default
+  // }
+
+  let url='http://115.28.156.246/ProPro/public/';
+
+  //post
+  axios.post(url+'index/Aptitude/getDictionary',{
+    'types':'zz'
+  })
+  .then(function(res){
+    console.log(res);
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+  //get
+  axios.get(url+'index/Aptitude/getDictionary',{
+  params:{
+    "types":'zz'
+  }
+  })
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+  //多次请求一起
+  function get1(){
+    return axios.get(url+'index/Aptitude/getDictionary',{params:{"types":'zz'}});
+  }
+  function get2(){
+    return axios.get(url+'index/Aptitude/getDictionary',{params:{"types":'zz'}});
+  }
+  axios.all([get1(),get2()])
+    .then(axios.spread(function(acct,perms){
+    //当这两个请求都完成的时候会触发这个函数，两个参数分别代表返回的结果
+  }))
+
+
+  //post有格式问题时，可以把node自带的querystring把post的data转为字符串就可以了；或者使用下面方法手动转换
+  axios({
+    url: url+'index/Aptitude/getDictionary',
+    method: 'post',
+    data: {
+      types: 'zz',
+    },
+    transformRequest: [function (data) {
+      let ret = ''
+      for (let it in data) {
+        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+      }
+      return ret
+    }],
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+
+</script>
+
+</body>
+</html>

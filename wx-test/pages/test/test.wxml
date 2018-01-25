@@ -1,0 +1,146 @@
+<!--test.wxml-->
+<!--view-->
+<view class="section">
+  <view class="section__title">flex-direction: row</view>
+  <view class="flex-wrp">
+    <view class="flex-item bc_green" hover-class="button-hover">1</view>
+    <view class="flex-item bc_red">2</view>
+    <view class="flex-item bc_blue">3</view>
+  </view>
+</view>
+
+<!--scroll_view-->
+<view class="section">
+  <view class="section__title">vertical scroll</view>
+  <scroll-view scroll-y style="height: 200px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view id="green" class="scroll-view-item bc_green"></view>
+    <view id="red" class="scroll-view-item bc_red"></view>
+    <view id="abc" class="scroll-view-item bc_yellow"></view>
+    <view id="blue" class="scroll-view-item bc_blue"></view>
+  </scroll-view>
+
+  <view class="btn-area">
+    <button size="mini" bindtap="tap">click me to scroll into view </button>
+    <button size="mini" bindtap="tapMove">click me to scroll</button>
+  </view>
+</view>
+
+<!--swiper-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+<button bindtap="changeIndicatorDots"> indicator-dots </button>
+<button bindtap="changeAutoplay"> autoplay </button>
+<slider bindchange="intervalChange" show-value min="500" max="2000"/> interval
+<slider bindchange="durationChange" show-value min="1000" max="10000"/> duration
+
+<button type="primary" bindtap="save_pic">保存图片</button>
+
+<!--movable_area-->
+<!--<view class="section">
+  <view class="section__title">movable-view区域小于movable-area</view>
+  <movable-area style="height: 200px;width: 200px;background: red;">
+    <movable-view style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}">
+    </movable-view>
+  </movable-area>
+  <view class="btn-area">
+    <button size="mini" bindtap="tap_go">click me to move to (30px, 30px)</button>
+  </view>
+  <view class="section__title">movable-view区域大于movable-area</view>
+  <movable-area style="height: 100px;width: 100px;background: red;">
+    <movable-view style="height: 200px; width: 200px; background: blue;">
+    </movable-view>
+  </movable-area>
+</view>-->
+
+<!--icon-->
+<view class="group">
+  <block wx:for="{{icon_color}}">
+    <icon type="success" size="40" color="{{item}}"/>
+  </block>
+</view>
+
+<view wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="i">
+  <block wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}" wx:for-item="j">
+    <block wx:if="{{i <= j}}">
+      {{i}} * {{j}} = {{i * j}}
+    </block>
+  </block>
+</view>
+
+<!--text-->
+<view class="btn-area">
+  <view class="body-view">
+    <text selectable="true">{{text}}</text>
+    <!--<button bindtap="add">add line</button>
+    <button bindtap="remove">remove line</button>-->
+  </view>
+</view>
+
+<!--progress-->
+<progress percent="20" show-info />
+<progress percent="40" stroke-width="12" />
+<view class="classname" style="margin:20px;"></view>
+<progress percent="60" color="pink" />
+<progress percent="60" activeColor="pink" />
+<progress percent="80" active />
+<view class="classname" style="margin:20px;"></view>
+
+<!--nav-->
+<!-- sample.wxml -->
+<view class="btn-area">
+  <navigator url="/pages/logs/logs?title=111" hover-class="navigator-hover">跳转到新页面</navigator>
+  <navigator url="/pages/logs/logs?title=redirect" open-type="redirect" hover-class="other-navigator-hover">在当前页打开</navigator>
+  <navigator url="/pages/logs/logs" open-type="switchTab" hover-class="other-navigator-hover">切换 Tab</navigator>
+</view>
+
+<!--audio-->
+<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop></audio>
+
+<button type="primary" bindtap="audioPlay">播放</button>
+<button type="primary" bindtap="audioPause">暂停</button>
+<button type="primary" bindtap="audio14">设置当前播放时间为14秒</button>
+<button type="primary" bindtap="audioStart">回到开头</button>
+
+<!--video-->
+<view class="section tc">
+  <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+  <view class="btn-area">
+    <button bindtap="bindButtonTap">获取视频</button>
+    <input bindblur="bindInputBlur"/>
+    <button bindtap="bindSendDanmu">发送弹幕</button>
+  </view>
+</view>
+<view class="classname" style="margin:50px;"></view>
+
+<!--map-->
+<map id="map" longitude="113.324520" latitude="23.099994" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+
+<!--canvas-->
+<!-- canvas.wxml -->
+<canvas style="width: 300px; height: 200px;" canvas-id="firstCanvas"></canvas>
+<!-- 当使用绝对定位时，文档流后边的 canvas 的显示层级高于前边的 canvas -->
+<!--<canvas style="width: 400px; height: 500px;" canvas-id="secondCanvas"></canvas>-->
+<!-- 因为 canvas-id 与前一个 canvas 重复，该 canvas 不会显示，并会发送一个错误事件到 AppService -->
+<!--<canvas style="width: 400px; height: 500px;" canvas-id="secondCanvas" binderror="canvasIdErrorCallback"></canvas>-->
+
+<!--contact-button-->
+<contact-button 
+  type="default-dark" 
+  size="20"
+  session-from="weapp"
+>客服
+</contact-button>
+
+
+<button type="primary" bindtap="choose_pic">选择图片</button>
+<button type="primary" bindtap="saoma">扫一扫</button>
+<button type="primary" bindtap="zhendong">z震动</button>
+
+
+<!--animate-->

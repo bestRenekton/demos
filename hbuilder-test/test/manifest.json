@@ -1,0 +1,1526 @@
+{
+    "@platforms": ["android", "iPhone", "iPad"],
+    "id": "H5E52ECF4",/*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name": "test",/*应用名称，程序桌面图标名称*/
+    "version": {
+        "name": "2.1.2",/*应用版本名称*/
+        "code": "20102"
+    },
+    "description": "HTML5 Plus能力演示",/*应用描述信息*/
+    "icons": {
+        "144": "icon.png"
+    },
+    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer": {
+        "name": "",/*开发者名称*/
+        "email": "",/*开发者邮箱地址*/
+        "url": "http://www.dcloud.io"/*开发者个人主页地址*/
+    },
+    "orientation": [
+        "portrait"
+    ],
+    "permissions": {
+        "Accelerometer": {
+            "description": "加速度传感器"
+        },
+        "Audio": {
+            "description": "音频录制与播放"
+        },
+        "Cache": {
+            "description": "缓存管理"
+        },
+        "Camera": {
+            "description": "摄像头"
+        },
+        "Console": {
+            "description": "调试输出日志"
+        },
+        "Contacts": {
+            "description": "系统通讯录"
+        },
+        "Device": {
+            "description": "设备信息"
+        },
+        "Downloader": {
+            "description": "文件下载"
+        },
+        "Events": {
+            "description": "扩展事件"
+        },
+        "File": {
+            "description": "本地文件系统"
+        },
+        "Gallery": {
+            "description": "系统相册"
+        },
+        "Geolocation": {
+            "description": "位置信息"
+        },
+        "Invocation": {
+            "description": "Native.js能力"
+        },
+        "Messaging": {
+            "description": "消息通讯"
+        },
+        "Orientation": {
+            "description": "方向传感器"
+        },
+        "Proximity": {
+            "description": "距离传感器"
+        },
+        "Storage": {
+            "description": "本地数据存储"
+        },
+        "Webview": {
+            "description": "窗口管理"
+        },
+        "NativeObj": {
+            "description": "原生控件"
+        },
+        "NativeUI": {
+            "description": "原生UI控件"
+        },
+        "Navigator": {
+            "description": "浏览器信息"
+        },
+        "Uploader": {
+            "description": "文件上传"
+        },
+        "Runtime": {
+            "description": "运行环境"
+        },
+        "XMLHttpRequest": {
+            "description": "跨域网络请求"
+        },
+        "Zip": {
+            "description": "压缩与解压"
+        },
+        "Barcode": {
+            "description": "二维码扫描"
+        },
+        "Maps": {
+            "description": "地图"
+        },
+        "OAuth": {
+            "description": "登录授权"
+        },
+        "Payment": {
+            "description": "支付"
+        },
+        "Push": {
+            "description": "消息推送"
+        },
+        "Share": {
+            "description": "社交分享"
+        },
+        "Speech": {
+            "description": "语音识别"
+        },
+        "Statistic": {
+            "description": "统计"
+        }
+    },
+    "plus": {
+        "splashscreen": {
+            "autoclose": false,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting": true/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+        },
+        "statusbar": {
+            "immersed": true,
+            "background": "#D74B28"
+        },
+        "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+        "runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
+        "distribute": {
+            "apple": {
+                "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision": "",/*iOS应用打包配置文件*/
+                "password": "",/*iOS应用打包个人证书导入密码*/
+                "p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices": "iphone",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "urlschemewhitelist":[/*iOS9调用第三方应用urlscheme白名单*/
+                    "baidumap",
+                    "iosamap"
+                ],
+                "shortcuts": [/*3D Touch快捷菜单项*/
+                    {
+                        "type": "share",
+                        "title": "分 享",
+                        "subtitle": "分享到微信、微博、QQ",
+                        "icontype": "UIApplicationShortcutIconTypeShare"
+                    },
+                    {
+                        "type": "about",
+                        "title": "关 于",
+                        "subtitle": "www.dcloud.io",
+                        "iconfile": "sa.png",
+                        "userinfo": {
+                            "key3":"value3"
+                        }
+                    }
+                ],
+                "frameworks":[
+                ]/*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+            },
+            "google": {
+                "packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore": "",/*Android应用打包使用的密钥库文件*/
+                "password": "",/*Android应用打包使用密钥库中证书的密码*/
+                "aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
+                "ImmersedStatusbar":true,/*Android平台开启沉浸式状态栏样式*/
+                "permissions": [
+                    "<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
+                    "<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_SMS\"/>"
+                ]/*使用Native.js调用原生安卓API需要使用到的系统权限*/
+            },
+            "orientation": [
+                "portrait-primary"
+            ],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons": {
+                "ios": {
+                    "prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+                    "auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone": {
+                        "normal": "", /*iPhone3/3GS程序图标，分辨率：57x57*/
+                        "retina": "", /*iPhone4程序图标，分辨率：114x114*/
+                        "retina7": "", /*iPhone4S/5/6程序图标，分辨率：120x120*/
+                        "retina8": "", /*iPhone6 Plus程序图标，分辨率：180x180*/
+                        "spotlight-normal": "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina": "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+                        "spotlight-retina7": "", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal": "", /*iPhone4设置页面程序图标，分辨率：29x29*/
+                        "settings-retina": "", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+                        "settings-retina8": "" /*iPhone6Plus设置页面程序图标，分辨率：87x87*/
+                    },
+                    "ipad": {
+                        "normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+                        "normal7": "", /*iPad iOS7程序图标，分辨率：76x76*/
+                        "retina7": "", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+                        "spotlight-normal7": "",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+                        "spotlight-retina7": "",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal": "",/*iPad设置页面程序图标，分辨率：29x29*/
+                        "settings-retina": "" /*iPad高分屏设置页面程序图标，分辨率：58x58*/
+                    }
+                },
+                "android": {
+                    "mdpi": "", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi": "", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi": "", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi": "",/*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi": ""/*1080P 高分屏程序图标，分辨率：144x144*/
+                }
+            },
+            "splashscreen": {
+                "ios": {
+                    "iphone": {
+                        "default": "", /*iPhone3启动图片选，分辨率：320x480*/
+                        "retina35": "",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40": "",/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+                        "retina47": "",/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+                        "retina55": "",/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+                        "retina55l": ""/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                    },
+                    "ipad": {
+                        "portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7": "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7": ""/*iPad iOS7高分屏横屏启动图片，分辨率：2048x1536*/
+                    }
+                },
+                "android": {
+                    "mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi": "", /*大屏启动图片，分辨率：320x442*/
+                    "hdpi": "", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi": "", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi": ""/*1080P高分屏启动图片，分辨率：1080x1882*/
+                }
+            },
+            "plugins": {
+                "statics": {
+                    "umeng": {/*配置应用使用友盟统计，参考http://ask.dcloud.net.cn/article/74*/
+                        "appkey_ios": "",/*iOS平台友盟统计appkey*/
+                        "channelid_ios": "",/*iOS平台友盟统计发行渠道*/
+                        "appkey_android": "",/*Android平台友盟统计发行渠道*/
+                        "channelid_android": "",/*Android平台友盟统计发行渠道*/
+                        "description": "友盟统计"
+                    }
+                },
+                "maps": {
+                    "baidu": {/*配置应用使用百度地图，参考http://ask.dcloud.net.cn/article/29*/
+                        "appkey_ios": "",/*iOS平台百度地图appkey*/
+                        "appkey_android": "",/*Android平台百度地图appkey*/
+                        "description": "百度地图"
+                    }
+                },
+                "push": {
+                    "igexin": {/*配置应用使用个推推送，参考http://ask.dcloud.net.cn/article/92*/
+                        "appid": "",/*个推推送平台应用appid*/
+                        "appkey": "",/*个推推送平台应用appkey*/
+                        "appsecret": "",/*个推推送平台应用appsecret*/
+                        "description": "个推推送"
+                    }
+                },
+                "share": {/*配置应用使用分享功能，参考http://ask.dcloud.net.cn/article/27*/
+                    "sina": {
+                        "appkey": "",/*新浪微博平台应用appkey*/
+                        "appsecret": "",/*新浪微博平台应用appsecret*/
+                        "redirect_uri": "",/*新浪微博平台应用分享回调地址*/
+                        "description": "新浪微博分享"
+                    },
+                    "tencent": {
+                        "appkey": "",/*腾讯微博平台应用appkey*/
+                        "appsecret": "",/*腾讯微博平台应用appsecret*/
+                        "redirect_uri": "",/*腾讯微博平台应用分享回调地址*/
+                        "description": "腾讯微博分享"
+                    },
+                    "qq": {
+                        "appid": "",/*腾讯QQ开放平台申请应用的AppID值*/
+                        "description": "QQ分享"
+                    },
+                    "weixin": {
+                        "appid": "",/*微信开放平台申请应用的AppID值*/
+                        "appsecret": "",/*微信开放平台申请应用的AppSecret值*/
+                        "description": "微信分享"
+                    }
+                },
+                "payment": {
+                    "alipay": {/*配置应用使用支付宝支付，参考http://ask.dcloud.net.cn/article/71*/
+                        "scheme": "helloh5test",/*ios平台在支付宝应用支付完成后返回当前应用使用的url scheme*/
+                        "description": "支付宝支付"
+                    },
+                    "weixin": {
+                        "appid": "",/*微信开放平台申请应用的AppID值*/
+                        "description": "微信支付"
+                    }
+                },
+                "oauth": {
+                    "weixin": {
+                        "appid": "",/*微信开放平台申请应用的AppID值*/
+                        "appsecret": "",/*微信开放平台申请应用的AppSecret值*/
+                        "description": "微信登录"
+                    },
+                    "qq": {
+                        "appid": "",/*腾讯QQ开放平台申请应用的AppID值*/
+                        "description": "QQ登录"
+                    },
+                    "sina": {
+                        "appkey": "",/*新浪微博平台应用appkey*/
+                        "appsecret": "",/*新浪微博平台应用appsecret*/
+                        "redirect_uri": "",/*新浪微博平台应用授权回调页地址*/
+                        "description": "新浪微博登录"
+                    }
+                }
+            }
+        }
+    },
+    "dependencies": {
+		"pages": {
+			"plus/doc.html": {
+				"href": "plus/doc.html",
+				"priority": 29,
+				"resources": [
+					"js/immersed.js"
+				],
+				"refer": [
+					"doc/camera.html",
+					"doc/accelerometer.html"
+				]
+			},
+			"plus/payment.html": {
+				"href": "plus/payment.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/payment.html"
+				],
+				"priority": 0
+			},
+			"plus/runtime.html": {
+				"href": "plus/runtime.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/runtime.html",
+					"plus/runtime_launch.html"
+				],
+				"priority": 1
+			},
+			"plus/barcode.html": {
+				"href": "plus/barcode.html",
+				"resources": [
+					"img/barcode.png",
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/barcode.html",
+					"plus/barcode_scan.html",
+					"plus/barcode_scan2.html"
+				],
+				"priority": 2
+			},
+			"plus/xhr.html": {
+				"href": "plus/xhr.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/xhr.html"
+				],
+				"priority": 3
+			},
+			"plus/oauth.html": {
+				"href": "plus/oauth.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/oauth.html"
+				],
+				"priority": 4
+			},
+			"plus/share.html": {
+				"href": "plus/share.html",
+				"resources": [
+					"css/common.css",
+					"img/add.png",
+					"logo.png",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/share.html"
+				],
+				"priority": 5
+			},
+			"plus/njs_android_shortcut.html": {
+				"href": "plus/njs_android_shortcut.html",
+				"resources": [
+					"css/common.css",
+					"icon.png",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 6
+			},
+			"plus/njs_ios_gamecenter.html": {
+				"href": "plus/njs_ios_gamecenter.html",
+				"resources": [
+					"js/common.js",
+					"js/immersed.js",
+					"img/5.jpg"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"plus/njs.html": {
+				"href": "plus/njs.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/njs_android_shortcut.html",
+					"plus/njs_ios_gamecenter.html",
+					"plus/doc.html",
+					"doc/native.js.html",
+					"plus/njs_efficient.html"
+				],
+				"priority": 6
+			},
+			"plus/downloader.html": {
+				"href": "plus/downloader.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/downloader.html"
+				],
+				"priority": 7
+			},
+			"plus/nativeui_waiting.html": {
+				"href": "plus/nativeui_waiting.html",
+				"resources": [
+					"img/waiting.png",
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 8
+			},
+			"plus/nativeui.html": {
+				"href": "plus/nativeui.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/nativeui_waiting.html",
+					"plus/doc.html",
+					"doc/nativeUI.html"
+				],
+				"priority": 8
+			},
+			"plus/file.html": {
+				"href": "plus/file.html",
+				"resources": [
+					"css/common.css",
+					"img/fdir.png",
+					"img/ffile.png",
+					"img/fdisk.png",
+					"img/fup.png",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/io.html"
+				],
+				"priority": 9
+			},
+			"index.html": {
+				"href": "index.html",
+				"resources": [
+					"js/immersed.js",
+					"css/common.css",
+					"js/shortcut.js",
+					"js/common.js",
+					"icon.png",
+					"js/update.js"
+				],
+				"refer": [
+					"plus/payment.html",
+					"plus/runtime.html",
+					"plus/barcode.html",
+					"plus/xhr.html",
+					"plus/oauth.html",
+					"plus/share.html",
+					"plus/njs.html",
+					"plus/downloader.html",
+					"plus/nativeui.html",
+					"plus/file.html",
+					"plus/zip.html",
+					"plus/push.html",
+					"plus/statistic.html",
+					"plus/audio.html",
+					"plus/uploader.html",
+					"plus/storage.html",
+					"plus/accelerometer.html",
+					"plus/navigator.html",
+					"plus/message.html",
+					"plus/speech.html",
+					"plus/proximity.html",
+					"plus/maps.html",
+					"plus/camera.html",
+					"plus/device.html",
+					"plus/orientation.html",
+					"plus/gallery.html",
+					"plus/webview.html",
+					"plus/geolocation.html",
+					"about.html",
+					"plus/events.html",
+					"plus/nativeobj.html"
+				],
+				"priority": 0
+			},
+			"plus/zip.html": {
+				"href": "plus/zip.html",
+				"resources": [
+					"css/common.css",
+					"img/shake/1.jpg",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"index.html",
+					"doc/zip.html"
+				],
+				"priority": 10
+			},
+			"plus/push.html": {
+				"href": "plus/push.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/push.html"
+				],
+				"priority": 11
+			},
+			"plus/statistic.html": {
+				"href": "plus/statistic.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 12
+			},
+			"plus/audio.html": {
+				"href": "plus/audio.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js",
+					"img/arecord.png",
+					"img/astop.png",
+					"audio/friendship.mp3"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/audio.html"
+				],
+				"priority": 13
+			},
+			"plus/uploader_ret.html": {
+				"href": "plus/uploader_ret.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 14
+			},
+			"plus/uploader.html": {
+				"href": "plus/uploader.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/uploader_ret.html",
+					"plus/doc.html",
+					"doc/uploader.html"
+				],
+				"priority": 14
+			},
+			"plus/storage.html": {
+				"href": "plus/storage.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/storage.html"
+				],
+				"priority": 15
+			},
+			"plus/accelerometer.html": {
+				"href": "plus/accelerometer.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/accelerometer.html",
+					"plus/accelerometer_shake.html"
+				],
+				"priority": 16
+			},
+			"plus/navigator_status.html": {
+				"href": "plus/navigator_status.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 18
+			},
+			"plus/navigator.html": {
+				"href": "plus/navigator.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"plus/navigator_status.html",
+					"doc/navigator.html"
+				],
+				"priority": 17
+			},
+			"plus/message.html": {
+				"href": "plus/message.html",
+				"resources": [
+					"css/common.css",
+					"img/helloh5.jpg",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/messaging.html"
+				],
+				"priority": 18
+			},
+			"plus/speech.html": {
+				"href": "plus/speech.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/speech.html"
+				],
+				"priority": 19
+			},
+			"plus/proximity.html": {
+				"href": "plus/proximity.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/proximity.html"
+				],
+				"priority": 20
+			},
+			"plus/maps_map_sub.html": {
+				"href": "plus/maps_map_sub.html",
+				"resources": [
+					"css/common.css"
+				],
+				"priority": 22,
+				"refer": []
+			},
+			"plus/maps_map.html": {
+				"href": "plus/maps_map.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js",
+					"logo.png",
+					"plus/maps_map_sub.html"
+				],
+				"refer": [
+					"plus/doc.html",
+					"plus/maps_map_sub.html"
+				],
+				"priority": 21
+			},
+			"plus/maps.html": {
+				"href": "plus/maps.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/maps_map.html",
+					"plus/doc.html",
+					"doc/maps.html"
+				],
+				"priority": 21
+			},
+			"plus/camera_image.html": {
+				"href": "plus/camera_image.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 22
+			},
+			"plus/camera_video.html": {
+				"href": "plus/camera_video.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 23
+			},
+			"plus/camera.html": {
+				"href": "plus/camera.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/camera_image.html",
+					"plus/camera_video.html",
+					"plus/doc.html",
+					"doc/camera.html"
+				],
+				"priority": 22
+			},
+			"plus/device.html": {
+				"href": "plus/device.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/device.html"
+				],
+				"priority": 23
+			},
+			"plus/orientation.html": {
+				"href": "plus/orientation.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/orientation.html",
+					"plus/orientation_level.html",
+					"plus/orientation_compass.html"
+				],
+				"priority": 24
+			},
+			"plus/gallery.html": {
+				"href": "plus/gallery.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/gallery.html"
+				],
+				"priority": 25
+			},
+			"plus/webview_pullrefresh_custom.html": {
+				"href": "plus/webview_pullrefresh_custom.html",
+				"resources": [
+					"css/common.css"
+				],
+				"priority": 26,
+				"refer": []
+			},
+			"plus/webview_pullhead_custom.html": {
+				"href": "plus/webview_pullhead_custom.html",
+				"resources": [
+					"css/common.css",
+					"img/pull_arrow.png",
+					"js/common.js",
+					"img/pull_fresh.png",
+					"js/immersed.js",
+					"plus/webview_pullrefresh_custom.html"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 26
+			},
+			"plus/webview_float.html": {
+				"href": "plus/webview_float.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"img/ui.png"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 27
+			},
+			"plus/webview.html": {
+				"href": "plus/webview.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/webview_pullhead_custom.html",
+					"plus/webview_float.html",
+					"plus/doc.html",
+					"doc/webview.html",
+					"plus/webview_animation.html",
+					"plus/webview_embed.html",
+					"plus/webview_mask.html",
+					"plus/webview_pulltorefresh.html"
+				],
+				"priority": 26
+			},
+			"plus/geolocation.html": {
+				"href": "plus/geolocation.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/geolocation.html"
+				],
+				"priority": 27
+			},
+			"about.html": {
+				"href": "about.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"img/h5p.jpg",
+					"js/immersed.js",
+					"icon.png",
+					"img/qr.png"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 28
+			},
+			"plus/events.html": {
+				"href": "plus/events.html",
+				"resources": [
+					"css/common.css",
+					"js/common.js",
+					"js/immersed.js"
+				],
+				"refer": [
+					"plus/doc.html",
+					"doc/events.html"
+				],
+				"priority": 29
+			},
+			"doc/share.html": {
+				"href": "doc/share.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 1,
+				"refer": []
+			},
+			"doc/webview.html": {
+				"href": "doc/webview.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 5,
+				"refer": []
+			},
+			"plus/webview_new.html": {
+				"href": "plus/webview_new.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css",
+					"img/ui.png"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"plus/webview_animation.html": {
+				"href": "plus/webview_animation.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html",
+					"plus/webview_new.html"
+				],
+				"priority": 6
+			},
+			"plus/webview_embed.html": {
+				"href": "plus/webview_embed.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"plus/webview_mask_side.html": {
+				"href": "plus/webview_mask_side.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 9
+			},
+			"plus/webview_mask.html": {
+				"href": "plus/webview_mask.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html",
+					"plus/webview_mask_side.html"
+				],
+				"priority": 8
+			},
+			"doc/accelerometer.html": {
+				"href": "doc/accelerometer.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 4,
+				"refer": []
+			},
+			"plus/accelerometer_shake.html": {
+				"href": "plus/accelerometer_shake.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"audio/shake.wav",
+					"css/common.css",
+					"img/shakeup.png",
+					"img/shakedown.png",
+					"img/shake/1.jpg",
+					"img/shake/2.jpg",
+					"img/shake/3.jpg",
+					"img/shake/4.jpg"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 5
+			},
+			"doc/audio.html": {
+				"href": "doc/audio.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 5,
+				"refer": []
+			},
+			"doc/barcode.html": {
+				"href": "doc/barcode.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 6,
+				"refer": []
+			},
+			"plus/barcode_scan.html": {
+				"href": "plus/barcode_scan.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 7
+			},
+			"doc/camera.html": {
+				"href": "doc/camera.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 9,
+				"refer": []
+			},
+			"doc/device.html": {
+				"href": "doc/device.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 8,
+				"refer": []
+			},
+			"doc/downloader.html": {
+				"href": "doc/downloader.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 9,
+				"refer": []
+			},
+			"doc/events.html": {
+				"href": "doc/events.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 10,
+				"refer": []
+			},
+			"doc/io.html": {
+				"href": "doc/io.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 11,
+				"refer": []
+			},
+			"doc/gallery.html": {
+				"href": "doc/gallery.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 12,
+				"refer": []
+			},
+			"doc/geolocation.html": {
+				"href": "doc/geolocation.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 13,
+				"refer": []
+			},
+			"doc/maps.html": {
+				"href": "doc/maps.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 15,
+				"refer": []
+			},
+			"doc/messaging.html": {
+				"href": "doc/messaging.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 15,
+				"refer": []
+			},
+			"doc/nativeUI.html": {
+				"href": "doc/nativeUI.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 17,
+				"refer": []
+			},
+			"doc/navigator.html": {
+				"href": "doc/navigator.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 18,
+				"refer": []
+			},
+			"doc/oauth.html": {
+				"href": "doc/oauth.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 18,
+				"refer": []
+			},
+			"doc/orientation.html": {
+				"href": "doc/orientation.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 19,
+				"refer": []
+			},
+			"plus/orientation_level.html": {
+				"href": "plus/orientation_level.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css",
+					"img/orientationbg.png",
+					"img/orientationl.png",
+					"img/orientationb.png"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 20
+			},
+			"plus/orientation_compass.html": {
+				"href": "plus/orientation_compass.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css",
+					"img/orientationa.png",
+					"img/orientationbg.png",
+					"img/orientationc.png"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 21
+			},
+			"doc/payment.html": {
+				"href": "doc/payment.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 20,
+				"refer": []
+			},
+			"doc/proximity.html": {
+				"href": "doc/proximity.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 21,
+				"refer": []
+			},
+			"doc/push.html": {
+				"href": "doc/push.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 22
+			},
+			"doc/runtime.html": {
+				"href": "doc/runtime.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 23,
+				"refer": []
+			},
+			"plus/runtime_launch.html": {
+				"href": "plus/runtime_launch.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 24
+			},
+			"doc/storage.html": {
+				"href": "doc/storage.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 24,
+				"refer": []
+			},
+			"doc/uploader.html": {
+				"href": "doc/uploader.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 26,
+				"refer": []
+			},
+			"doc/xhr.html": {
+				"href": "doc/xhr.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 26,
+				"refer": []
+			},
+			"doc/zip.html": {
+				"href": "doc/zip.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 28,
+				"refer": []
+			},
+			"doc/ios.html": {
+				"href": "doc/ios.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 30,
+				"refer": []
+			},
+			"doc/android.html": {
+				"href": "doc/android.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 31,
+				"refer": []
+			},
+			"doc/native.js.html": {
+				"href": "doc/native.js.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"refer": [
+					"doc/ios.html",
+					"doc/android.html"
+				],
+				"priority": 30
+			},
+			"plus/njs_efficient.html": {
+				"href": "plus/njs_efficient.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"plus/doc.html"
+				],
+				"priority": 31
+			},
+			"plus/barcode_scan2.html": {
+				"href": "plus/barcode_scan2.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"priority": 7,
+				"refer": []
+			},
+			"doc/speech.html": {
+				"href": "doc/speech.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 21,
+				"refer": []
+			},
+			"plus/webview_pulltorefresh.html": {
+				"href": "plus/webview_pulltorefresh.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css",
+					"js/immersed.js"
+				],
+				"priority": 7,
+				"refer": []
+			},
+			"doc/nativeobj.html": {
+				"href": "doc/nativeobj.html",
+				"resources": [
+					"doc/res/doc.css",
+					"doc/res/prettify.sons.css",
+					"doc/res/doc.js",
+					"doc/res/prettify.js"
+				],
+				"priority": 15
+			},
+			"plus/nativeobj_animation.html": {
+				"href": "plus/nativeobj_animation.html",
+				"resources": [
+					"js/common.js",
+					"css/common.css"
+				],
+				"priority": 16
+			},
+			"plus/nativeobj.html": {
+				"href": "plus/nativeobj.html",
+				"resources": [
+					"js/immersed.js",
+					"js/common.js",
+					"css/common.css"
+				],
+				"refer": [
+					"doc/nativeobj.html",
+					"plus/nativeobj_animation.html"
+				],
+				"priority": 15
+			}
+		},
+		"idle": {
+			"resources": [
+				"plus/webview_pullrefresh.html",
+				"doc/splashscreen.html",
+				"plus/webview_pullhead.html",
+				"doc/ui.html",
+				"doc/key.html",
+				"doc/contacts.html",
+				"doc/statistic.html",
+				"doc/interface-orientation.html",
+				"doc/cache.html",
+				"doc/console.html"
+			]
+		}
+	},
+    "unpackage":[
+        "js/update.json"
+    ]
+}

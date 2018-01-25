@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <!-- 防止IE8,7进入怪异模式 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="IE=Edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<meta http-equiv="refresh" content="5; url='http://www.qq.com/'">-->
+    <title>积极履行社会责任 助力川渝精准扶贫</title>
+    <!--<link rel="stylesheet" href="css/master.css"/>-->
+    <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <!--<script src="js/snap.svg-min.js"></script>-->
+    <style>
+        p{margin: 0;}
+        /*清除浮动*/
+        /*父级*/
+        .clearfix:after { height: 0; content: ""; display: block; clear: both; visibility: hidden; font-size: 0; }
+        .clearfix { zoom: 1; }
+        /* 子级 */
+        .clear { clear: both; height: 0; font-size: 0;}
+        /* IE6 */
+        /** html .clearfix { zoom: 1; }*/
+        /**:first-child + html .clearfix { zoom: 1; }*/
+        .hold {
+            display: flex;
+            width: 1000px;height: 600px;border: 1px solid red;margin: 0 auto;
+
+        }
+        img{margin-right: 20px;align-self: center}
+        .body{flex: auto}
+
+    </style>
+</head>
+<body>
+<h1>查询</h1>
+<label for="">编号：</label>
+<input type="text" id="keyword">
+<button id="search">查询</button>
+<p id="searchResult"></p>
+
+<h1>创建</h1>
+<label for="">姓名：</label>
+<input type="text" id="staffName">
+<label for="">编号：</label>
+<input type="text" id="staffNumber">
+<label for="">性别：</label>
+<select name="" id="staffSex">
+    <option>男</option>
+    <option>女</option>
+</select>
+<label for="">职位：</label>
+<input type="text" id="staffJob">
+<button id="save">保存</button>
+<p id="createResult"></p>
+
+
+
+
+
+<script type="text/javascript">
+    document.getElementById("search").onclick=function(){
+        var request;
+        if(window.XMLHttpRequest){
+            request= new XMLHttpRequest();
+        }else{
+            request = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        request.open("GET","JSON.php?number="+document.getElementById("keyword").value);
+        request.send();
+        request.onreadystatechange=function(){
+            if(request.readyState===4){
+                if(request.status===200){
+                    var data=JSON.parse(request.responseText);
+                    if(data.success){
+                        document.getElementById("searchResult").innerHTML = data.msg;
+                    }else {
+                        document.getElementById("searchResult").innerHTML ="出现错误："+ data.msg;
+                    }
+                }else{
+                    alert('错误:'+ request.status)
+                }
+            }
+        }
+    }
+
+
+    document.getElementById("save").onclick=function(){
+        var request;
+        if(window.XMLHttpRequest){
+            request= new XMLHttpRequest();
+        }else{
+            request = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        request.open("POST","JSON.php");
+        var data = "name=" +document.getElementById("staffName").value
+                +"&number=" +document.getElementById("staffNumber").value
+                +"&sex=" +document.getElementById("staffSex").value
+                +"&job=" +document.getElementById("staffJob").value;
+        //必须要设置如果没有type=file的控件，用默认的application/x-www-form-urlencoded就可以了。
+        // 但是如果有type=file的话，就要用到multipart/form-data了。
+        request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        request.send(data);
+        request.onreadystatechange=function(){
+            if(request.readyState===4&&request.status===200){
+                var data=JSON.parse(request.responseText);
+                if(data.success){
+                    document.getElementById("createResult").innerHTML = data.msg;
+                }else {
+                    document.getElementById("createResult").innerHTML ="错误："+ data.msg;
+
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+{
+	"index.html": {
+		"resources": [
+			"css/common.css",
+			"js/update.js",
+			"js/shortcut.js",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/accelerometer.html",
+			"plus/audio.html",
+			"plus/camera.html",
+			"plus/storage.html",
+			"plus/share.html",
+			"plus/speech.html",
+			"plus/downloader.html",
+			"plus/nativeobj.html",
+			"plus/proximity.html",
+			"about.html",
+			"plus/maps.html",
+			"plus/webview.html",
+			"plus/orientation.html",
+			"plus/runtime.html",
+			"plus/push.html",
+			"plus/barcode.html",
+			"plus/device.html"
+		]
+	},
+	"plus/accelerometer_shake.html": {
+		"resources": [
+			"img/shake/1.jpg",
+			"img/shakedown.png",
+			"img/shakeup.png",
+			"img/shake/3.jpg",
+			"img/shake/2.jpg"
+		]
+	},
+	"plus/accelerometer.html": {
+		"resources": [
+			"js/common.js"
+		],
+		"refer": [
+			"plus/accelerometer_shake.html",
+			"plus/doc.html"
+		]
+	},
+	"doc/accelerometer.html": {
+		"resources": [
+			"doc/res/doc.css",
+			"doc/res/prettify.js",
+			"doc/res/prettify.sons.css",
+			"doc/res/doc.js"
+		]
+	},
+	"plus/doc.html": {
+		"refer": [
+			"doc/accelerometer.html"
+		]
+	},
+	"plus/audio.html": {
+		"resources": [
+			"img/astop.png",
+			"img/arecord.png"
+		]
+	},
+	"plus/share.html": {
+		"resources": [
+			"img/add.png",
+			"js/common.js",
+			"js/immersed.js"
+		]
+	},
+	"about.html": {
+		"resources": [
+			"icon.png"
+		]
+	},
+	"plus/webview_new.html": {
+		"resources": [
+			"img/ui.png"
+		]
+	},
+	"plus/webview_animation.html": {
+		"refer": [
+			"plus/webview_new.html"
+		]
+	},
+	"plus/webview.html": {
+		"refer": [
+			"plus/webview_animation.html",
+			"plus/webview_embed.html",
+			"plus/webview_pulltorefresh.html",
+			"plus/webview_float.html",
+			"plus/webview_mask.html",
+			"plus/webview_pullhead_custom.html"
+		]
+	},
+	"plus/webview_pulltorefresh.html": {
+		"resources": [
+			"js/common.js",
+			"js/immersed.js"
+		]
+	},
+	"plus/webview_float.html": {
+		"resources": [
+			"js/common.js",
+			"img/ui.png"
+		]
+	},
+	"plus/webview_mask.html": {
+		"refer": [
+			"plus/webview_mask_side.html"
+		]
+	},
+	"plus/webview_pullhead_custom.html": {
+		"resources": [
+			"img/pull_fresh.png",
+			"js/common.js",
+			"img/pull_arrow.png",
+			"plus/webview_pullrefresh_custom.html",
+			"js/immersed.js"
+		],
+		"refer": [
+			"plus/webview_pullrefresh_custom.html"
+		]
+	},
+	"plus/orientation.html": {
+		"resources": [
+			"js/common.js",
+			"js/immersed.js"
+		]
+	},
+	"plus/runtime.html": {
+		"resources": [
+			"js/common.js",
+			"js/immersed.js"
+		]
+	},
+	"plus/push.html": {
+		"resources": [
+			"js/common.js"
+		]
+	},
+	"plus/barcode.html": {
+		"resources": [
+			"img/barcode.png"
+		]
+	}
+}
