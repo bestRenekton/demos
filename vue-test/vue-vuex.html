@@ -10,53 +10,97 @@
   <script src="https://unpkg.com/vuex"></script>
 </head>
 <body>
-  <div id="app">
-    <p>
-      <router-link to="/user">Go to useraa</router-link>
-      <router-link to="/user">Go to userbb</router-link>
-    </p>
-    <!-- 路由出口,路由匹配到的组件将渲染在这里 -->
-    <router-view class="view one"></router-view>
-    <router-view class="view two" name="foo_1"></router-view>
-    <router-view class="view three" name="foo_2"></router-view>
-  </div>
+  <div id="app">  </div>
 
 
 <script>
-//定义（路由）组件
-const not404 = { template: '<div><h2>User:123</h2></div>' }
-const foo_1 = { template: '<div><h2>User:{{id}}</h2></div>',props:['id'] }
-const foo_2 = { template: '<div><h2>User:{{id}}</h2></div>',props:['id'] }
+let a={a:1}
+let b={
+  ...a,
+  a:2
+}
+console.log(a)
+console.log(b)
 
-const routes = [
-  {
-    mode: 'history',
-    path: '/user/:id',
-    alias: '/b/:id',
-    components:{
-      default:not404,
-      foo_1:foo_1,
-      foo_2:foo_2,
+
+//store
+const store = new Vuex.Store({
+  state: {
+    count: 0,
+    a:1,
+    b:2,
+    todos:[
+      {id:1,done:true},
+      {id:2,done:false},
+      {id:3,done:true}
+    ]
+  },
+  getters:{
+    doneTodos:(state)=>{          
+      return state.todos.filter((todo)=>todo.done)    //Getter 接受 state 作为其第一个参数
     },
-    props:{
-      default:true,
-      foo_1:true,
-      foo_2:true
+    doneTodosCount: (state, getters) => {       //Getter 也可以接受其他 getter 作为第二个参数
+      return getters.doneTodos.length
+    },
+    doneTodosCount2: (state, getters) => {       //Getter 也可以接受其他 getter 作为第二个参数
+      return getters.doneTodosCount+1
     }
-   },
-  //  {path:'/b/:id',component:not404}
-]
-// 3. 创建 router 实例，然后传 `routes` 配置
-const router = new VueRouter({
-  routes // （缩写）相当于 routes: routes
-})
-// 4. 创建和挂载根实例。记得要通过 router 配置参数注入路由，从而让整个应用都有路由功能
-const app = new Vue({
-  router,
-  created:function(){
-    // this.$router.push({path:'user/3/foo_1'})
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
   }
-}).$mount('#app')
+})
+console.log(store.getters.doneTodos)//[{ id: 1,done: true },{ id: 3,done: true },]
+console.log(store.getters.doneTodosCount)//2
+console.log(store.getters.doneTodosCount2)//3
+//组件
+const Counter = {
+  template: `<div @click="increment">{{ count }},{{a}},{{local}},{{todos[0]['id']}},{{doneTodosCount}}</div>`,
+  // computed: {
+  //   count () {
+  //     return this.$store.state.count                //this.$store 访问到
+  //   },
+  //   a(){
+  //     return this.$store.state.a
+  //   }
+  // },
+  // computed:mapState([
+  //   'count','a'
+  // ]),
+  // computed:Vuex.mapState([              //如果没有import { mapState } from 'vuex'用这个
+  //   'count','a'
+  // ]),
+  computed:{
+    local(){
+      return 'local'
+    },
+    ...Vuex.mapState([
+      'count','a','todos'
+    ]),
+    ...Vuex.mapGetters([
+      'doneTodosCount'
+    ])
+  },
+  methods:{
+    ...Vuex.mapMutations(['increment']),
+    add:function(){
+      this.$store.commit('increment')//提交
+    }
+  }
+}
+const app = new Vue({
+  el: '#app',
+  store,      // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
+  components: { Counter },
+  template: `
+    <div class="app">
+      <counter></counter>
+    </div>
+  `
+})
+
 
 </script>
 </body>
