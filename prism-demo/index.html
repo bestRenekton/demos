@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<link rel="stylesheet" href="prism.css">
+<script src="prism.js"></script>
+<body>
+    <div class="style"></div>
+    <div class='box'>
+        <pre><code class="language-css txt"></code></pre>
+    </div>
+    <!-- <pre><code class="language-css">p { color: red }</code></pre> -->
+
+</body>
+<script>
+    let str=` 
+    *{transition: all .8s;}
+    .box{
+        background: #eee;
+        width:500px;
+        height:200px;
+        transform:translateX(100px)
+    }
+    /*高亮*/
+    .token.property {
+        color: #905;
+    }
+    .token.function {
+        color: #DD4A68;
+    }
+    .token.selector{
+        color: #690;
+    }
+    `
+    let l=str.length;
+    let txt=document.querySelector('.txt');
+    let currentTxt='';
+    
+    let num=0;
+    let add=setInterval(() => {
+        if(currentTxt.length<l){
+            let style='';
+            currentTxt+=str[num];
+            style+='<style>';
+            style+=currentTxt;
+            style+='</style>';
+            document.querySelector('.style').innerHTML=style;
+            //需要高亮还需要转换
+            
+            txt.innerHTML=Prism.highlight(currentTxt, Prism.languages.css)
+            num++
+        }else{
+            clearInterval(add)
+        }
+    }, 50);
+
+    // document.querySelector('.a').addEventListener('click',()=>{
+      
+    // })
+    
+</script>
+</html>
