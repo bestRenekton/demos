@@ -1,47 +1,6 @@
 import React, { Component } from 'react';
 import {View, Text ,Image,StyleSheet,AppRegistry,TextInput,ScrollView,FlatList,SectionList} from 'react-native';
-import {
-  StackNavigator,
-} from 'react-navigation';
 
-// const App = StackNavigator({
-//   Main: {screen: MainScreen},
-//   Profile: {screen: ProfileScreen},
-// });
-const MyApp = StackNavigator({
-  // 对应界面名称
-  MyTab: {
-      screen: MyTab,
-  },
-  Detail: {
-      screen: Detail,
-      navigationOptions:{
-          headerTitle:'详情',
-          headerBackTitle:null,
-      }
-  },
-}, {
-  headerMode: 'screen',
-});
-
-
-
-// class MainScreen extends React.Component {
-//   static navigationOptions = {
-//     title: 'Welcome',
-//   };
-//   render() {
-//     const { navigate } = this.props.navigation;
-//     return (
-//       <Button
-//         title="Go to Jane's profile"
-//         onPress={() =>
-//           navigate('Profile', { name: 'Jane' });
-//         }
-//       />
-//     );
-//   }
-// }
 
 class Blink extends Component{
   constructor(props){
