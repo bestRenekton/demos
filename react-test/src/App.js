@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from '../public/img/logo.svg';
 import './App.css';
 
-
 class App extends Component {
-  constructor(props) {
+  constructor(props){
     super(props)
-    this.state = {
-      num: 0
+    this.state={
+      user:{
+        firstName: 'Harper',
+        lastName: 'Perez'
+      }
     }
-    // 我们可以通过 bind 方法手动绑定 this
-    // this.add = this.add.bind(this)
   }
-  add=()=>{
-    this.setState({
-      num: this.state.num+1
-    })
+  
+  formater(e){
+    return e.firstName
   }
-  render() {
+
+  render() {  
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">{this.props.name}</h1>
+          <img src={process.env.PUBLIC_URL + '/img/logo.svg'} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome{this.formater(this.state.user)}</h1>
         </header>
         <p className="App-intro">
-          <code onClick={this.add}>{this.state.num}</code> and save to reload.
+          To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>
     );
