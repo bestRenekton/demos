@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from '../public/img/logo.svg';
+import logo from './img/logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={process.env.PUBLIC_URL + '/img/logo.svg'} className="App-logo" alt="logo" />
+          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome{this.formater(this.state.user)}</h1>
         </header>
         <p className="App-intro">
