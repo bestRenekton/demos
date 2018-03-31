@@ -143,8 +143,6 @@ class Reservation extends React.Component {
             value={this.state.numberOfGuests}
             onChange={this.handleInputChange} />
         </label>
-        <input type="text" value="asdfsdf"/>
-        <input type="text" value={null}/>
       </form>
     );
   }
