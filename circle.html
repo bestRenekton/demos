@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .circle_wrapper {width: 200px;height: 200px;margin: 50px auto;position: relative;  }
+    .circle_wrapper .wrapper {width: 100px;height: 200px;position: absolute;top: 0;overflow: hidden;}
+    .circle_wrapper .right {right: 0;}
+    .circle_wrapper .left {left: 0;}
+    .circle_wrapper .circleProgress {width: 160px;height: 160px;border: 20px solid transparent;border-radius: 50%;position: absolute;top: 0;}
+    .circle_wrapper .rightcircle {border-top: 20px solid #f25f5f;border-right: 20px solid #f25f5f;right: 2px;animation: circleProgressLoad_right 5s linear infinite;}
+    .circle_wrapper .leftcircle {border-bottom: 20px solid #f25f5f;border-left: 20px solid #f25f5f;left: 0;animation: circleProgressLoad_left 5s linear infinite;}
+
+    @keyframes circleProgressLoad_right {
+        0% {
+            transform: rotate(45deg);
+        }
+        50%,
+        100% {
+            transform: rotate(225deg);
+        }
+    }
+
+    @keyframes circleProgressLoad_left {
+        0%,
+        50% {
+            transform: rotate(45deg);
+        }
+        100% {
+            transform: rotate(225deg);
+        }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="circle_wrapper">
+    <div class="wrapper right">
+      <div class="circleProgress rightcircle"></div>
+    </div>
+    <div class="wrapper left">
+      <div class="circleProgress leftcircle"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>
