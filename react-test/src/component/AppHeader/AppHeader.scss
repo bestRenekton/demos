@@ -1,3 +1,15 @@
-.nav{
-    text-align: center;
+.header{
+    height: 60px;
+    background:#2d2d2d;
+    color: #9d9d9d;
+    box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.5);
+    .logo{line-height: 60px;font-size: 18px;}
+    .nav{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        .link{
+            line-height: 60px;
+        }
+    }
 }
