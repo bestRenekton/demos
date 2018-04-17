@@ -1,20 +1,25 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link, Redirect,Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect,Switch } from 'react-router-dom';
 import AppContainer from '../container/AppContainer/AppContainer'
 import AdminContainer from '../container/AdminContainer/AdminContainer'
-import About from '../container/About'
+import HomeContainer from '../container/HomeContainer/HomeContainer'
+import ArchivesContainer from '../container/ArchivesContainer/ArchivesContainer'
+import DemoContainer from '../container/DemoContainer/DemoContainer'
+import AboutContainer from '../container/AboutContainer/AboutContainer'
 import NotFoundPage from '../container/NotFoundPage'
 
 
 const RootRouter = () => (
-  <Router>
+  <BrowserRouter>
     <Switch>
       <Route exact  path="/" component={AppContainer} />
-      {/* <Route path="/About" component={About} /> */}
-      <Route exact  path="/admin" component={AdminContainer} />
-      {/* <Route component={NotFoundPage}/> */}
+      <Route path='/archives' component={ArchivesContainer} />
+      <Route path="/demo" component={AppContainer} />
+      <Route path="/about" component={AppContainer} />
+      <Route path="/admin" component={AdminContainer} />
+      <Route component={NotFoundPage}/>
     </Switch>
-  </Router>
+  </BrowserRouter>
   // <Router>
   //   <Route path="/" component={AppContainer}>
   //      <Route path="/about" component={AppContainer}></Route>

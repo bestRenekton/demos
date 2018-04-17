@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import styles from './AppContainer.scss'
 
-import Header from '../../component/AppHeader/AppHeader'
-import Footer from '../../component/AppFooter'
-import About from '../../container/About'
-import Home from '../../container/Home'
+import AppHeader from '../../component/AppHeader/AppHeader'
+import AppFooter from '../../component/AppFooter'
+import HomeContainer from '../HomeContainer/HomeContainer'
+import ArchivesContainer from '../ArchivesContainer/ArchivesContainer'
+import DemoContainer from '../DemoContainer/DemoContainer'
+import AboutContainer from '../AboutContainer/AboutContainer'
 
 
 export default class AppContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            index: 0
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         index: 0
+    //     }
+    // }
     render() {
         return (
             <div className={styles.body}>
-                <Header />
+                <AppHeader />
                 <main className={styles.page}>
-                    <Route exact path={this.props.match.url} component={Home} />
-                    <Route path={`${this.props.match.url}/about`} component={About} />
+                    <Route exact path='/' component={HomeContainer} />
+                    <Route path='/archives' component={ArchivesContainer} />
+                    <Route path='/demo' component={DemoContainer} />
+                    <Route path='/about' component={AboutContainer} />
                 </main>
-                <Footer />
+                <AppFooter />
             </div>
         )
     }

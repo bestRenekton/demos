@@ -9,7 +9,9 @@
         display: flex;
         justify-content: flex-end;
         .link{
-            line-height: 60px;
+            line-height: 58px;
+            padding: 0 10px;
+            &:global(.on){border-bottom: 2px solid #fff;}
         }
     }
 }
