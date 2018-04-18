@@ -8,6 +8,7 @@ import HomeContainer from '../HomeContainer/HomeContainer'
 import ArchivesContainer from '../ArchivesContainer/ArchivesContainer'
 import DemoContainer from '../DemoContainer/DemoContainer'
 import AboutContainer from '../AboutContainer/AboutContainer'
+import DetailArticle from '../../component/DetailArticle/DetailArticle'
 
 
 export default class AppContainer extends Component {
@@ -26,6 +27,7 @@ export default class AppContainer extends Component {
                     <Route path='/archives' component={ArchivesContainer} />
                     <Route path='/demo' component={DemoContainer} />
                     <Route path='/about' component={AboutContainer} />
+                    <Route path="/detail/:id" component={DetailArticle} />
                 </main>
                 <AppFooter />
             </div>

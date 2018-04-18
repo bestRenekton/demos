@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './HomeContainer.scss'
 import Lists from '../../component/Lists/Lists'
 
-
 export default class About extends Component{
     render(){
         return(

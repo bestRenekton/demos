@@ -16,6 +16,7 @@ const RootRouter = () => (
       <Route path='/archives' component={AppContainer} />
       <Route path="/demo" component={AppContainer} />
       <Route path="/about" component={AppContainer} />
+      <Route path="/detail" component={AppContainer} />
       <Route path="/admin" component={AdminContainer} />
       <Route component={NotFoundPage}/>
     </Switch>
