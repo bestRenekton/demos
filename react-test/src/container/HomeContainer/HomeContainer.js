@@ -8,7 +8,6 @@ export default class About extends Component{
             <div className="wrapper">
                 <div className={styles.main}>
                     <Lists type="home"/>
-                    <Lists type="archives"/>
                 </div>
                 <aside className={styles.aside}>
                     <p>aside</p>

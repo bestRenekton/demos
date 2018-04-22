@@ -34,7 +34,7 @@ class List_home extends Component {
         let arr = this.state.arr;
 
         return (
-            <ul className="list_home">
+            <ul className={styles.list_home}>
                 {
                     arr.map((e, i) => {
                         return (
@@ -69,7 +69,7 @@ class List_archives extends Component {
     }
     render() {
         return (
-            <div className="list_home">
+            <div className="list_archives">
                 <p>List_archives</p>
             </div>
         )
