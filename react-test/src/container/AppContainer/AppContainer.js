@@ -23,11 +23,13 @@ export default class AppContainer extends Component {
             <div className={styles.body}>
                 <AppHeader />
                 <main className={styles.page}>
+                {/* <div className="wrapper"> */}
                     <Route exact path='/' component={HomeContainer} />
                     <Route path='/archives' component={ArchivesContainer} />
                     <Route path='/demo' component={DemoContainer} />
                     <Route path='/about' component={AboutContainer} />
                     <Route path="/detail/:id" component={DetailArticle} />
+                {/* </div> */}
                 </main>
                 <AppFooter />
             </div>

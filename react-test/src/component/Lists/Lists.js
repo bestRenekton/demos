@@ -62,15 +62,33 @@ class List_archives extends Component {
             arr: []
         }
     }
-    linkTo(e) {
-        this.setState({
-            index: e
-        })
+    componentWillMount() {
+        axios.post(webUrl + 'api/articleList', { type: 'archives' })
+            .then((res) => {
+                this.setState({
+                    arr: res.data
+                })
+            }).catch((err) => {
+                console.log(err.status);
+            })
+    }
+    componentDidMount() {
+
     }
     render() {
+        let arr = this.state.arr;
         return (
-            <div className="list_archives">
-                <p>List_archives</p>
+            <div className={styles.list_archives}>
+                {
+                    arr.map((e, i) => {
+                        return (
+                            <div key={i} className={styles.card}>
+                                <p className={styles.card_title} id={`anchor-${e.type}`}>{e.type}</p>
+
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }

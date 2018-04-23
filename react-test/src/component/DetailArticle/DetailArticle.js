@@ -15,7 +15,7 @@ export default class AppHeader extends Component {
         super(props);
         this.state = {
             article: {},
-            content:''
+            content: ''
         }
     }
     componentWillMount(e) {
@@ -29,8 +29,7 @@ export default class AppHeader extends Component {
                         content: res.data.content
                     })
                     this.smde.value(this.state.content);
-                    
-                    console.log(this.smde.isPreviewActive())
+                    this.smde.togglePreview();
                     // this.title = article.title;
                     // this.date = article.date;
                     // this.content = article.content;
@@ -64,17 +63,16 @@ export default class AppHeader extends Component {
         })
     }
     handleChange(event) {
-        this.setState({content: event.target.value});
-      }
+        this.setState({ content: event.target.value });
+    }
     render() {
-        let content = this.state.content;
-        console.log()
-
         return (
-            <div>
-                <textarea id="editor"
-                 onChange={this.handleChange}>
-                 </textarea>
+            <div className="wrapper">
+                <div className={styles.content}>
+                    <textarea id="editor"
+                        onChange={this.handleChange}>
+                    </textarea>
+                </div>
             </div>
         )
     }

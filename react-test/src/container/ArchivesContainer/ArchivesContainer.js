@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './ArchivesContainer.scss'
 import Lists from '../../component/Lists/Lists'
 
-
 export default class Archives extends Component{
     render(){
         return(
