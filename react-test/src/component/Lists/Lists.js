@@ -80,18 +80,18 @@ class List_archives extends Component {
         return (
             <div className={styles.list_archives}>
                 {
-                    arr.map((e, i) => {
-                        return (
-                            <div key={i} className={styles.card}>
-                                <p className={styles.card_title} id={`anchor-${e.type}`}>{e.type}</p>
-                                <ul>
-                                    e.list.map((e2,i2)=>{
-                                        <li>{e2.date}</li>
-                                    })
-                                </ul>
-                            </div>
-                        )
-                    })
+                    // arr.map((e, i) => {
+                    //     return (
+                    //         <div key={i} className={styles.card}>
+                    //             <p className={styles.card_title} id={`anchor-${e.type}`}>{e.type}</p>
+                    //             <ul>
+                    //                 e.list.map((e2,i2)=>{
+                    //                     <li>{e2.date}</li>
+                    //                 })
+                    //             </ul>
+                    //         </div>
+                    //     )
+                    // })
                 }
             </div>
         )
