@@ -3,46 +3,6 @@ import { Button, Input } from 'antd';
 
 const InputGroup = Input.Group;
 
-// var LikeButton = React.createClass({
-//     getInitialState: function() {
-//       return {liked: false};
-//     },
-//     handleClick: function(event) {
-//       this.setState({liked: !this.state.liked});
-//     },
-//     render: function() {
-//       var text = this.state.liked ? 'like' : 'haven\'t liked';
-//       return (
-//         <p onClick={this.handleClick}>
-//           You {text} this. Click to toggle.
-//         </p>
-//       );
-//     }
-//   });
-
-// class LikeButton extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = { like: false }
-//     }
-//     handleClick() {
-//         this.setState({ like: !this.state.like })
-//     }
-//     render() {
-//         let text = this.state.like ? 'like' : 'don\'t like';
-//         return (
-//             <p onClick={() => { this.handleClick() }}>you {text} this.click to toggle</p>
-//         )
-//     }
-// }
-// const LikeButton=(props)=>{
-//     let text = props.like ? 'like' : 'don\'t like';
-
-//     return(
-//         <p onClick={props.handleClick}>you {text} this.click to toggle</p>
-//     )
-// }
-
 const List = ({ type, list, handleEdit }) => {
     switch (type) {
         case 1:
@@ -101,9 +61,7 @@ export default class Demo extends Component {
                 // {id:1,title:'asdfsdaf',status:1}
             ],
             input: null,
-            like:false
         }
-        // this.handleEdit=this.handleEdit.bind(this)
     }
     handleChange(val) {
         this.setState({ input: val })
