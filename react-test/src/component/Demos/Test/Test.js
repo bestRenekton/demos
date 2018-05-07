@@ -1,34 +1,56 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'antd';
 
-class ListOfWords extends React.PureComponent {
-    render() {
-      return <div>{this.props.words.join(',')}</div>;
-    }
+
+  
+class Cat extends React.Component {
+  render() {
+    const mouse = this.props.mouse;
+    return (
+      <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+    );
   }
-  
-export default  class WordAdder extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        words: ['marklar']
-      };
-      this.handleClick = this.handleClick.bind(this);
-    }
-  
-    handleClick() {
-      // This section is bad style and causes a bug
-      const words = this.state.words;
-      words.push('marklar');
-      this.setState({words: words});
-    }
-  
-    render() {
-      return (
-        <div>
-          <button onClick={this.handleClick} >df</button>
-          <ListOfWords words={this.state.words} />
-        </div>
-      );
-    }
+}
+
+class Mouse extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.state = { x: 0, y: 0 };
   }
+
+  handleMouseMove(event) {
+    this.setState({
+      x: event.clientX,
+      y: event.clientY
+    });
+  }
+
+  render() {
+    return (
+      <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
+
+        {/*
+          Instead of providing a static representation of what <Mouse> renders,
+          use the `render` prop to dynamically determine what to render.
+        */}
+        {this.props.render(this.state)}
+      </div>
+    );
+  }
+}
+
+export default class MouseTracker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+        <Mouse render={mouse => (
+          <Cat mouse={mouse} />
+        )}/>
+      </div>
+    );
+  }
+}
+
+
