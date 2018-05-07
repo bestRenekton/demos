@@ -17,7 +17,8 @@ export default class Demo extends Component {
         super(props)
         this.state = {
             list: [
-                {title:'ToDo',txt:'一个TodoList...',url:'/demoDetail/ToDo'}
+                {title:'ToDo',txt:'一个TodoList...',url:'/demoDetail/ToDo'},
+                {title:'Test',txt:'测试...',url:'/demoDetail/Test'},
             ]
         }
         // this.handleEdit=this.handleEdit.bind(this)

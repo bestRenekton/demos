@@ -105,21 +105,31 @@ class List_archives extends Component {
 /**
  * lists列表壳
  */
-class Lists extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        let type = this.props.type;
+// class Lists extends Component {
+//     constructor(props) {
+//         super(props);
+//     }
+//     render() {
+//         let type = this.props.type;
 
-        switch (type) {
-            case 'home':
-                return <List_home />
-                break;
-            case 'archives':
-                return <List_archives />
-                break;
-        }
-    }
+//         switch (type) {
+//             case 'home':
+//                 return <List_home />
+//                 break;
+//             case 'archives':
+//                 return <List_archives />
+//                 break;
+//         }
+//     }
+// }
+const ListsComponent = {
+    home: List_home,
+    archives: List_archives
+}
+const Lists = props => {
+    let List=ListsComponent[props.type];
+    return (
+        <List />
+    )
 }
 export default Lists;
