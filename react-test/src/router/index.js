@@ -22,15 +22,5 @@ const RootRouter = () => (
       <Route component={NotFoundPage}/>
     </Switch>
   </BrowserRouter>
-  // <Router>
-  //   <Route path="/" component={AppContainer}>
-  //      <Route path="/about" component={AppContainer}></Route>
-
-  //     {/* <Route path="about" component={AppContainer} />
-  //     <Route path="inbox" component={AppContainer}>
-  //       <Route path="messages/:id" component={AppContainer} />
-  //     </Route> */}
-  //   </Route>
-  // </Router>
 );
 export default RootRouter;
