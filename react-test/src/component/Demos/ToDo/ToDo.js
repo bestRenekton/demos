@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'antd';
+import { connect } from 'react-redux';
+import {handleChange, handleAdd } from '../../../actions/index'
+
 
 const InputGroup = Input.Group;
-
 const List = ({ type, list, handleEdit }) => {
     switch (type) {
         case 1:
@@ -53,31 +55,32 @@ const List = ({ type, list, handleEdit }) => {
     }
 }
 
-export default class Demo extends Component {
+class ToDo extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            list: [
-                // {id:1,title:'asdfsdaf',status:1}
-            ],
-            input: null,
-        }
+        // this.state = {
+        //     list: [
+        //         // {id:1,title:'asdfsdaf',status:1}
+        //     ],
+        //     input: null,
+        // }
     }
-    handleChange(val) {
-        this.setState({ input: val })
-    }
-    handleAdd() {
-        let val = this.state.input;
-        let list = this.state.list;
-        let index = list.length + 1;
+    // handleChange(val) {
+    //     this.setState({ input: val })
+    // }
+    // handleAdd() {
+    //     let val = this.state.input;
+    //     let list = this.state.list;
+    //     let index = list.length + 1;
 
-        if (val) {
-            list.push({ id: index, title: val, status: 1 });
-            this.setState({ list: list }, () => console.log(this.state.list))
-        } else {
-            alert('不能为空')
-        }
-    }
+    //     this.props.dispatch(addTodo(val))
+    //     if (val) {
+    //         list.push({ id: index, title: val, status: 1 });
+    //         this.setState({ list: list }, () => console.log(this.state.list))
+    //     } else {
+    //         alert('不能为空')
+    //     }
+    // }
     handleEdit(id, status) {
         let list = this.state.list;
 
@@ -85,6 +88,7 @@ export default class Demo extends Component {
         this.setState({ list: list })
     }
     render() {
+        console.log(this.props)
         return (
             <div className="wrapper">
                 <div style={{ width: '800px' }}>
@@ -92,25 +96,25 @@ export default class Demo extends Component {
                     <div>
                         <InputGroup compact>
                             <Input
-                                onChange={(e) => { this.handleChange(e.target.value) }}
-                                onPressEnter={() => { this.handleAdd() }}
+                                onChange={(e) => { this.props.handleChange(e.target.value) }}
+                                onPressEnter={() => { this.props.handleAdd() }}
                                 style={{ width: '50%' }}
                             />
-                            <Button onClick={() => { this.handleAdd() }}>添加</Button >
+                            <Button onClick={() => { this.props.handleAdd() }}>添加</Button >
                         </InputGroup>
                     </div>
                     <div style={{ display: 'flex' }}>
                         <div style={{ flex: 1 }}>
                             <p>全部</p>
-                            <List list={this.state.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={1} />
+                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={1} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <p>剩余</p>
-                            <List list={this.state.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={2} />
+                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={2} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <p>删除</p>
-                            <List list={this.state.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={3} />
+                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={3} />
                         </div>
                     </div>
                 </div>
@@ -119,5 +123,16 @@ export default class Demo extends Component {
     }
 }
 
+
+
+const mapStateToProps = (state) => ({
+    list: state.todos.list,
+    input: state.todos.input
+})
+const mapDispatchToProps = {
+    handleChange: handleChange,
+    handleAdd:handleAdd
+}
+export default ToDo = connect(mapStateToProps, mapDispatchToProps)(ToDo);
 
 

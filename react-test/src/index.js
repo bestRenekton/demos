@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RootRouter from './router/index'
-import reducers from './reducers/reducers'
 import { createStore } from 'redux'
 import {Provider} from 'react-redux'
+import reducers from './reducers/index'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 
@@ -14,8 +15,7 @@ import './public/css/font/iconfont.css'
 import './public/js/animation.js'
 import './public/js/tween.js'
 
-const store = createStore(reducers);
-
+const store = createStore(reducers,composeWithDevTools());
 
 // import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(

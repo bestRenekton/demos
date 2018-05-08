@@ -8,7 +8,9 @@
     "marked": "^0.3.19",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.1",
+    "redux": "^4.0.0",
     "simplemde": "^1.11.2"
   },
   "scripts": {
@@ -22,6 +24,7 @@
     "node-sass": "^4.8.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "redux-devtools-extension": "^2.13.2",
     "sass-loader": "^7.0.0"
   },
   "homepage": "."
