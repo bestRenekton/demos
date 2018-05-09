@@ -10,25 +10,21 @@ const todos = (state = initialStgate, action) => {
             break;
         case 'ADD_TODO':
             if(state.input){
-                let {list,input}=state;
+                let {list,input}= state;
                 let index=list.length+1;
-                list.push({ id: index, title: input, status: 1 })
+                list=list.concat({ id: index, title: input, status: 1 })
                 return { ...state,list} 
-                // return {list,input} 
-                // return {list} 
             }else{
                 alert('不能为空')
                 return state
             }
             break;
         case 'TOGGLE_TODO':
-            return state.map((todo) => {
-                if (todo.id == action.id) {
-                    return { ...todo, completed: !todo.completed }
-                } else {
-                    return todo
-                }
-            })
+            let {id, status}=action;
+            let list=JSON.parse(JSON.stringify(state.list));
+
+            list.find(data=>data.id==id).status=status;
+            return {...state,list}
         default:
             return state
     }

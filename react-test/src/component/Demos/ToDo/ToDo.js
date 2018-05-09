@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input } from 'antd';
 import { connect } from 'react-redux';
-import {handleChange, handleAdd } from '../../../actions/index'
+import {handleChange, handleAdd,handleEdit } from '../../../actions/index'
 
 
 const InputGroup = Input.Group;
@@ -81,12 +81,21 @@ class ToDo extends Component {
     //         alert('不能为空')
     //     }
     // }
-    handleEdit(id, status) {
-        let list = this.state.list;
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (this.props.list !== nextProps.list) {
+    //       return true;
+    //     }
+    //     if (this.props.input !== nextProps.input) {
+    //       return true;
+    //     }
+    //     return false;
+    //   }
+    // handleEdit(id, status) {
+    //     let list = this.state.list;
 
-        list.find(data => data.id === id).status = status;
-        this.setState({ list: list })
-    }
+    //     list.find(data => data.id === id).status = status;
+    //     this.setState({ list: list })
+    // }
     render() {
         console.log(this.props)
         return (
@@ -131,7 +140,8 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = {
     handleChange: handleChange,
-    handleAdd:handleAdd
+    handleAdd:handleAdd,
+    handleEdit:handleEdit
 }
 export default ToDo = connect(mapStateToProps, mapDispatchToProps)(ToDo);
 

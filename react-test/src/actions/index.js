@@ -1,17 +1,18 @@
-let countIndex = 0;
 
-export const handleChange=(val)=>({
+
+export const handleChange=(input)=>({
     type:'HANDLE_CHANGE',
-    input:val
+    input:input
 })
 
 export const handleAdd = () => ({
     type: 'ADD_TODO'
 })
 
-export const toggleTodo = (id) => ({
+export const handleEdit = (id, status) => ({
     type: 'TOGGLE_TODO',
-    id
+    id:id,
+    status,status
 })
 
 export const setVisibilityFilter = (filter) => ({
