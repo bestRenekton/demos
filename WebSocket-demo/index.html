@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+</head>
+<style>
+    .chat-box {
+        width: 600px;
+        margin: 20px auto;
+    }
+
+    .chat-output-box {
+        height: 300px;
+        overflow: auto;
+        background: #eee;
+    }
+    .messageSystem{text-align: center;color: cadetblue;}
+    .chat-li{display: flex;align-items: center;}
+    .chat-li_header{}
+    .chat-li_body{background: #fff;padding: 10px;margin: 0 10px;}
+    .chat-li_footer{font-size: 12px;}
+</style>
+
+<body>
+    <div class="chat-box">
+        <div class="chat-head">服务器状态：
+            <span class="status">未连接</span>
+        </div>
+        <div class="chat-output-box"></div>
+        <div class="chat-input-box">
+            <input class="chat-input-name" type="text">
+            <input class="chat-input-msg" type="text">
+            <a href="javascript:;" class="submit">send</a>
+        </div>
+    </div>
+    <script>
+        let ws = new WebSocket('ws://localhost:8888');
+        let status = document.querySelector('.status');
+        let outBox = document.querySelector('.chat-output-box');
+        let nameInput = document.querySelector('.chat-input-name');
+        let msgInput = document.querySelector('.chat-input-msg');
+        let btn = document.querySelector('.submit');
+
+        btn.addEventListener('click', () => {
+            let nickname = nameInput.value;
+            let message = msgInput.value;
+            let obj = { nickname, message }
+            ws.send(JSON.stringify(obj));
+            // ws.send(obj);
+        })
+        ws.onopen = function () {
+            status.innerHTML = '已连接';
+            console.log('ws onopen');
+        };
+        ws.onmessage = function (e) {
+            let data = JSON.parse(e.data);
+            let { type, nickname, message, total } = data;
+            let newDiv = document.createElement('div');
+            let text = null;
+            console.log(data)
+
+            if (type == 'messageSystem') {
+                text = `<p class="messageSystem">${message}</p>`
+            } else if (type == 'messageUser') {
+                text = `
+                <div class="chat-li">
+                    <div class="chat-li_header">${nickname}：</div>
+                    <div class="chat-li_body">${message}</div>
+                    <div class="chat-li_footer">${new Date().toLocaleString()}</div>
+                </div>
+                `
+            }
+            newDiv.innerHTML=text;
+            outBox.appendChild(newDiv)
+        };
+    </script>
+</body>
+
+</html>
