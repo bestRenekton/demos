@@ -1,12 +1,12 @@
 let ws = require('ws');            //引入websocket模块
 let uuid = require('uuid');        //引入创建唯一id模块
 let socketServer = ws.Server;
-let wss = new socketServer({ port: 8888 });    //创建websocketServer实例监听8888端口
+let wss = new socketServer({ port: 8887 });    //创建websocketServer实例监听8887端口
 let clients = [];                //创建客户端列表，用于保存客户端及相关连接信息
 let clientIndex = 0;            //由于默认nickname计数
 
 
-console.log(`连接成功---8888`);
+console.log(`连接成功---8887`);
 //监听连接
 wss.on('connection', function (ws) {
     let client_uuid = uuid.v4();
