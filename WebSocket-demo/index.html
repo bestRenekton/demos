@@ -48,6 +48,9 @@
         <div class="chat-head">服务器状态：
             <span class="status">未连接</span>
         </div>
+        <div class="chat-head">当前在线人数：
+            <span class="people">1</span>
+        </div>
         <div class="chat-output-box"></div>
         <div class="chat-input-box">
             <p>不设置昵称将使用默认昵称</p>
@@ -60,6 +63,7 @@
         // let ws = new WebSocket('ws://localhost:8887');
         let ws = new WebSocket('wss://www.yangyuetao.cn/wss');
         let status = document.querySelector('.status');
+        let people =document.querySelector('.people');
         let outBox = document.querySelector('.chat-output-box');
         let nameInput = document.querySelector('.chat-input-name');
         let msgInput = document.querySelector('.chat-input-msg');
@@ -97,6 +101,7 @@
             }
             newDiv.innerHTML = text;
             outBox.appendChild(newDiv);
+            people.innerHTML = total;
             //如果浏览器tab页失去焦点，发送桌面信息
             if (isShine) {
                 if (window.Notification) {
