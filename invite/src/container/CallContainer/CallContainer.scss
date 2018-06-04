@@ -1,0 +1,19 @@
+.page{
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    .content{
+        background: rgba(0,0,0,.3);
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+        .content_top{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .content_down{
+            
+        }
+    }
+}
