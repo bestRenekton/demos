@@ -13,7 +13,10 @@
             justify-content: flex-end;
         }
         .content_down{
-            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
         }
     }
 }
