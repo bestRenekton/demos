@@ -14,19 +14,23 @@ export default class CallContainer extends Component {
             index: 0
         }
     }
+    componentDidMount() {
+        let LOADING = document.getElementById('LOADING');
+        LOADING.parentNode.removeChild(LOADING);
+    }
     render() {
         return (
             <div className={styles.page}>
                 <BgImg src={imgBg} animate={true} />
                 <div className={styles.content}>
                     <div className={styles.content_top}>
-                        <img src={imgMessage} alt="" />
+                        <img className={styles.btn} src={imgMessage} alt="" />
                     </div>
                     <div className={styles.content_down}>
-                        <img src={imgTip} alt="提醒我" />
-                        <img src={imgMessage} alt="消息" />
-                        <img src={imgRefuse} alt="拒绝" />
-                        <img src={imgAnswer} alt="接听" />
+                        <img className={styles.btn} src={imgTip} alt="提醒我" />
+                        <img className={styles.btn} src={imgMessage} alt="消息" />
+                        <img className={styles.btn} src={imgRefuse} alt="拒绝" />
+                        <img className={`${styles.btn} ${styles.answer}`} src={imgAnswer} alt="接听" />
                     </div>
                 </div>
             </div>
