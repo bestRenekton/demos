@@ -12,3 +12,4 @@ const BgImg = ({ src, animate }) => {
 }
 
 export default BgImg;
+

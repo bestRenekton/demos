@@ -1,0 +1,56 @@
+.content{
+    background: rgba(0,0,0,.3);
+    position: relative;
+    // display: flex;
+    height: 100%;
+    // flex-direction: column;
+    // justify-content: space-between;
+    .btns {
+        position: absolute;
+        top: -93px;
+        left: 0;
+        width: 100%;
+      }
+      .hungUp {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        margin-left: -50px;
+        bottom: 82px;
+      }
+    // .content_top{
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     margin-top: 30px;
+    //     .btn{
+    //         width: 25%;
+    //         height: 25%;
+    //     }
+    // }
+    // .content_down{
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //     justify-content: center;
+    //     align-content: center;
+    //     margin-bottom:50px;
+    //     .btn{
+    //         width: 25%;
+    //         height: 25%;
+    //         margin: 4% 10%;
+    //     }
+    //     .answer{
+    //         animation: answer 1.2s infinite;
+    //     }
+    //     @keyframes answer {
+    //         20% {transform:scale(1.1) rotate(0deg)}
+    //         30% {transform:scale(1.1) rotate(10deg)}
+    //         40% {transform:scale(1.1) rotate(-10deg)}
+    //         50% {transform:scale(1.1) rotate(10deg)}
+    //         60% {transform:scale(1.1) rotate(-10deg)}
+    //         70% {transform:scale(1.1) rotate(10deg)}
+    //         80% {transform:scale(1.1) rotate(-10deg)}
+    //         90% {transform:scale(1.1) rotate(10deg)}
+    //     }
+    // }
+}

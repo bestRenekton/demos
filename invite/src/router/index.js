@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Route,Switch } from 'react-router-dom';
+import { BrowserRouter , Route, Switch } from 'react-router-dom';
 
 
 //同步加载
@@ -7,29 +7,27 @@ import { HashRouter, Route,Switch } from 'react-router-dom';
 // import NotFoundPage from '../container/NotFoundPage'
 //异步加载
 import Bundle from './bundle'
-// const AppContainer = (props) => (
-//   <Bundle load={() => import('../container/AppContainer/AppContainer')}>
-//       {(AppContainer) => <AppContainer {...props}/>}
-//   </Bundle>
-// );
-const CallContainer = (props) => (
-  <Bundle load={() => import('../container/CallContainer/CallContainer')}>
-      {(CallContainer) => <CallContainer {...props}/>}
-  </Bundle>
-);
-const NotFoundPage = (props) => (
-  <Bundle load={() => import('../container/NotFoundPage')}>
-      {(NotFoundPage) => <NotFoundPage {...props}/>}
+const AppContainer = (props) => (
+  <Bundle load={() => import('../container/AppContainer/AppContainer')}>
+    {(AppContainer) => <AppContainer {...props} />}
   </Bundle>
 );
 
+// const NotFoundPage = (props) => (
+//   <Bundle load={() => import('../container/NotFoundPage')}>
+//       {(NotFoundPage) => <NotFoundPage {...props}/>}
+//   </Bundle>
+// );
+
 const RootRouter = () => (
-  <HashRouter>
+  <BrowserRouter >
     <Switch>
-      {/* <Route exact  path="/" component={AppContainer} /> */}
-      <Route exact  path="/" component={CallContainer} />
-      {/* <Route component={NotFoundPage}/> */}
+      <Route exact path="/" component={AppContainer} />
+      {/* <Route path="/call" component={AppContainer} /> */}
+      <Route path="/talk" component={AppContainer} />
+      <Route path="/desk" component={AppContainer} />
+
     </Switch>
-  </HashRouter>
+  </BrowserRouter >
 );
 export default RootRouter;
