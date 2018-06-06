@@ -1,9 +1,8 @@
 let initialStgate = {
-    list: [],//{ id: 1, title: 'asdfsdaf', status: 1 }
-    input: null
+    inviteDate: Math.round(new Date('2019-10-01 12:00:00').getTime()/1000) //1569902400
 }
 
-const todos = (state = initialStgate, action) => {
+const talk = (state = initialStgate, action) => {
     switch (action.type) {
         case 'HANDLE_CHANGE':
             return { ...state, input: action.input }
@@ -30,4 +29,4 @@ const todos = (state = initialStgate, action) => {
     }
 }
 
-export default todos
+export default talk

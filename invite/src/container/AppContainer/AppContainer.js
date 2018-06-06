@@ -21,7 +21,11 @@ const DeskContainer = (props) => (
         {(DeskContainer) => <DeskContainer {...props} />}
     </Bundle>
 );
-
+const MapContainer = (props) => (
+    <Bundle load={() => import('../MapContainer/MapContainer')}>
+        {(MapContainer) => <MapContainer {...props} />}
+    </Bundle>
+);
 
 export default class AppContainer extends Component {
     constructor(props) {
@@ -43,6 +47,9 @@ export default class AppContainer extends Component {
                 {/* <Route path="/call" component={CallContainer} /> */}
                 <Route path="/talk" component={TalkContainer} />
                 <Route path="/desk" component={DeskContainer} />
+                <Route path="/map" component={MapContainer} />
+
+                
                 {/* <Route path="*" component={CallContainer} /> */}
             </div>
         )

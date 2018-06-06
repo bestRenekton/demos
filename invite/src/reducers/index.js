@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import todos from './todo'
+import talk from './talk'
 import visibilityFilter from './visibilityFilter'
 
 
 const reducers = combineReducers({
-    todos,
+    talk,
     visibilityFilter
 })
 

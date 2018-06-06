@@ -3,7 +3,7 @@ import {withRouter} from "react-router-dom";
 
 import styles from './CallContainer.scss';
 import BgImg from '../../component/BgImg/BgImg';
-import imgBg from './img/bg.jpg'
+import imgBg from '../../public/img/bg.jpg';
 import imgMessage from './img/message.png'
 import imgTip from './img/tip.png'
 import imgRefuse from './img/refuse.png'

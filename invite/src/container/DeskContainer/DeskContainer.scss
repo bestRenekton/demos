@@ -1,0 +1,23 @@
+.content{
+    // background: url('./img/icon.png') no-repeat;
+    // background-size: cover;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .content_top,.content_down{
+        display: flex;
+        .grid{
+            flex: 1 1 25%;
+            text-align: center;
+            img{width: 80%;}
+            .title{margin: 10px 0 0 0;}
+        }
+    }
+    .content_down{
+        width: 100%;
+        background: rgba(255,255,255,.5);
+        padding: 10px 0;
+    }
+}

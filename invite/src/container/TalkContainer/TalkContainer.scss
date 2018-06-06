@@ -5,9 +5,11 @@
     height: 100%;
     // flex-direction: column;
     // justify-content: space-between;
+    .title{text-align: center;color: #fff;padding: 30px 0;font-size: 30px;}
+    .num{text-align: center;color: #fff;}
     .btns {
         position: absolute;
-        top: -93px;
+        top: -40px;
         left: 0;
         width: 100%;
       }
