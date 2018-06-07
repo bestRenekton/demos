@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter , Route, Switch } from 'react-router-dom';
+import { HashRouter , Route, Switch } from 'react-router-dom';
 
 
 //同步加载
@@ -20,15 +20,16 @@ const AppContainer = (props) => (
 // );
 
 const RootRouter = () => (
-  <BrowserRouter >
+  <HashRouter >
     <Switch>
       <Route exact path="/" component={AppContainer} />
       {/* <Route path="/call" component={AppContainer} /> */}
       <Route path="/talk" component={AppContainer} />
       <Route path="/desk" component={AppContainer} />
+      <Route path="/phone" component={AppContainer} />
       <Route path="/map" component={AppContainer} />
 
     </Switch>
-  </BrowserRouter >
+  </HashRouter >
 );
 export default RootRouter;

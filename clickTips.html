@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>点击页面出现文字动画</title>
+</head>
+<style>
+  body,
+  html {
+    height: 100vh;
+  }
+
+  .tips {
+    color: red;
+    position: absolute;
+    transition: all .3s;
+    animation: translateTop 1s;
+  }
+
+  @keyframes translateTop {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-30px)
+    }
+  }
+</style>
+
+<body>
+  <p style="width: 70%;margin: 20px auto;">
+    原理
+    <br> DOM时间的event对象中有个pageX和pageY可以获取到点击事件发生时候事件发生源相对于页面左上角的水平距离和垂直距离。
+    <br> 因此，我们只要把文字内容定位到这个点击位置偏上一点位置就可以了。
+    <br> 然后，配合CSS3 animation，写一个往上淡出效果就可以了。
+    <br> 当文字元素插入到页面的时候，动画会自动执行。 为了防止文字元素不断创建，占用不必要的资源，我们可以借助animationend事件实现动画结束的时候自动删除创建的文字元素。
+  </p>
+
+  <script>
+    const setStyle = (obj, json) => {
+      for (var i in json) {
+        obj.style[i] = json[i];
+      }
+    }
+    const arr = ['富强', '民主', '文明', '和谐', '自由', '平等', '公正', '法治', '爱国', '敬业', '诚信', '友善'];
+    const foo = (arr) => {
+      let index = 0;
+
+      document.body.addEventListener('click', (e) => {
+        if (index >= arr.length) {
+          index = 0;
+        }
+        let newA = document.createElement('a');
+        newA.className = 'tips';
+        let styles = {
+          left: `${e.pageX}px`,
+          top: `${e.pageY - 20}px`
+        }
+        newA.innerHTML = arr[index];
+        setStyle(newA, styles)
+        document.body.appendChild(newA)
+        index++;
+        newA.addEventListener('animationend', () => {
+          document.body.removeChild(newA)
+        })
+      })
+    }
+
+
+    foo(arr);
+  </script>
+</body>
+
+</html>

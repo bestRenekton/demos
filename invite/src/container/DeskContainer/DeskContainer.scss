@@ -8,16 +8,16 @@
     justify-content: space-between;
     .content_top,.content_down{
         display: flex;
+        padding: 10px 0;
         .grid{
             flex: 1 1 25%;
             text-align: center;
-            img{width: 80%;}
+            img{width: 70%;}
             .title{margin: 10px 0 0 0;}
         }
     }
     .content_down{
         width: 100%;
         background: rgba(255,255,255,.5);
-        padding: 10px 0;
     }
 }

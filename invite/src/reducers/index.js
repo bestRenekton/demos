@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 import talk from './talk'
-import visibilityFilter from './visibilityFilter'
+import app from './app'
 
 
 const reducers = combineReducers({
     talk,
-    visibilityFilter
+    app
 })
 
 export default reducers;

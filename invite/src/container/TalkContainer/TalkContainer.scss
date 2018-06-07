@@ -13,13 +13,20 @@
         left: 0;
         width: 100%;
       }
+      .shadow{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
       .hungUp {
         position: absolute;
         width: 100px;
         height: 100px;
         left: 50%;
         margin-left: -50px;
-        bottom: 82px;
+        bottom: 10%;
       }
     // .content_top{
     //     display: flex;

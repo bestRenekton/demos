@@ -58,8 +58,9 @@ class TalkContainer extends Component {
                             :
                             null
                     }
-                    <img className={styles.btns} src={imgBtns} />
-                    <img className={styles.hungUp} src={imgHungUp} onClick={() => this.goDesk()} />
+                    <img className={styles.btns} src={imgBtns} alt="btns"/>
+                    <div className={styles.shadow}></div>
+                    <img className={styles.hungUp} src={imgHungUp} onClick={() => this.goDesk()} alt="hungUp"/>
                 </div>
             ]
         )

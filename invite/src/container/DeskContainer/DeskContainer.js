@@ -26,7 +26,7 @@ class DeskContainer extends Component {
                 { icon: imgBless, url: 'map', title: '祝福' }
             ],
             tabs_bottom: [
-                { icon: imgPhone, url: 'map', title: '电话' },
+                { icon: imgPhone, url: 'phone', title: '电话' },
                 { icon: imgWechat, url: 'map', title: '微信' },
                 { icon: imgMessage, url: 'map', title: '短信' },
                 { icon: imgMap, url: 'map', title: '地图' }
@@ -48,9 +48,9 @@ class DeskContainer extends Component {
                 <div className={styles.content} key={1}>
                     <div className={styles.content_top}>
                         {
-                            this.state.tabs_top.map(val => {
+                            this.state.tabs_top.map((val,i) => {
                                 return (
-                                    <div className={styles.grid}>
+                                    <div className={styles.grid} key={i}>
                                         <img src={val.icon} onClick={() => { this.go(val.url) }} alt={val.title} />
                                         <p className={styles.title}>{val.title}</p>
                                     </div>
@@ -60,9 +60,9 @@ class DeskContainer extends Component {
                     </div>
                     <div className={styles.content_down}>
                         {
-                            this.state.tabs_bottom.map(val => {
+                            this.state.tabs_bottom.map((val,i) => {
                                 return (
-                                    <div className={styles.grid}>
+                                    <div className={styles.grid} key={i}>
                                         <img src={val.icon} onClick={() => { this.go(val.url) }} alt={val.title} />
                                     </div>
                                 )

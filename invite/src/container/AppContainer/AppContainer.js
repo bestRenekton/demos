@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+
 import styles from './AppContainer.scss'
 // import AppHeader from '../../component/AppHeader/AppHeader'
 // import AppFooter from '../../component/AppFooter/AppFooter'
-import Bundle from '../../router/bundle'
+import Player from '../../component/Player/Player'
+
 
 //异步加载
+import Bundle from '../../router/bundle'
 const CallContainer = (props) => (
     <Bundle load={() => import('../CallContainer/CallContainer')}>
         {(CallContainer) => <CallContainer {...props} />}
@@ -21,13 +26,18 @@ const DeskContainer = (props) => (
         {(DeskContainer) => <DeskContainer {...props} />}
     </Bundle>
 );
+const PhoneContainer = (props) => (
+    <Bundle load={() => import('../PhoneContainer/PhoneContainer')}>
+        {(PhoneContainer) => <PhoneContainer {...props} />}
+    </Bundle>
+);
 const MapContainer = (props) => (
     <Bundle load={() => import('../MapContainer/MapContainer')}>
         {(MapContainer) => <MapContainer {...props} />}
     </Bundle>
 );
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
     constructor(props) {
         super(props);
         // this.state = {
@@ -41,20 +51,32 @@ export default class AppContainer extends Component {
         }
     }
     render() {
+        // console.log(this)
         return (
             <div className={styles.page}>
+                <Player music={this.props.app.music} />
                 <Route exact path="/" component={CallContainer} />
                 {/* <Route path="/call" component={CallContainer} /> */}
                 <Route path="/talk" component={TalkContainer} />
                 <Route path="/desk" component={DeskContainer} />
                 <Route path="/map" component={MapContainer} />
+                <Route path="/phone" component={PhoneContainer} />
 
-                
+
                 {/* <Route path="*" component={CallContainer} /> */}
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    app: state.app,
+})
+// const mapDispatchToProps = {
+//     toggleMusic: toggleMusic
+// }
+
+export default AppContainer = connect(mapStateToProps)(AppContainer);
 
 
 
