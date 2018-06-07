@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import styles from './Player.scss'
 
-// import bgm from '../../public/audio/bgm.mp3'
-
 
 class Close extends Component {
     constructor(props) {
