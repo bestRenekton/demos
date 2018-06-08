@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
-import talk from './talk'
 import app from './app'
+// import talk from './talk'
 
 
 const reducers = combineReducers({
-    talk,
-    app
+    app,
+    // talk
 })
 
 export default reducers;

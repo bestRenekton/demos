@@ -3,6 +3,7 @@ let initialStgate = {
 }
 
 const talk = (state = initialStgate, action) => {
+    console.log(11111)
     switch (action.type) {
         case 'HANDLE_CHANGE':
             return { ...state, input: action.input }

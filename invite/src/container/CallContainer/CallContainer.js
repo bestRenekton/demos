@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
+import { toggleMusic } from '../../actions/index'
 
 import styles from './CallContainer.scss';
 import BgImg from '../../component/BgImg/BgImg';
@@ -8,12 +10,17 @@ import imgMessage from './img/message.png'
 import imgTip from './img/tip.png'
 import imgRefuse from './img/refuse.png'
 import imgAnswer from './img/answer.png'
+import callMusic from '../../public/audio/calls.mp3'
 
 class CallContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 0
+        }
+    }
+    componentWillMount() {
+        if (this.props.app.music != 'call') {
+            this.props.toggleMusic('call')
         }
     }
     componentDidMount() {
@@ -47,4 +54,12 @@ class CallContainer extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    app: state.app,
+})
+const mapDispatchToProps = {
+    toggleMusic: toggleMusic
+}
+
+CallContainer = connect(mapStateToProps, mapDispatchToProps)(CallContainer);
 export default withRouter(CallContainer);

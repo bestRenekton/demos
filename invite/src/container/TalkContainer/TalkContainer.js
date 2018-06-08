@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
+import { toggleMusic } from '../../actions/index'
 
 import styles from './TalkContainer.scss';
 import BgImg from '../../component/BgImg/BgImg';
@@ -12,8 +13,13 @@ class TalkContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inviteDate: this.props.talk.inviteDate,
+            inviteDate: this.props.app.inviteDate,
             daojishi: null
+        }
+    }
+    componentWillMount() {
+        if (this.props.app.music != 'talk') {
+            this.props.toggleMusic('talk')
         }
     }
     componentDidMount() {
@@ -68,10 +74,11 @@ class TalkContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    talk: state.talk,
+    app: state.app,
+
 })
 const mapDispatchToProps = {
-    // handleEdit:handleEdit         //action放入组件的props中,将用户对 UI 组件的操作映射成 Action。
+    toggleMusic: toggleMusic
 }
 
 TalkContainer = connect(mapStateToProps, mapDispatchToProps)(TalkContainer);

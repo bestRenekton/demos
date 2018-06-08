@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { toggleMusic } from '../../actions/index'
 
 import styles from './DeskContainer.scss';
 import BgImg from '../../component/BgImg/BgImg';
@@ -31,6 +32,11 @@ class DeskContainer extends Component {
                 { icon: imgMessage, url: 'map', title: '短信' },
                 { icon: imgMap, url: 'map', title: '地图' }
             ]
+        }
+    }
+    componentWillMount() {
+        if (this.props.app.music != 'bgm') {
+            this.props.toggleMusic('bgm')
         }
     }
     componentDidMount() {
@@ -75,12 +81,13 @@ class DeskContainer extends Component {
     }
 }
 
-// const mapStateToProps = (state) => ({
-//     talk: state.talk,
-// })
-// const mapDispatchToProps = {
-//     // handleEdit:handleEdit       
-// }
+const mapStateToProps = (state) => ({
+    app: state.app,
 
-// DeskContainer = connect(mapStateToProps, mapDispatchToProps)(DeskContainer);
+})
+const mapDispatchToProps = {
+    toggleMusic: toggleMusic
+}
+
+DeskContainer = connect(mapStateToProps, mapDispatchToProps)(DeskContainer);
 export default withRouter(DeskContainer);

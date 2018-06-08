@@ -1,19 +1,21 @@
-import bgm from '../public/audio/bgm.mp3'
+// import bgm from '../public/audio/bgm.mp3'
 
 let initialStgate = {
-    music: bgm
+    inviteDate: Math.round(new Date('2019-10-01 12:00:00').getTime()/1000), //1569902400
+    music: 'bgm',
+
 };
-const play = (state = initialStgate, action) => {
+const app = (state = initialStgate, action) => {
     switch (action.type) {
         case 'TOGGLEMUSIC':
             let { music } = state;
-            let { musicNew } = action;
+            let { newMusic } = action;
 
-            music = musicNew;
+            music = newMusic;
             return { ...state, music };
         default:
             return state
     }
 }
 
-export default play
+export default app

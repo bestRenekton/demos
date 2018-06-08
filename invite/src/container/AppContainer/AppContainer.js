@@ -8,6 +8,7 @@ import styles from './AppContainer.scss'
 // import AppFooter from '../../component/AppFooter/AppFooter'
 import Player from '../../component/Player/Player'
 
+import TestContainer from '../TestContainer'
 
 //异步加载
 import Bundle from '../../router/bundle'
@@ -61,6 +62,7 @@ class AppContainer extends Component {
                 <Route path="/desk" component={DeskContainer} />
                 <Route path="/map" component={MapContainer} />
                 <Route path="/phone" component={PhoneContainer} />
+                <Route path="/test" component={TestContainer} />
 
 
                 {/* <Route path="*" component={CallContainer} /> */}

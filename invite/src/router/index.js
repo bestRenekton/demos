@@ -28,6 +28,7 @@ const RootRouter = () => (
       <Route path="/desk" component={AppContainer} />
       <Route path="/phone" component={AppContainer} />
       <Route path="/map" component={AppContainer} />
+      <Route path="/test" component={AppContainer} />
 
     </Switch>
   </HashRouter >
