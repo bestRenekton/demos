@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>scrollLeft demo</title>
+</head>
+
+<style>
+	.live2d_field {
+		position: relative;
+		width: 270px;
+		height: 300px;
+		margin: 50px auto;
+	}
+	.live2d {
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		bottom: 0;
+	}
+	.live2d_tool{
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+	}
+
+</style>
+
+<body>
+	<p style="text-align: center;padding:20px;">
+		前两天看了 <span style="text-decoration:line-through;">鱼哥</span>  <span style="text-decoration:line-through;">张含韵</span> 张鑫旭 的博客，看到了一篇讲解 <a href="http://www.zhangxinxu.com/wordpress/2018/05/live2d-web-webgl-js/" target="_blank">live2d</a> 的文章，所以自己尝试了一波。。。
+	</p>
+	<p style="text-align: center;padding:20px;">加载可能比较慢，请耐心等待。。。。</p>
+	<div class='live2d_field'>
+		<canvas class="live2d" id="live2d" width="270" height="300"></canvas>
+		<div class="live2d_tool">
+			<a href="javascript:;" onclick="changeClothes()">不满意,换一个</a>
+		</div>
+	</div>
+
+
+</body>
+<script src="./live2d.js"></script>
+<script src="./live2d_something.js"></script>
+<script>
+	(function () {
+		changeClothes();
+	})()
+</script>
+
+</html>
