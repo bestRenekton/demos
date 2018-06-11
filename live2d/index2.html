@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>pio的试衣间</title>
+</head>
+
+<style>
+	.box {
+		width: 270px;
+		margin: 20px auto;
+	}
+
+	.title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.title p{
+		margin:0 30px
+	}
+</style>
+
+<body>
+	<div class="box" s>
+		<div class="title">
+			<a href="javascript:;" onclick="changeClothes(1)" class="prev">上一套</a>
+			<p id="index">0</p>
+			<a href="javascript:;" onclick="changeClothes(2)" class="prev">下一套</a>
+		</div>
+		<canvas class="live2d" id="live2d" width="270" height="300"></canvas>
+	</div>
+</body>
+<script src="./live2d.js"></script>
+
+<script>
+	let indexData = {
+		index: 0
+	};
+	let indexEl = document.getElementById('index');
+
+	//数据绑定
+	const bindModel = (obj, key, dom) => {
+		Object.defineProperty(obj, key, {
+			get: function () {
+				return dom.innerHTML;
+			},
+			set: function (newValue) {
+				dom.innerHTML = newValue;
+			}
+		})
+	}
+	//换装
+	const changeClothes = (type) => {
+		if (type == 1) {
+			indexData.index--;
+			if (indexData.index == -1) {
+				indexData.index = 50
+			}
+		} else if (type == 2) {
+			indexData.index++;
+			if (indexData.index == 51) {
+				indexData.index = 0
+			}
+		}
+		loadlive2d("live2d", `./pio/${indexData.index}.json`);
+	}
+
+	
+	loadlive2d("live2d", `./pio/${indexData.index}.json`);
+	bindModel(indexData, 'index', indexEl);
+</script>
+
+</html>
