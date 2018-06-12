@@ -1,7 +1,7 @@
 import React from 'react'
-import { HashRouter , Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
-
+import Player from '../component/Player/Player'
 //同步加载
 // import AppContainer from '../container/AppContainer/AppContainer'
 // import NotFoundPage from '../container/NotFoundPage'
@@ -20,17 +20,21 @@ const AppContainer = (props) => (
 // );
 
 const RootRouter = () => (
-  <HashRouter >
-    <Switch>
-      <Route exact path="/" component={AppContainer} />
-      {/* <Route path="/call" component={AppContainer} /> */}
-      <Route path="/talk" component={AppContainer} />
+  <div>
+    <Player />
+    <HashRouter >
+      <Switch>
+        <Route path="/" component={AppContainer} />
+        {/* <Route path="/call" component={AppContainer} /> */}
+        {/* <Route path="/talk" component={AppContainer} />
       <Route path="/desk" component={AppContainer} />
       <Route path="/phone" component={AppContainer} />
       <Route path="/map" component={AppContainer} />
-      <Route path="/test" component={AppContainer} />
+      <Route path="/test" component={AppContainer} /> */}
 
-    </Switch>
-  </HashRouter >
+      </Switch>
+    </HashRouter >
+  </div>
+
 );
 export default RootRouter;

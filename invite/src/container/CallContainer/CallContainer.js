@@ -19,9 +19,9 @@ class CallContainer extends Component {
         }
     }
     componentWillMount() {
-        if (this.props.app.music != 'call') {
-            this.props.toggleMusic('call')
-        }
+        // if (this.props.app.music != 'call') {
+        //     this.props.toggleMusic('call')
+        // }
     }
     componentDidMount() {
 

@@ -12,6 +12,7 @@ import TestContainer from '../TestContainer'
 
 //异步加载
 import Bundle from '../../router/bundle'
+
 const CallContainer = (props) => (
     <Bundle load={() => import('../CallContainer/CallContainer')}>
         {(CallContainer) => <CallContainer {...props} />}
@@ -45,6 +46,20 @@ class AppContainer extends Component {
         //     index: 0
         // }
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps, nextState)
+        // if (this.props.music !== nextProps.music) {
+        //     return true;			//更新
+        // }
+        // if (this.state.music !== nextState.music) {
+        //     return true;			//更新
+        // }
+        // return false;      //不更新
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+    }
+
     componentDidMount() {
         let LOADING = document.getElementById('LOADING');
         if (LOADING) {
@@ -55,16 +70,14 @@ class AppContainer extends Component {
         // console.log(this)
         return (
             <div className={styles.page}>
-                <Player music={this.props.app.music} />
+                {/* <Player music={this.props.app.music} /> */}
                 <Route exact path="/" component={CallContainer} />
-                {/* <Route path="/call" component={CallContainer} /> */}
+                <Route path="/call" component={CallContainer} />
                 <Route path="/talk" component={TalkContainer} />
                 <Route path="/desk" component={DeskContainer} />
                 <Route path="/map" component={MapContainer} />
                 <Route path="/phone" component={PhoneContainer} />
                 <Route path="/test" component={TestContainer} />
-
-
                 {/* <Route path="*" component={CallContainer} /> */}
             </div>
         )

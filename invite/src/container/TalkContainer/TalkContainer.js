@@ -18,9 +18,9 @@ class TalkContainer extends Component {
         }
     }
     componentWillMount() {
-        if (this.props.app.music != 'talk') {
-            this.props.toggleMusic('talk')
-        }
+        // if (this.props.app.music != 'talk') {
+        //     this.props.toggleMusic('talk')
+        // }
     }
     componentDidMount() {
         this.timeID = setInterval(() => {
