@@ -18,46 +18,55 @@ class Player extends Component {
             music_file: null
         }
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        // console.log(nextProps.music, nextState)
-        // if (this.props.music !== nextProps.music) {
-        //     return true;			//更新
-        // }
-        // if (this.state.music !== nextState.music) {
-        //     return true;			//更新
-        // }
-        return false;      //不更新
-    }
-    // componentWillReceiveProps(nextProps) {
-    //     let music_title = nextProps.music;
-    //     let music_file = null;
 
-    //     // console.log(music_title)
-    //     if (music_title == this.state.music) {
-    //         document.getElementById('PLAYER').load();//重载
-    //         return
-    //     }
-    //     switch (music_title) {//切歌
-    //         case 'bgm':
-    //             music_file = music_bg;
-    //             break
-    //         case 'call':
-    //             music_file = music_call;
-    //             break
-    //         case 'talk':
-    //             music_file = music_talk;
-    //             break
-    //         case 'wechat':
-    //             music_file = music_wechat;
-    //             break
-    //     }
-    //     this.setState({ music_file: music_file });
-    //     document.getElementById('PLAYER').load();//重载
-    // }
+    static getDerivedStateFromProps(nextProps, prevState) {
+        let music_title = nextProps.app.music;
+        let music_file = null;
+
+        // console.log(music_title, prevState.music)
+        if (music_title != prevState.music) {
+            switch (music_title) {//切歌
+                case 'bgm':
+                    music_file = music_bg;
+                    break
+                case 'call':
+                    music_file = music_call;
+                    break
+                case 'talk':
+                    music_file = music_talk;
+                    break
+                case 'wechat':
+                    music_file = music_wechat;
+                    break
+            }
+
+            return {
+                music: music_title,
+                music_file: music_file,
+                play:true
+            };
+
+        }
+        return null;
+    }
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (this.state.music != prevState.music) {
+            return true
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {    
+        if (snapshot !== null) {
+            document.getElementById('PLAYER').load();//重载
+        }
+    }
+
     toggle() {//暂停
         let play = this.state.play;
         let PLAYER = document.getElementById('PLAYER');
 
+        console.log(play)
         if (play) {//暂停
             PLAYER.pause();
         } else {//播放
@@ -68,7 +77,7 @@ class Player extends Component {
         })
     }
     render() {
-        console.log(this)
+        console.log('player_render------', this)
         return (
             <div className={`${styles.player} ${this.state.play ? 'on' : ''}`} onClick={() => { this.toggle(); }}>
                 <i className={styles.musicIcon}></i>
@@ -91,4 +100,3 @@ const mapStateToProps = (state) => ({
 // }
 
 export default Player = connect(mapStateToProps)(Player);
-// export default Player;

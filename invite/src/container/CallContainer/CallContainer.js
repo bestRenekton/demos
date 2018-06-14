@@ -18,14 +18,19 @@ class CallContainer extends Component {
         this.state = {
         }
     }
-    componentWillMount() {
-        // if (this.props.app.music != 'call') {
-        //     this.props.toggleMusic('call')
-        // }
-    }
-    componentDidMount() {
 
+    componentDidMount() {
+        let LOADING = document.getElementById('LOADING');
+        if (LOADING) {
+            LOADING.parentNode.removeChild(LOADING);
+        }
+
+        if (this.props.app.music != 'call') {
+            this.props.toggleMusic('call')
+        }
     }
+    
+
     answer() {
         this.props.history.push({
             pathname: '/talk'

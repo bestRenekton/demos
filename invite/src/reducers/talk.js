@@ -1,5 +1,5 @@
 let initialStgate = {
-    inviteDate: Math.round(new Date('2019-10-01 12:00:00').getTime()/1000) //1569902400
+    // inviteDate: Math.round(new Date('2019-10-01 12:00:00').getTime()/1000) //1569902400
 }
 
 const talk = (state = initialStgate, action) => {

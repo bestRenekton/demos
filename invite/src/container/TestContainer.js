@@ -4,27 +4,39 @@ import { connect } from 'react-redux';
 import { handleAdd, toggleMusic } from '../actions/index'
 
 
-class Test extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        }
-    }
-    componentWillMount() {
+// class Test extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//         }
+//     }
+//     componentWillMount() {
 
-    }
-    componentWillUpdate(){
-        console.log(1231232132131)
-        return false;
+//     }
+//     shouldComponentUpdate(){
+//         return false;
+//     }
+//     render() {
+//         console.log(123)
+//         return (
+//             <div>
+//                <p>asdfsadf</p>
+//             </div>
+//         )
+//     }
+// }
+class Test extends Component {
+    shouldComponentUpdate(){
+        console.log('test-should')
+        return false
     }
     render() {
-        console.log(123)
+        console.log('test-render')
         return (
             <div>
-               <p>asdfsadf</p>
+                <h2>Test</h2>
             </div>
         )
     }
 }
-
 export default Test;

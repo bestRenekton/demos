@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Route, Link } from 'react-router-dom';
 
 
 import styles from './AppContainer.scss'
-// import AppHeader from '../../component/AppHeader/AppHeader'
-// import AppFooter from '../../component/AppFooter/AppFooter'
 import Player from '../../component/Player/Player'
-
-import TestContainer from '../TestContainer'
+// import TestContainer from '../TestContainer'
 
 //异步加载
 import Bundle from '../../router/bundle'
@@ -46,52 +42,46 @@ class AppContainer extends Component {
         //     index: 0
         // }
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps, nextState)
-        // if (this.props.music !== nextProps.music) {
-        //     return true;			//更新
-        // }
-        // if (this.state.music !== nextState.music) {
-        //     return true;			//更新
-        // }
-        // return false;      //不更新
-    }
-    componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
-    }
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //     console.log(nextProps, prevState)
+    //     if (prevState.music !== nextProps.music) {
+    //         return {
+    //             music: nextProps.music,
+    //             music_file: music_file,
+    //             index: prevState.index + 1
+    //         };
+    //     }
+    //     return null;
+    // }
 
-    componentDidMount() {
-        let LOADING = document.getElementById('LOADING');
-        if (LOADING) {
-            LOADING.parentNode.removeChild(LOADING);
-        }
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(nextProps, nextState)
+    //     // if (this.props.music !== nextProps.music) {
+    //     //     return true;			//更新
+    //     // }
+    //     // if (this.state.music !== nextState.music) {
+    //     //     return true;			//更新
+    //     // }
+    //     return false;      //不更新
+    // }
+
     render() {
-        // console.log(this)
+        console.log('app--render')
         return (
             <div className={styles.page}>
-                {/* <Player music={this.props.app.music} /> */}
+                <Player />
                 <Route exact path="/" component={CallContainer} />
                 <Route path="/call" component={CallContainer} />
                 <Route path="/talk" component={TalkContainer} />
                 <Route path="/desk" component={DeskContainer} />
                 <Route path="/map" component={MapContainer} />
                 <Route path="/phone" component={PhoneContainer} />
-                <Route path="/test" component={TestContainer} />
                 {/* <Route path="*" component={CallContainer} /> */}
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
-    app: state.app,
-})
-// const mapDispatchToProps = {
-//     toggleMusic: toggleMusic
-// }
-
-export default AppContainer = connect(mapStateToProps)(AppContainer);
-
+export default AppContainer
 
 

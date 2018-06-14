@@ -17,12 +17,10 @@ class TalkContainer extends Component {
             daojishi: null
         }
     }
-    componentWillMount() {
-        // if (this.props.app.music != 'talk') {
-        //     this.props.toggleMusic('talk')
-        // }
-    }
     componentDidMount() {
+        if (this.props.app.music != 'talk') {
+            this.props.toggleMusic('talk')
+        }
         this.timeID = setInterval(() => {
             this.tick();
         }, 1000)
