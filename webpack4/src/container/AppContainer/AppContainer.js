@@ -21,7 +21,8 @@ export default class AppContainer extends Component {
                 <AppHeader />
                 <main className={styles.page}>
                 <i class="iconfont icon-zhihu"></i>
-
+                <i class="iconfont icon-zhihu"></i>
+                <p>asdf</p>
                 <img src={pic} alt=""/>
                     {/* <Route exact path='/' component={HomeContainer} />
                     <Route path='/archives' component={ArchivesContainer} />

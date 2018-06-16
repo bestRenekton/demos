@@ -1,5 +1,5 @@
 const path = require('path');
-const opn = require('opn');
+// const opn = require('opn');
 const autoprefixer = require('autoprefixer');
 
 const port = 8888;
@@ -8,7 +8,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 
 
-opn(`http://localhost:${port}/`);
+// opn(`http://localhost:${port}/`);
 module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -16,10 +16,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
+        contentBase:path.resolve(__dirname,'dist'),//开发服务运行时的文件根目录
+        historyApiFallback: true,//spa不跳转
         host: 'localhost',
         port: port,
-        inline: true,
-        // hot :true
+        // hot:true,
+        inline: true,//实时刷新
+        compress:true,//Enable gzip compression for everything served
+        overlay: true, //Shows a full-screen overlay in the browser
+        stats: "errors-only" ,//To show only errors in your bundle
+        open:true, //When open is enabled, the dev server will open the browser.
     },
     module: {
         rules: [
@@ -49,7 +55,7 @@ module.exports = {
                     loader: 'url-loader',
                     options: {
                         limit: 30000,
-                        outputPath: './static/media/'//图片输出位置
+                        outputPath: './static/font/'//图片输出位置
                     }
                 }
             },
@@ -138,7 +144,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
+        // new CleanWebpackPlugin(['dist']),
         // new webpack.HotModuleReplacementPlugin()
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),//模板

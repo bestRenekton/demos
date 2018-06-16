@@ -39,6 +39,6 @@
     "start": "npm run dev",
     "build": "webpack --config webpack.config.prod.js"
   },
-  "author": "",
+  "author": "yyt",
   "license": "ISC"
 }
