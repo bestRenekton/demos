@@ -1,2 +1,2 @@
 # demos
-some demo
+some demos
