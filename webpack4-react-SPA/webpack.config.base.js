@@ -54,6 +54,7 @@ module.exports = {
             },
             {//数据
                 test: [/\.json$/i],//i不区分大小写
+                exclude: /(node_modules|bower_components)/,
                 use: [
                     {
                         loader: 'file-loader',
