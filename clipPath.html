@@ -7,7 +7,6 @@
   />
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="./js/jquery-1.8.3.min.js"></script>
   <title>微信网页悬浮窗交互效果的web实现</title>
 </head>
 <style>
@@ -19,24 +18,28 @@
     margin: 0;
   }
 
-  p {
+  h1 {
     margin: 0
   }
 
   .page1 {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    overflow: hidden;
     z-index: -1;
+    background-color: #00b8ff;
+    overflow: hidden;
   }
 
   .page2 {
     width: 100%;
     height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: rgb(118, 145, 39);
     transition: all .2s;
     clip-path: circle(200vh at 50vw 50vh);
@@ -45,32 +48,42 @@
   .icon-link {
     width: 64px;
     height: 64px;
-    background: #333;
+    background: url(https://www.zhangxinxu.com/study/201806/icon-link.png);
+    background-size: contain;
     border-radius: 50%;
     position: fixed;
     right: 10px;
     bottom: 200px;
     opacity: 0;
+    line-height: 64px;
+    color: #fff;
+    text-align: center;
   }
 </style>
 
 <body>
   <div class="page1">
-    <p>11111111111</p>
+    <p>list</p>
+    <p>list</p>
+    <p>list</p>
+    <p>效果实现的关键是页面收缩到悬浮按钮中。使用的是CSS3 clip-path属性。</p>
     <p>
-      如果两层都是绝对定位的话，当上面一页收起来的时候，部分浏览器底部会出现滚动条。。。设置了mate标签以及html,body,overflow:hidden，width:100%;都还是没法解决。。。。 后来我把下一层用绝对定位,同时用z-index=-1将他设置到上一层的下方，上一层用文档流，搜索的时候直接用margin-left，就不会出现底部的滚动条了
-
+      如果两层都是绝对定位的话，当上面一页收起来的时候，部分浏览器底部会出现滚动条。。。设置了mate标签以及html,body,overflow:hidden，width:100%;都还是没法解决。。。。 后来我把下一层用绝对定位,同时设置z-index=-1，上一层用文档流，收缩的时候直接用margin-left，就不会出现底部的滚动条了
     </p>
   </div>
   <div id="pageLink" class="page2">
-    <p>222222222222222</p>
-    <img src="./images/222.jpg" alt="">
+    <h1>微信网页悬浮窗交互效果的web实现</h1>
+    <p>如果浏览器访问，请打开开发者工具，然后使用移动端模式。</p>
+    <p>向右滑动页面查看效果……</p>
+    <p>关于技术实现
+      <a href="https://www.yangyuetao.cn/" target="_blank">访问这里</a>。</p>
   </div>
   <!-- 悬浮的按钮 -->
   <a href="javascript:" id="iconLink" class="icon-link"></a>
-  <!-- <div class="dot" style="width: 1px;height: 1px;background: red;display: inline-block;z-index: 999;position: absolute;"></div> -->
-  <script>
 
+
+
+  <script>
     let elPageLink = document.getElementById('pageLink');
     let elIconLink = document.getElementById('iconLink');
     let widthPageLink = elPageLink.clientWidth;
@@ -82,13 +95,7 @@
       centerX: elIconLink.offsetLeft + widthIconLink / 2,//收缩中心
       centerY: elIconLink.offsetTop + heightIconLink / 2
     };
-    // let dot = document.querySelector('.dot');
-    // dot.style.top = centerY+'px';
-    // dot.style.left = centerX+'px';
-    // debugger
-
-    //批量设置style方法
-    const setStyle = (obj, json) => {
+    const setStyle = (obj, json) => {//批量设置style方法
       for (var i in json) {
         obj.style[i] = json[i];
       }
@@ -98,17 +105,17 @@
     elPageLink.addEventListener('touchstart', (e) => {
       let touch = e.touches[0];
 
-      console.log('1111111')
+      // console.log('1111111')
       data.x1 = touch.pageX;
-      // data.x2 = touch.pageX;
       data.translateX = 0;
       data.touching = true;
     });
+
     //游走
     elPageLink.addEventListener('touchmove', (e) => {
       let touch = e.touches[0];
-      console.log('222222')
 
+      // console.log('222222')
       if (!data.touching) {
         return
       }
@@ -124,10 +131,12 @@
         opacity: Math.log2(1 + data.translateX / widthPageLink)
       })
     });
+
     //触摸结束
     elPageLink.addEventListener('touchend', (e) => {
       let touch = e.changedTouches[0];
-      console.log(333333)
+
+      // console.log(333333)
       if (!data.touching) {
         return
       }
@@ -146,7 +155,6 @@
           marginLeft: '0',
           clipPath: 'circle(' + heightIconLink / 2 + 'px at ' + (data.centerX) + 'px ' + data.centerY + 'px)'
         })
-        // elIconLink.style.opacity = 1;
         setStyle(elIconLink, {
           opacity: 1
         })
@@ -163,114 +171,6 @@
         opacity: 0
       })
     })
-    // // 页面元素
-    // var elPageLink = $('#pageLink');
-    // var elIconLink = $('#iconLink');
-    // // 图标的高宽（这个是固定的）
-    // var widthIconLink = elIconLink.width();
-    // var heightIconLink = elIconLink.height();
-
-    // elPageLink.on({
-    //   touchstart: function (event) {
-    //     // console.log(event)
-    //     var events = event.originalEvent.touches[0] || event;
-    //     // 记住坐标
-    //     data.posX = events.pageX;
-    //     data.nowX = data.posX;
-    //     // 重置移动距离
-    //     data.distanceX = 0;
-    //     // 设置跟随标志量
-    //     data.touching = true;
-    //     // 设置收缩中心点
-    //     var centerY = elIconLink.offset().top + heightIconLink / 2;
-    //     var centerX = elIconLink.offset().left + widthIconLink / 2;
-    //     data.centerX = centerX;
-    //     data.centerY = centerY;
-    //     console.log('circle(' + window.innerHeight + 'px at ' + centerX + 'px ' + centerY + 'px)')
-    //     elPageLink.css({
-    //       '-webkit-clip-path': 'circle(' + window.innerHeight + 'px at ' + centerX + 'px ' + centerY + 'px)',
-    //       clipPath: 'circle(' + window.innerHeight + 'px at ' + centerX + 'px ' + centerY + 'px)'
-    //     });
-    //   },
-    //   touchmove: function (event) {
-    //     if (data.touching !== true) {
-    //       return;
-    //     }
-    //     var events = event.originalEvent.touches[0] || event;
-    //     // 计算出水平移动距离
-    //     data.nowX = events.pageX;
-    //     var distanceX = data.nowX - data.posX;
-    //     if (distanceX < 0) {
-    //       distanceX = 0;
-    //     }
-    //     data.distanceX = distanceX;
-    //     // 设置页面跟随
-    //     elPageLink.css({
-    //       transition: 'none',
-    //       transform: 'translateX(' + distanceX + 'px)'
-    //     });
-    //     // 图标按钮透明度
-    //     elIconLink.css({
-    //       opacity: Math.log2(1 + distanceX / window.innerWidth)
-    //     });
-    //     // 阻止默认行为
-    //     event.preventDefault();
-    //   },
-    //   touchend: function () {
-    //     if (data.touching !== true) {
-    //       return;
-    //     }
-    //     var width = window.innerWidth;
-
-    //     elPageLink.css('transition', '');
-
-    //     this.offsetWidth;
-
-    //     // 如果移动距离不足页面宽度1/3
-    //     // 认为非移动
-    //     if (data.distanceX < width / 3) {
-    //       elPageLink.css({
-    //         transform: 'translateX(0)'
-    //       });
-    //       elIconLink.css('opacity', 0);
-    //     } else {
-    //       // 收缩到图标中
-    //       console.log('circle(' + heightIconLink / 2 + 'px at ' + (data.centerX - data.distanceX) + 'px ' + data.centerY + 'px)')
-    //       elPageLink.css({
-    //         '-webkit-clip-path': 'circle(' + heightIconLink / 2 + 'px at ' + (data.centerX - data.distanceX) + 'px ' + data.centerY + 'px)',
-    //         clipPath: 'circle(' + heightIconLink / 2 + 'px at ' + (data.centerX ) + 'px ' + data.centerY + 'px)',
-    //         filter: 'grayscale(1)'
-    //       });
-    //       elIconLink.css('opacity', 1);
-    //     }
-
-    //     data.touching = false;
-    //   }
-    // });
-
-    // // 点击链接图标按钮
-    // // 就是个普通的居中圆形剪裁动画
-    // elIconLink.on('click', function () {
-    //   var width = window.innerWidth;
-    //   var height = window.innerHeight;
-    //   // 位置先还原
-    //   // 收缩大小也是按照短边宽度来
-    //   elPageLink.css({
-    //     transition: 'none',
-    //     transform: 'translateX(0)',
-    //     '-webkit-clip-path': 'circle(50vw at 50vw 50vh)',
-    //     clipPath: 'circle(50vw at 50vw 50vh)',
-    //     filter: 'none'
-    //   });
-    //   this.offsetWidth;
-    //   // 开始放开
-    //   elPageLink.css('transition', '');
-    //   elPageLink.css({
-    //     '-webkit-clip-path': 'circle(100vh at 50vw 50vh)',
-    //     clipPath: 'circle(100vh at  50vw 50vh)'
-    //   });
-    //   elIconLink.css('opacity', 0);
-    // });
   </script>
 </body>
 
