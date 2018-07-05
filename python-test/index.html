@@ -10,15 +10,17 @@
 
 <body>
     <script>
-        let a = 'ABC'
-        b = a
-        a = 'XYZ'
-        console.log(b)
-
-        // let a = { a: 11 }
-        // b = a;
-        // a = { b: 11 }
-        // console.log(b)
+        var hanoi = function (n, from, ass, to) {
+            if (n > 0) {
+                hanoi(n - 1, from, to, ass);//a-c-b
+                move(n, from, to);//a-c
+                hanoi(n - 1, ass, from, to);//b-a-c
+            }
+        }
+        var move = function (n, from, to) {
+            console.log("移动第" + n + "个从" + from + "到" + to);
+        }
+        hanoi(3, "A", "B", "C");
     </script>
 </body>
 

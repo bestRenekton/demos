@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+# =============================输入，输出========================================
 # num1 =input('num1=')
 # num2=input('num2=')
 # num3=int(num1)*int(num2)
@@ -19,7 +21,7 @@
 # s2=85
 # r = (s2-s1)/s1*100
 # print('小明成绩提升了%.1f %%' % r)
-
+# ==============================list=======================================
 # L = [
 #    ['Apple', 'Google', 'Microsoft'],
 #     ['Java', 'Python', 'Ruby', 'PHP'],
@@ -37,7 +39,7 @@
 # height=1.85
 # bmi=weight/(height*height)
 # print('bmi=%.1f' % bmi)
-
+#================================循环=====================================
 # arr=range(101)
 # all=0
 # for item in arr:
@@ -56,7 +58,7 @@
 #     else:
 #         print(n)
 
-
+#=================================dict,set====================================
 # dic={'a':1,'b':2}
 # print (dic.get('c',-99))
 
@@ -75,7 +77,7 @@
 # b=input('b=')
 # print('a+b=',add(a,b))
 
-
+#=============================函数========================================
 # import math
 # def quadratic(a,b,c):
 #     if not isinstance(a,(int,float)) and isinstance(b,(int,float)) and isinstance(c,(int,float)):
@@ -99,7 +101,7 @@
 #     print('测试成功')
 
 
-
+#===============================参数======================================
 # def calc(*numbers):
 #     sum = 0
 #     for n in numbers:
@@ -108,6 +110,110 @@
 # arr=[1,2,3,4,5]
 # print(calc(*arr))
 
-def person(name, age, **kw):
-    print('name:', name, 'age:', age, 'other:', kw)
-person(1,2,ty=1)
+# def person(name, age, **kw):
+#     print('name:', name, 'age:', age, 'other:', kw)
+# person(1,2,ty=1)
+
+
+# def f1(a, b, c=0, *args,city=1, **kw):
+#     print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+# f1(1, 2, 3,4, num=99)
+
+# def f2(a, b, c=0, *, d, **kw):
+#     print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
+# f2(1, 2, d=99, ext=None,haha=2)
+
+# def product(x,*arg):
+#     for i in arg:
+#         x=x*i
+#     return x
+
+# print('product(5) =', product(5))
+# print('product(5, 6) =', product(5, 6))
+# print('product(5, 6, 7) =', product(5, 6, 7))
+# print('product(5, 6, 7, 9) =', product(5, 6, 7, 9))
+# if product(5) != 5:
+#     print('测试失败!')
+# elif product(5, 6) != 30:
+#     print('测试失败!')
+# elif product(5, 6, 7) != 210:
+#     print('测试失败!')
+# elif product(5, 6, 7, 9) != 1890:
+#     print('测试失败!')
+# else:
+#     try:
+#         product()
+#         print('测试失败!')
+#     except TypeError:
+#         print('测试成功!')
+
+# ============================递归=========================================
+# def fact(n):
+#     if n==1:
+#         return 1
+#     return n * fact(n - 1)
+# print(fact(10))
+#============================汉诺塔============================
+# def move(n, a, b, c): 
+#     if n == 1:   # 如果a只有1盘子
+#         print(a, '-->', c);   # 直接把盘子从a移到c
+#     else:   # 如果a有n个盘子(n > 1)，那么分三步
+#         move(n-1, a, c, b)   # 先把上面n-1个盘子，借助c，从a移到b
+#         move(1, a, b, c)   # 再把最下面的1个盘子，借助b，从a移到c
+#         move(n-1, b, a, c)   # 最后把n-1个盘子，借助a，从b移到c
+
+# move(3,'A','B','C')  # 测试
+#===========================切片============================
+# def trim(s):
+#     while s!='' and s[0]==' ':
+#         s=s[1:]
+#     while s!='' and s[-1]==' ':
+#         s=s[:-1]
+#     return s
+# # 测试:
+# if trim('hello  ') != 'hello':
+#     print('测试失败!')
+# elif trim('  hello') != 'hello':
+#     print('测试失败!')
+# elif trim('  hello  ') != 'hello':
+#     print('测试失败!')
+# elif trim('  hello  world  ') != 'hello  world':
+#     print('测试失败!')
+# elif trim('') != '':
+#     print('测试失败!')
+# elif trim('    ') != '':
+#     print('测试失败!')
+# else:
+#     print('测试成功!')
+#===========================迭代============================
+# from collections import Iterable
+# print( isinstance('abc', Iterable))
+
+# for i,v in enumerate([4,4,5,4]):
+#     print(i,v)
+
+# for i,v in {'a':2,'b':4}.items():
+#     print(i,v)
+
+# def findMinAndMax(L):
+#     if L==[]:
+#         return (None,None)
+#     min=L[0]
+#     max=L[0]
+#     for i in L:
+#         if min>i:
+#             min=i
+#         elif max<i:
+#             max=i
+#     return (min,max)
+# # 测试
+# if findMinAndMax([]) != (None, None):
+#     print('测试失败!')
+# elif findMinAndMax([7]) != (7, 7):
+#     print('测试失败!')
+# elif findMinAndMax([7, 1]) != (1, 7):
+#     print('测试失败!')
+# elif findMinAndMax([7, 1, 3, 9, 5]) != (1, 9):
+#     print('测试失败!')
+# else:
+#     print('测试成功!')
