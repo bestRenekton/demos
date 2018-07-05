@@ -1,0 +1,65 @@
+.content{
+    background: rgba(0,0,0,.3);
+    position: relative;
+    // display: flex;
+    height: 100%;
+    // flex-direction: column;
+    // justify-content: space-between;
+    .title{text-align: center;color: #fff;padding: 30px 0;font-size: 30px;}
+    .num{text-align: center;color: #fff;}
+    .btns {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        width: 100%;
+      }
+      .shadow{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+      .hungUp {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        margin-left: -50px;
+        bottom: 10%;
+      }
+    // .content_top{
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     margin-top: 30px;
+    //     .btn{
+    //         width: 25%;
+    //         height: 25%;
+    //     }
+    // }
+    // .content_down{
+    //     display: flex;
+    //     flex-wrap: wrap;
+    //     justify-content: center;
+    //     align-content: center;
+    //     margin-bottom:50px;
+    //     .btn{
+    //         width: 25%;
+    //         height: 25%;
+    //         margin: 4% 10%;
+    //     }
+    //     .answer{
+    //         animation: answer 1.2s infinite;
+    //     }
+    //     @keyframes answer {
+    //         20% {transform:scale(1.1) rotate(0deg)}
+    //         30% {transform:scale(1.1) rotate(10deg)}
+    //         40% {transform:scale(1.1) rotate(-10deg)}
+    //         50% {transform:scale(1.1) rotate(10deg)}
+    //         60% {transform:scale(1.1) rotate(-10deg)}
+    //         70% {transform:scale(1.1) rotate(10deg)}
+    //         80% {transform:scale(1.1) rotate(-10deg)}
+    //         90% {transform:scale(1.1) rotate(10deg)}
+    //     }
+    // }
+}

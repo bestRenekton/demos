@@ -1,0 +1,48 @@
+.player{
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 998;
+    &:global(.on){
+        i{animation:circle  2s infinite;}
+        .musicIcon{animation: musicIcon 1s infinite;}
+    }
+    i {
+        width: 48px;
+        height: 48px;
+        display: block;
+        position: absolute;
+        left:0;
+        top: 0;
+      }
+    .musicIcon {background: url(./img/music.png) no-repeat;}
+    .circle_1 {background: url(./img/circle-1.png) no-repeat;}
+    .circle_2 {background: url(./img/circle-2.png) no-repeat;}
+    .circle_3 {background: url(./img/circle-3.png) no-repeat;}
+}
+
+
+@keyframes circle {
+    0% {
+      transform:scale(1);
+    }
+    50% {
+        transform:scale(1.2);
+      }
+    100% {
+        transform:scale(1);
+    }
+}
+@keyframes musicIcon {
+    0% {
+      transform:translateY(0);
+    }
+    50% {
+      transform:translateY(-5px);
+    }
+    100% {
+      transform:translateY(0);
+    }
+}

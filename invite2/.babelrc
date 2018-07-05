@@ -1,0 +1,19 @@
+{
+    "presets": [
+        "env",
+        "react",
+        "stage-0"
+    ],
+    "plugins": [
+        [
+            "transform-runtime",
+            {
+                "helpers": false, 
+                "polyfill": false, 
+                "regenerator": true 
+            }
+        ],
+        "react-hot-loader/babel",
+        "transform-decorators-legacy"
+    ]
+}
