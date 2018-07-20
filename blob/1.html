@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>scrollLeft demo</title>
+</head>
+
+<style>
+</style>
+
+<body>
+	<video width="860" id="player" height="485" controls preload="auto" oncontextmenu="return false"></video>
+
+	<img id="img" src="" alt="">
+
+</body>
+<script>
+	//video
+	window.URL = window.URL || window.webkitURL;
+	if (typeof history.pushState == "function") {
+		let xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "./movie.ogg", true);
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status == 200) {
+				let blob = this.response;
+				let video = document.getElementById("player");
+				video.onload = function (e) {
+					window.URL.revokeObjectURL(video.src);
+				};
+				video.src = window.URL.createObjectURL(blob);
+			}
+		}
+		xhr.send();
+	} else {
+		alert('浏览器不支持')
+	}
+	//img
+	window.URL = window.URL || window.webkitURL;
+	if (typeof history.pushState == "function") {
+		let xhr = new XMLHttpRequest();
+
+		xhr.open("GET", "./222.jpg", true);
+		xhr.responseType = "blob";
+		xhr.onload = function () {
+			if (this.status == 200) {
+				let blob = this.response;
+				let img = document.getElementById("img");
+
+				img.onload = function (e) {
+					window.URL.revokeObjectURL(img.src);
+				};
+				img.src = window.URL.createObjectURL(blob);
+			}
+		}
+		xhr.send();
+	} else {
+		alert('浏览器不支持')
+	}
+
+</script>
+
+</html>
