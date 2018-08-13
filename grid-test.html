@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>grid</title>
+</head>
+<style>
+  body {
+    margin: 0;
+  }
+</style>
+
+<body>
+  <style>
+    .main {
+      background: pink;
+      width: 500px;
+      margin: 0 auto;
+      text-align: center
+    }
+
+    .grid_box {
+      background: lightblue;
+
+      display: grid;
+      /* display: inline-grid; */
+      /*行高*/
+      /* grid-template-rows: 60px auto auto 40px; */
+      /* grid-template-rows: 60px 1fr 2fr; */
+      /*最小值最大值*/
+      /* grid-template-rows: minmax(auto, 30%) 1fr 1fr; */
+      /*重复 等价上面*/
+      grid-template-rows: minmax(auto, 30%) repeat(2, 1fr);
+
+      /*行高没设置或者设置为'auto'的子项会自动平分*/
+      height: 100vh;
+
+      /*列宽*/
+      grid-template-columns: 10px auto auto 30px;
+      /*列宽没设置或者设置为'auto'的子项会自动平分*/
+      width: 200px;
+
+
+      /* 【grid-column-gap】 创建列与列之间的间距  */
+      /* 【grid-row-gap】创建行与行之间的间距  */
+      /* 【grid-gap】默认值为0，两个属性的缩写，第一个grid-row-gap，第二个grid-column-gap ,只设置了一个值，表示行和列的间距相等*/
+      grid-gap: 2px 4px;
+
+
+      /*区域命名*/
+      grid-template-areas: "header1 header2 header3 header4" "sidebar1 sidebar2 content content" "footer footer footer footer";
+      /*方向，默认row*/
+      /* grid-auto-flow: column; */
+      
+    }
+
+    .grid_item {
+      background: #0490db;
+      border: 1px solid #fff;
+    }
+
+    /*单体操作，控制个体的具体细节  grid-row-start  grid-column-start  grid-row-end   grid-column-end*/
+
+    #item4 {
+      /* grid-area: 1/ 2/ 3/ 4; */
+      /*span合并，等价上面*/
+      /* grid-area: 1/ 2/ 3/ span 2; */
+      /*使用该区域*/
+      grid-area: content;
+    }
+
+    /*order类似于z-index，表明叠放顺序，数值越大，越在上。允许负数*/
+    #item3 {
+      /* grid-area: 1/ 4/ 3/ 5; */
+      /*负数表示倒数*/
+      grid-area: 1/ 4/ 3/ -1;
+      order:1
+    }
+  </style>
+  <p>种萝卜测试：https://cssgridgarden.com</p>
+  <div class="main">
+    <div class="grid_box">
+      <div class="grid_item">1</div>
+      <div class="grid_item">2</div>
+      <div class="grid_item" id="item3">3</div>
+      <div class="grid_item" id="item4">4</div>
+      <div class="grid_item">5</div>
+      <div class="grid_item">6</div>
+      <div class="grid_item">7</div>
+      <div class="grid_item">8</div>
+      <div class="grid_item">9</div>
+      <div class="grid_item">10</div>
+      <div class="grid_item">11</div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>
