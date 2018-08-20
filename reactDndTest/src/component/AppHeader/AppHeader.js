@@ -104,6 +104,7 @@ export default class AppHeader extends Component {
             connectDropTarget &&
             connectDropTarget(
                 <div style={{ ...style, backgroundColor }}>
+                DropTarget
                     {isActive ? 'Release to drop' : 'Drag a box here'}
                 </div>,
             )

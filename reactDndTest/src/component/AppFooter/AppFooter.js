@@ -93,7 +93,7 @@ export default class AppFooter extends Component {
 
         return (
             connectDragSource &&
-            connectDragSource(<div style={{ ...styles,opacity:opacity }}>{name}</div>)
+            connectDragSource(<div style={{ ...styles,opacity:opacity }}>{name}DragSource</div>)
         )
     }
 }
