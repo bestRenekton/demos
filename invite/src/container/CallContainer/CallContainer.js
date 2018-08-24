@@ -10,7 +10,6 @@ import imgMessage from './img/message.png'
 import imgTip from './img/tip.png'
 import imgRefuse from './img/refuse.png'
 import imgAnswer from './img/answer.png'
-import callMusic from '../../public/audio/calls.mp3'
 
 class CallContainer extends Component {
     constructor(props) {

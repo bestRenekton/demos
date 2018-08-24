@@ -64,6 +64,9 @@ class AppContainer extends Component {
     //     // }
     //     return false;      //不更新
     // }
+    componentDidMount(){
+        
+    }
 
     render() {
         console.log('app--render')

@@ -12,6 +12,7 @@ import music_wechat from '../../public/audio/wechat-boy.mp3'
 class Player extends Component {
     constructor(props) {
         super(props);
+        this.audioEl=React.createRef();
         this.state = {
             play: true,
             music: null,
@@ -58,19 +59,18 @@ class Player extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {    
         if (snapshot !== null) {
-            document.getElementById('PLAYER').load();//重载
+            this.audioEl.current.load();//重载
         }
     }
 
     toggle() {//暂停
         let play = this.state.play;
-        let PLAYER = document.getElementById('PLAYER');
 
         console.log(play)
         if (play) {//暂停
-            PLAYER.pause();
+            this.audioEl.current.pause();
         } else {//播放
-            PLAYER.play();
+            this.audioEl.current.play();
         }
         this.setState({
             play: !play
@@ -84,7 +84,7 @@ class Player extends Component {
                 <i className={styles.circle_1}></i>
                 <i className={styles.circle_2}></i>
                 <i className={styles.circle_3}></i>
-                <audio id="PLAYER" autoPlay loop>
+                <audio id="PLAYER" autoPlay loop ref={this.audioEl}>
                     <source src={this.state.music_file} type="audio/mpeg" />
                 </audio>
             </div>

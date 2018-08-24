@@ -28,19 +28,16 @@ class DeskContainer extends Component {
             ],
             tabs_bottom: [
                 { icon: imgPhone, url: 'phone', title: '电话' },
-                { icon: imgWechat, url: 'map', title: '微信' },
-                { icon: imgMessage, url: 'map', title: '短信' },
+                { icon: imgWechat, url: 'wechart', title: '微信' },
+                { icon: imgMessage, url: 'message', title: '短信' },
                 { icon: imgMap, url: 'map', title: '地图' }
             ]
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.app.music != 'bgm') {
             this.props.toggleMusic('bgm')
         }
-    }
-    componentDidMount() {
-
     }
     go(url) {
         this.props.history.push({
@@ -50,11 +47,12 @@ class DeskContainer extends Component {
     render() {
         return (
             [
-                <BgImg src={imgBg} animate={true} key={0} />,
+                <BgImg src={imgBg} animate={false} key={0} />,
+                <iframe id="player" frameborder="no" key={2} border="0" marginwidth="0" marginheight="0" width='100%' height='110px' src="//music.163.com/outchain/player?type=0&id=2336290297&auto=0&height=90"></iframe>,
                 <div className={styles.content} key={1}>
                     <div className={styles.content_top}>
                         {
-                            this.state.tabs_top.map((val,i) => {
+                            this.state.tabs_top.map((val, i) => {
                                 return (
                                     <div className={styles.grid} key={i}>
                                         <img src={val.icon} onClick={() => { this.go(val.url) }} alt={val.title} />
@@ -66,7 +64,7 @@ class DeskContainer extends Component {
                     </div>
                     <div className={styles.content_down}>
                         {
-                            this.state.tabs_bottom.map((val,i) => {
+                            this.state.tabs_bottom.map((val, i) => {
                                 return (
                                     <div className={styles.grid} key={i}>
                                         <img src={val.icon} onClick={() => { this.go(val.url) }} alt={val.title} />
