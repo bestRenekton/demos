@@ -10,8 +10,6 @@ import './public/font/iconfont.css'
 import RootRouter from './router/index'
 import reducers from './reducers/index'
 
-
-
 const store = createStore(reducers,composeWithDevTools());
 ReactDOM.render(
     <Provider store={store}>

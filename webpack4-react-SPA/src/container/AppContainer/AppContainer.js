@@ -7,6 +7,10 @@ import AppFooter from '../../component/AppFooter/AppFooter'
 import pic from '../../public/img/test.jpg'
 
 
+import testPlugin from 'testPlugin'
+console.log(testPlugin)
+
+
 export default class AppContainer extends Component {
     constructor(props) {
         super(props);
@@ -15,11 +19,11 @@ export default class AppContainer extends Component {
         }
     }
     render() {
-        console.log(123)
         return (
             <div className={styles.body}>
                 <AppHeader />
                 <main className={styles.page}>
+                <testPlugin.Test />
                 <p>hello...</p>
                 <img src={pic} alt="" style={{width:'100%'}}/>
                     {/* <Route exact path='/' component={HomeContainer} />

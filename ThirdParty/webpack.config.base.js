@@ -1,29 +1,25 @@
 
 const path = require('path');
-const DIST_PATH = path.resolve(__dirname, 'dist');
+const DIST_PATH = path.resolve(__dirname, 'dist/testPlugin');
 const autoprefixer = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const copyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
     // entry: path.resolve(__dirname, 'src', 'index.js'),
-    // output: {
-    //     path: DIST_PATH,
-    //     publicPath: "",
-    //     chunkFilename: "[name].js",
-    //     filename: "[name].js"
+    output: {
+        path: DIST_PATH,
+        publicPath: "",
+        chunkFilename: "[name].js",
+        filename: "testPlugin.js",
+        libraryTarget: 'umd',
+        library: 'testPlugin'
+    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all'
+    //     },
+    //     runtimeChunk: true
     // },
-    externals: {//引入三方包
-        "testPlugin": "testPlugin"
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        },
-        runtimeChunk: true
-    },
     module: {
         rules: [
             {
@@ -36,10 +32,16 @@ module.exports = {
             {//图片
                 test: /\.(png|jpg|gif|svg|ico)$/i,//i不区分大小写
                 use: [
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         outputPath: './static/img/'//图片输出位置
+                    //     }
+                    // },
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
-                            outputPath: './static/img/'//图片输出位置
+                            limit: 9999999
                         }
                     },
                     'image-webpack-loader'//图片压缩工具
@@ -164,22 +166,5 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin()
-        new CleanWebpackPlugin(['dist']),
-        new copyWebpackPlugin([{//复制static到dist
-            from: __dirname + '/src/static',//打包的静态资源目录地址
-            to: './static' //打包到dist下面的static
-        }]),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src', 'index.html'),//模板
-            filename: 'index.html',
-            inject: false, //允许插件修改哪些内容，包括head与body
-            hash: true, //是否添加hash值
-            minify: { //压缩HTML文件
-                removeComments: true,//移除HTML中的注释
-                collapseWhitespace: true //删除空白符与换行符
-            },
-            chunksSortMode: 'none' //如果使用webpack4将该配置项设置为'none'
-        })
-    ]
+    ],
 };
