@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Todo from '../ToDo/ToDo'
-import Test from '../Test/Test'
+import PureCom from '../PureCom/PureCom'
 
 
 const DemoObj={
     ToDo:Todo,
-    Test:Test,
+    PureCom:PureCom,
 }
 
 export default class Demo extends Component {
@@ -17,15 +17,6 @@ export default class Demo extends Component {
             ]
         }
     }
-    // computer(id) {
-    //     let com = null;
-    //     switch (id) {
-    //         case 'ToDo':
-    //             com = <Todo />
-    //             break;
-    //     }
-    //     return com
-    // }
     render() {
         let DemoComponent=DemoObj[this.props.match.params.id]
         return (

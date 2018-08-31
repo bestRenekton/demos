@@ -1,18 +1,19 @@
 
 
-export const handleChange=(input)=>({
-    type:'HANDLE_CHANGE',
-    input:input
-})
+// export const handleChange=(input)=>({
+//     type:'HANDLE_CHANGE',
+//     input:input
+// })
 
-export const handleAdd = () => ({
-    type: 'ADD_TODO'
+export const handleAdd = (value) => ({
+    type: 'ADD_TODO',
+    value
 })
 
 export const handleEdit = (id, status) => ({
     type: 'TOGGLE_TODO',
-    id:id,
-    status,status
+    id: id,
+    status
 })
 
 export const setVisibilityFilter = (filter) => ({

@@ -5,6 +5,7 @@ import { Card } from 'antd';
 
 
 const DemoCard = ({url,title,txt}) => {
+    console.log('card')
     return (
         <Card title={title} extra={<Link to={url}>查看</Link>} style={{ width: 300 }}>
             <p>{txt}</p>
@@ -18,12 +19,13 @@ export default class Demo extends Component {
         this.state = {
             list: [
                 {title:'ToDo',txt:'一个TodoList...',url:'/demoDetail/ToDo'},
-                {title:'Test',txt:'测试...',url:'/demoDetail/Test'},
+                {title:'PureCom',txt:'PureComponent测试...',url:'/demoDetail/PureCom'},
             ]
         }
         // this.handleEdit=this.handleEdit.bind(this)
     }
     render() {
+        console.log('demo')
         return (
             <div className="wrapper">
             {

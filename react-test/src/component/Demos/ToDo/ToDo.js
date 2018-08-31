@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component, PureComponent } from 'react';
 import { Button, Input } from 'antd';
 import { connect } from 'react-redux';
-import {handleChange, handleAdd,handleEdit } from '../../../actions/index'
+import { handleAdd, handleEdit } from '../../../actions/index'
 
 
 const InputGroup = Input.Group;
-const List = ({ type, list, handleEdit }) => {
+const List = (props) => {
+    let { type, list, handleEdit } = props;
     switch (type) {
         case 1:
             return (
@@ -13,7 +14,7 @@ const List = ({ type, list, handleEdit }) => {
                     return (
                         <div key={val.id}>
                             <span>{val.title}</span>
-                            {val.status == 1
+                            {val.status === 1
                                 ?
                                 <Button type="danger" onClick={() => { handleEdit(val.id, 0) }}>删除</Button>
                                 :
@@ -23,11 +24,10 @@ const List = ({ type, list, handleEdit }) => {
                     )
                 })
             )
-            break;
         case 2:
             return (
                 list.map(val => {
-                    if (val.status == 1) {
+                    if (val.status === 1) {
                         return (
                             <div key={val.id}>
                                 <span>{val.title}</span>
@@ -37,11 +37,10 @@ const List = ({ type, list, handleEdit }) => {
                     }
                 })
             )
-            break;
         case 3:
             return (
                 list.map(val => {
-                    if (val.status == 0) {
+                    if (val.status === 0) {
                         return (
                             <div key={val.id}>
                                 <span>{val.title}</span>
@@ -51,81 +50,81 @@ const List = ({ type, list, handleEdit }) => {
                     }
                 })
             )
-            break;
+        default:
+            return
+    }
+}
+class Lists extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+        this.handleEdit = this.handleEdit.bind(this)
+    }
+    handleEdit(id, status) {
+        this.props.handleEdit(id, status)
+    }
+    render() {
+        console.log('lists', this.props)
+        return (
+            <div style={{ display: 'flex' }}>
+                <div style={{ flex: 1 }}>
+                    <p>全部</p>
+                    <List list={this.props.list} handleEdit={this.handleEdit} type={1} />
+                </div>
+                <div style={{ flex: 1 }}>
+                    <p>剩余</p>
+                    <List list={this.props.list} handleEdit={this.handleEdit} type={2} />
+                </div>
+                <div style={{ flex: 1 }}>
+                    <p>删除</p>
+                    <List list={this.props.list} handleEdit={this.handleEdit} type={3} />
+                </div>
+            </div>
+        )
     }
 }
 
 class ToDo extends Component {
     constructor(props) {
         super(props)
-        // this.state = {
-        //     list: [
-        //         // {id:1,title:'asdfsdaf',status:1}
-        //     ],
-        //     input: null,
-        // }
+        this.state = {
+            input: null,
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
-    // handleChange(val) {
-    //     this.setState({ input: val })
-    // }
-    // handleAdd() {
-    //     let val = this.state.input;
-    //     let list = this.state.list;
-    //     let index = list.length + 1;
-
-    //     this.props.dispatch(addTodo(val))
-    //     if (val) {
-    //         list.push({ id: index, title: val, status: 1 });
-    //         this.setState({ list: list }, () => console.log(this.state.list))
-    //     } else {
-    //         alert('不能为空')
-    //     }
-    // }
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if (this.props.list !== nextProps.list) {
-    //       return true;
-    //     }
-    //     if (this.props.input !== nextProps.input) {
-    //       return true;
-    //     }
-    //     return false;
-    //   }
-    // handleEdit(id, status) {
-    //     let list = this.state.list;
-
-    //     list.find(data => data.id === id).status = status;
-    //     this.setState({ list: list })
-    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
+    }
+    handleChange(e) {
+        this.setState({ input: e.target.value })
+    }
+    handleAdd() {
+        this.props.handleAdd(this.state.input)
+    }
+    handleEdit(id, status) {
+        this.props.handleEdit(id, status)
+    }
     render() {
-        console.log(this.props)
+        console.log('todo')
         return (
             <div className="wrapper">
                 <div style={{ width: '800px' }}>
-                    <h1>toDoList</h1>
+                    <h1>ddfae</h1>
                     <div>
                         <InputGroup compact>
                             <Input
-                                onChange={(e) => { this.props.handleChange(e.target.value) }}
-                                onPressEnter={() => { this.props.handleAdd() }}
+                                onChange={this.handleChange}
+                                onPressEnter={this.handleAdd}
                                 style={{ width: '50%' }}
                             />
-                            <Button onClick={() => { this.props.handleAdd() }}>添加</Button >
+                            <Button onClick={this.handleAdd}>添加</Button >
                         </InputGroup>
                     </div>
-                    <div style={{ display: 'flex' }}>
-                        <div style={{ flex: 1 }}>
-                            <p>全部</p>
-                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={1} />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <p>剩余</p>
-                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={2} />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <p>删除</p>
-                            <List list={this.props.list} handleEdit={(id, status) => { this.handleEdit(id, status) }} type={3} />
-                        </div>
-                    </div>
+                    <Lists list={this.props.list} handleEdit={this.handleEdit} />
                 </div>
             </div>
         )
@@ -136,12 +135,10 @@ class ToDo extends Component {
 
 const mapStateToProps = (state) => ({
     list: state.todos.list,
-    input: state.todos.input
 })
 const mapDispatchToProps = {
-    handleChange: handleChange,
-    handleAdd:handleAdd,
-    handleEdit:handleEdit
+    handleAdd: handleAdd,
+    handleEdit: handleEdit
 }
 export default ToDo = connect(mapStateToProps, mapDispatchToProps)(ToDo);
 
