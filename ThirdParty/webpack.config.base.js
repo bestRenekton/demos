@@ -11,7 +11,7 @@ module.exports = {
         publicPath: "",
         chunkFilename: "[name].js",
         filename: "testPlugin.js",
-        libraryTarget: 'umd',
+        libraryTarget: 'umd',//将你的 library 暴露为所有的模块定义下都可运行的方式
         library: 'testPlugin'
     },
     // optimization: {
