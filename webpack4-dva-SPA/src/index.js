@@ -1,6 +1,7 @@
 import dva from 'dva';
 import './public/css/normalize.css'
 import './public/font/iconfont.css'
+import 'antd/dist/antd.css';
 // 1. Initialize
 const app = dva();
 

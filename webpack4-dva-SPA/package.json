@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "antd": "^3.9.1",
+    "axios": "^0.18.0",
     "dva": "^2.4.0",
+    "nprogress": "^0.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
