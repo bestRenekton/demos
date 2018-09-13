@@ -6,8 +6,41 @@
 .page{
     flex: 1;
     padding: 20px 0;
+    width: 800px;
+    margin:0 auto;
     .txt{
         font-size: 20px;
         color: var(--PC);
+        margin-bottom: 50px;
+    }
+}
+.Setting{
+    .part{
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 10px;
+    }
+}
+.BlockColor{
+    display: flex;
+    .item {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        margin-right: 10px;
+        position: relative;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+    .selectIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
     }
 }

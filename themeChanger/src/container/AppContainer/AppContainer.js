@@ -7,6 +7,7 @@ import AppFooter from '../../component/AppFooter/AppFooter'
 import pic from '../../public/img/test.jpg'
 import { Input, Button } from 'antd'
 
+import BlockColor from '../../component/BlockColor'
 // import testPlugin from 'testPlugin'
 // console.log(testPlugin)
 
@@ -34,17 +35,51 @@ export default class AppContainer extends Component {
                 <AppHeader />
                 <main className={styles.page}>
                     {/* <testPlugin.Test /> */}
-                    <p className={styles.txt}>hello...</p>
-                    <Input />
-                    <Button type="primary">Primary</Button>
-                    <p onClick={() => { this.colorChange('#f5222d') }}>#f5222d</p>
-                    <p onClick={() => { this.colorChange('#36cfc9') }}>#36cfc9</p>
-                    {/* <Route exact path='/' component={HomeContainer} />
-                    <Route path='/archives' component={ArchivesContainer} />
-                    <Route path='/demo' component={DemoContainer} />
-                    <Route path='/about' component={AboutContainer} />
-                    <Route path="/detail/:id" component={DetailArticle} />
-                    <Route path="/demoDetail/:id" component={DetailDemos} /> */}
+                    <p className={styles.txt}>{`<p>标签使用css原生变量var实现变色...`}</p>
+                    <Input placeholder={'antd组件变色'} />
+                    <Button type="primary" style={{marginBottom:50}}>antd组件变色</Button>
+                    <div className={styles.Setting}>
+                        <div className={styles.part}>
+                            <p className={styles.part_title}>主题色设置</p>
+                            <BlockColor
+                                list={[
+                                    {
+                                        key: '#f5222d',
+                                        title: '薄暮',
+                                    },
+                                    {
+                                        key: '#fa541c',
+                                        title: '火山',
+                                    },
+                                    {
+                                        key: '#faad14',
+                                        title: '日暮',
+                                    },
+                                    {
+                                        key: '#13c2c2',
+                                        title: '明青',
+                                    },
+                                    {
+                                        key: '#52c412',
+                                        title: '极光青',
+                                    },
+                                    {
+                                        key: '#1890ff',
+                                        title: '拂晓蓝（默认）',
+                                    },
+                                    {
+                                        key: '#2f54eb',
+                                        title: '极客蓝',
+                                    },
+                                    {
+                                        key: '#722ed1',
+                                        title: '酱紫',
+                                    },
+                                ]}
+                                onChange={this.colorChange}
+                            />
+                        </div>
+                    </div>
                 </main>
                 <AppFooter />
             </div>
