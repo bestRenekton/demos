@@ -1,0 +1,13 @@
+.body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.page{
+    flex: 1;
+    padding: 20px 0;
+    .txt{
+        font-size: 20px;
+        color: var(--PC);
+    }
+}
