@@ -20,6 +20,7 @@ export default class Demo extends Component {
             list: [
                 {title:'ToDo',txt:'一个TodoList...',url:'/demoDetail/ToDo'},
                 {title:'PureCom',txt:'PureComponent测试...',url:'/demoDetail/PureCom'},
+                {title:'生命周期',txt:'生命周期...',url:'/demoDetail/LifeCycle'},
             ]
         }
         // this.handleEdit=this.handleEdit.bind(this)

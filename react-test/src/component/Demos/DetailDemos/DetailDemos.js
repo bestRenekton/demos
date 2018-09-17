@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Todo from '../ToDo/ToDo'
 import PureCom from '../PureCom/PureCom'
+import LifeCycle from '../LifeCycle/LifeCycle'
 
 
-const DemoObj={
-    ToDo:Todo,
-    PureCom:PureCom,
+const DemoObj = {
+    ToDo: Todo,
+    PureCom: PureCom,
+    LifeCycle: LifeCycle
 }
 
 export default class Demo extends Component {
@@ -18,10 +20,10 @@ export default class Demo extends Component {
         }
     }
     render() {
-        let DemoComponent=DemoObj[this.props.match.params.id]
+        let DemoComponent = DemoObj[this.props.match.params.id]
         return (
             <div className="wrapper" style={{ background: '#fff', padding: '20px' }}>
-            <DemoComponent />
+                <DemoComponent />
                 {/* {this.computer(this.props.match.params.id)} */}
             </div>
         )
