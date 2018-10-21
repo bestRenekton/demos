@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object.keys() Example</title>
+    <script type="text/javascript">
+    
+        function Person(){
+        }
+        
+        Person.prototype.name = "Nicholas";
+        Person.prototype.age = 29;
+        Person.prototype.job = "Software Engineer";
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        };
+        
+        var keys = Object.keys(Person.prototype);
+        alert(keys);   //"name,age,job,sayName"
+        
+    </script>
+</head>
+<body>
+<p>Note: this example only works in browsers that have implemented the ECMAScript 5 <code>Object.defineProperty()</code> method (IE9 and Firefox 4).</p>
+</body>
+</html>

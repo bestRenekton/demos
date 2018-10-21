@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Level 3 Key Property Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <input type="text" id="myText" />
+    <script type="text/javascript">
+        var textbox = document.getElementById("myText");
+        EventUtil.addHandler(textbox, "keyup", function(event){
+            event = EventUtil.getEvent(event);
+
+            var identifier = event.key || event.keyIdentifier;
+            if (identifier){
+                alert(identifier);    
+            }      
+        });
+    </script>
+</body>
+</html>

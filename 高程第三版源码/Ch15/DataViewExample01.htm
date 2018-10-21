@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Typed Arrays Example</title>
+ </head>
+ <body>
+    <p>This only works in browsers that support typed arrays.</p>
+    <script>document.write("Your browser " + (typeof ArrayBuffer != "undefined" ? "supports" : "doesn't support") + " typed arrays.");</script>
+    <script>
+        window.onload = function(){
+            var buffer = new ArrayBuffer(20),
+                view = new DataView(buffer),
+                value;
+
+            view.setUint16(0, 25);
+            view.setUint16(2, 50);   //don't start at 1, 16-bit integers take two bytes
+            value = view.getUint16(0);
+            
+            alert(value);
+        };
+
+    </script>
+    </body>
+</html>

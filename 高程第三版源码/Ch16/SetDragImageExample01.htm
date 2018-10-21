@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>setDragImage() Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Try dragging the blue square over to the red square. You should see a smiley face in Firefox, Safari, and Chrome.</p>
+    <div id="dragme" draggable="true" style="-khtml-user-drag:element; width: 20px; height: 20px; background: blue"></div>
+    <div style="width: 100px; height: 100px; float: right; background: red" id="droptarget"></div>
+    <div id="output"></div>
+    <script type="text/javascript">
+        var droptarget = document.getElementById("droptarget"),
+            dragme = document.getElementById("dragme"),
+            img = new Image();
+        img.src = "smile.gif";
+        
+        function handleEvent(event){
+            document.getElementById("output").innerHTML += event.type + "<br>";
+            switch(event.type){
+                case "dragstart":
+                    event.dataTransfer.setData("Text", "Yippee!");
+                    event.dataTransfer.setDragImage(img, 25, 25);
+                    break;
+                case "dropenter":
+                case "dragover":
+                    EventUtil.preventDefault(event);
+                    break;
+                case "drop":
+                case "dragdrop":
+                    droptarget.innerHTML = event.dataTransfer.getData("Text");
+                    EventUtil.preventDefault(event);
+            }
+
+        }
+
+        EventUtil.addHandler(droptarget, "dragenter", handleEvent);
+        EventUtil.addHandler(droptarget, "dragover", handleEvent);
+        EventUtil.addHandler(droptarget, "dragleave", handleEvent);
+        EventUtil.addHandler(droptarget, "drop", handleEvent);
+        
+        EventUtil.addHandler(dragme, "dragstart", handleEvent);
+
+
+    </script>
+</body>
+</html>

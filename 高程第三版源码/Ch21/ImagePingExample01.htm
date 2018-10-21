@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Ping Example</title>
+</head>
+<body>
+    <script>
+        var img = new Image();
+        img.onload = img.onerror = function(){
+            alert("Done!");
+        };
+        img.src = "http://www.example.com/test?name=Nicholas"; 
+
+    </script>
+</body>
+</html>

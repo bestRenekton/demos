@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Video Player Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Note: This example uses an OGG Theora video, which is supported in Firefox, Chrome, and Opera.</code>
+    <div class="mediaplayer">
+        <div class="video">
+            <video id="player" src="http://people.mozilla.com/~prouget/demos/resources/videos/billyBrowsers.ogg" poster="mymovie.jpg" 
+                   width="300" height="200">
+                Video player not available.
+            </video>
+        </div>
+        <div class="controls">
+            <input type="button" value="Play" id="video-btn">
+            <span id="curtime">0</span>/<span id="duration">0</span>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            
+            //get references to the elements
+            var player = document.getElementById("player");
+            var btn = document.getElementById("video-btn");
+            var curtime = document.getElementById("curtime");
+            var duration = document.getElementById("duration");
+            duration.innerHTML = player.duration;            
+            
+            //attach event handler to button
+            EventUtil.addHandler(btn, "click", function(event){
+            
+                if (player.paused){
+                    player.play();
+                    btn.value = "Pause";
+                } else {
+                    player.pause();
+                    btn.value = "Play";
+                }
+            });
+            
+            //update the current time periodically
+            setInterval(function(){
+                curtime.innerHTML = player.currentTime;
+            }, 250);    
+            
+        };
+    
+    </script>
+</body>
+</html>

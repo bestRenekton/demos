@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Now Example</title>
+    <script type="text/javascript">
+    
+        //Date.now() is in ECMAScript 5
+        //Prior to that, use +new Date()
+    
+        var now = (typeof Date.now == "function" ? Date.now() : +new Date());
+        alert("Right now: " + now);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

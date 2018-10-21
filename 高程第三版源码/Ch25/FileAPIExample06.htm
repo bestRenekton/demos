@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File API Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This page is a demonstration of the File API with Drag and Drop. This works in the latest versions of all major browsers, but you may need to place this file on a web server to get it to work.</p>
+    <p>This page attempts a file upload, for which you need to set this up on a server.</p>
+    <div id="droptarget" style="width: 500px; height: 200px; background: silver">
+        Drop some files here
+    </div>
+    
+    <script>
+    
+        window.onload = function(){
+        
+            var droptarget = document.getElementById("droptarget");
+            
+            function handleEvent(event){
+                var info = "",
+                    output = document.getElementById("output"),
+                    data, xhr,
+                    files, i, len;            
+            
+                EventUtil.preventDefault(event);
+                
+                if (event.type == "drop"){
+                    data = new FormData();
+                    files = event.dataTransfer.files;
+                    i = 0;
+                    len = files.length;
+                
+                    while (i < len){
+                        data.append("file" + i, files[i]);
+                        i++;
+                    }
+                    
+                    xhr = new XMLHttpRequest();
+                    xhr.open("post", "FileAPIExample06Upload.php", true);
+                    xhr.onreadystatechange = function(){
+                        if (xhr.readyState == 4){
+                            alert(xhr.responseText);
+                        }
+                    };
+                    xhr.send(data);
+                }
+            }
+
+            EventUtil.addHandler(droptarget, "dragenter", handleEvent);
+            EventUtil.addHandler(droptarget, "dragover", handleEvent);
+            EventUtil.addHandler(droptarget, "drop", handleEvent);        
+
+        };
+        
+    </script>
+    <pre id="output"></pre>
+</body>
+</html>

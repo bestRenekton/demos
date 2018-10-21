@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiple Properties Example</title>
+    <script type="text/javascript">
+
+        var book = {};
+        
+        Object.defineProperties(book, {
+            _year: {
+                value: 2004
+            },
+            
+            edition: {
+                value: 1
+            },
+            
+            year: {            
+                get: function(){
+                    return this._year;
+                },
+                
+                set: function(newValue){
+                    if (newValue > 2004) {
+                        this._year = newValue;
+                        this.edition += newValue - 2004;
+                    }                  
+                }            
+            }        
+        });
+           
+        book.year = 2005;
+        alert(book.edition);   //2
+
+    </script>
+</head>
+<body>
+    <p>Note: this example only works in browsers that have implemented the ECMAScript 5 <code>Object.defineProperty()</code> method (IE9 and Firefox 4).</p>
+</body>
+</html>

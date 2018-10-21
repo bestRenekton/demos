@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototype Pattern Example</title>
+    <script type="text/javascript">
+            
+        function Person(){
+        }
+        
+        Person.prototype = {
+            constructor : Person,
+            name : "Nicholas",
+            age : 29,
+            job: "Software Engineer",
+            sayName : function () {
+                alert(this.name);
+            }
+        };
+
+        var friend = new Person();
+        
+        alert(friend instanceof Object);  //true
+        alert(friend instanceof Person);  //true
+        alert(friend.constructor == Person);  //true
+        alert(friend.constructor == Object);  //false
+        
+    </script>
+</head>
+<body>
+
+</body>
+</html>

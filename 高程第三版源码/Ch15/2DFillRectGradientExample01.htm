@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d"),
+                    gradient = context.createLinearGradient(30, 30, 70, 70);
+            
+            
+                gradient.addColorStop(0, "white");
+                gradient.addColorStop(1, "black");
+            
+                //draw a red rectangle
+                context.fillStyle = "#ff0000";
+                context.fillRect(10, 10, 50, 50);
+            
+                //draw a gradient rectangle
+                context.fillStyle = gradient;
+                context.fillRect(30, 30, 50, 50);
+            }                
+        };
+
+    </script>
+    <p>This example based on <a href="http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage">Mozilla's documentation</a></p>
+    </body>
+</html>

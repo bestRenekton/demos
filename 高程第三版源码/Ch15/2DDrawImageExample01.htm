@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Draw Image Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <img id="smiley" src="smile.gif" border="1" title="Image tag" />
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+                var image = document.getElementById("smiley");
+                
+                //draw regular size
+                context.drawImage(image, 10, 10);
+                
+                //draw smaller
+                context.drawImage(image, 50, 10, 20, 30);
+
+                //draw just part of the image
+                context.drawImage(image, 0, 10, 50, 50, 0, 100, 40, 60);
+
+            }                
+        };
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cross Document Messaging Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="status"></div>
+    <div>
+        <input type="text" id="message" size="40"><input type="button" id="btn" value="Send to parent">
+    </div>
+    <script>
+    EventUtil.addHandler(window, "message", function(event){
+        var status = document.getElementById("status");
+        
+        //you always check for origin, but it won't work on a local file
+        //if(event.origin == "http://www.example.com"){
+            status.innerHTML = "parent said: " + event.data;        
+        //}
+    });
+    
+    EventUtil.addHandler(document.getElementById("btn"), "click", function(event){
+        var message = document.getElementById("message").value;
+            
+        if (parent.postMessage){
+            parent.postMessage(message, "*");  //NOTE: Star only for local files, never do this on the Internet
+        } else {
+            alert("Your browser doesn't support Cross Document Messaging.");
+        }
+        
+    });
+    </script>
+</body>
+</html>

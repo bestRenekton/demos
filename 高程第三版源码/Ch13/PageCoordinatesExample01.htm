@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client coordinates Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv" style="background-color:red;height:10000px;width:100px">Click me</div>
+    <script>
+        var div = document.getElementById("myDiv");
+        EventUtil.addHandler(div, "click", function(event){
+            event = EventUtil.getEvent(event);
+            var pageX = event.pageX,
+                pageY = event.pageY;
+        
+            if (pageX === undefined){
+                pageX = event.clientX + (document.body.scrollLeft || document.documentElement.scrollLeft);
+            }
+        
+            if (pageY === undefined){
+                pageY = event.clientY + (document.body.scrollTop || document.documentElement.scrollTop);
+            }
+        
+            alert("Page coordinates: " + event.pageX + "|" + pageX + "," + event.pageY + "|"+pageY);        
+        });
+
+    </script>
+</body>
+</html>

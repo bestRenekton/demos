@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simulating DOM Text Input Events Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv"></div>
+    <input type="button" value="Send textInput to the textbox" id="myBtn" />
+    <script type="text/javascript">
+    
+    (function(){
+        var btn = document.getElementById("myBtn");
+        var div = document.getElementById("myDiv"),
+                        
+        EventUtil.addHandler(div, "myevent", function(event){
+           alert("DIV: " + event.detail);
+        });
+
+        EventUtil.addHandler(document, "myevent", function(event){
+           alert("DOCUMENT: " + event.detail);
+        });
+
+        EventUtil.addHandler(btn, "click", function(event){
+
+            var event;
+            
+            if (document.implementation.hasFeature("CustomEvents", "3.0")){
+                event = document.createEvent("CustomEvent");
+                event.initCustomEvent("myevent", true, false, "Hello world!");
+                div.dispatchEvent(event);
+            }
+
+
+        });
+
+    })();
+    </script>
+</body>
+</html>

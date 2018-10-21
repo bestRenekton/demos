@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>WebGL Example</title>
+ </head>
+ <body>
+    <p>This only works in browsers that WebGL. The background is cleared to black.</p>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <script>
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var gl;
+                
+                
+                try {
+                    gl = drawing.getContext("experimental-webgl");
+                } catch (ex) {
+                    //noop
+                }
+                
+                if (gl){
+                    gl.clearColor(0,0,0,1);
+                    gl.clear(gl.COLOR_BUFFER_BIT);
+                } else {
+                    alert("WebGL context could not be created.");
+                }
+                
+            }                
+        };
+
+    </script>
+    </body>
+</html>

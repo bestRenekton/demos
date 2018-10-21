@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prototypal Inheritance Example</title>
+    <script type="text/javascript">
+                            
+        var person = {
+            name: "Nicholas",
+            friends: ["Shelby", "Court", "Van"]
+        };
+        
+        var anotherPerson = Object.create(person);
+        anotherPerson.name = "Greg";
+        anotherPerson.friends.push("Rob");
+        
+        var yetAnotherPerson = Object.create(person);
+        yetAnotherPerson.name = "Linda";
+        yetAnotherPerson.friends.push("Barbie");
+        
+        alert(person.friends);   //"Shelby,Court,Van,Rob,Barbie"
+
+               
+        
+    </script>
+</head>
+<body>
+<p>Note: this example only works in browsers that have implemented the ECMAScript 5 <code>Object.defineProperty()</code> method (IE9, Firefox 4, and Chrome 7).</p>
+
+</body>
+</html>

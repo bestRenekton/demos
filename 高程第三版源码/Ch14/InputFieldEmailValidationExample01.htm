@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Field Email Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Try submitting the following form without entering an email address. This only works in HTML5-compliant browsers.</p>
+    <script>
+        (function(){
+            var message = "Your browser does not support the email input type.",
+                input = document.createElement("input");
+                
+            input.type = "email";
+            
+            if (input.type=="email"){
+                message = "Your browser supports the email input type";
+            }
+            document.write("<p>" + message + "</p>");
+            
+        })();
+    </script>
+    <form method="post" action="javascript:alert('Form submitted!')" id="myForm">
+        <label for="email">Email:</label> <input type="email" name="email" id="email" required>
+        <input type="submit" value="Submit Form"><br>
+        <input type="button" value="Check Validity" id="btnCheck"><input type="button" value="Will Validate?" id="btnWill">
+    </form>
+    <script>
+        EventUtil.addHandler(document.getElementById("btnCheck"), "click", function(event){
+            alert(document.forms[0].elements[0].checkValidity());
+        });    
+        EventUtil.addHandler(document.getElementById("btnWill"), "click", function(event){
+            alert(document.forms[0].elements[0].willValidate);
+        });    
+    </script>
+</body>
+</html>

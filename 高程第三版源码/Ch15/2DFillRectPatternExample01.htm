@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Pattern Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <img id="smiley" src="smile.gif" border="1" title="Image tag" />
+    <script>
+        window.onload = function(){
+            var drawing = document.getElementById("drawing");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d"),
+                    image = document.images[0],
+                    pattern = context.createPattern(image, "repeat");
+
+                //draw a rectangle
+                context.fillStyle = pattern;
+                context.fillRect(10, 10, 150, 150);
+
+            }                
+        };
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Properties Example</title>
+    <script type="text/javascript">
+
+        var person = {};
+        Object.defineProperty(person, "name", {
+            configurable: false,
+            value: "Nicholas"
+        });
+        
+        alert(person.name);
+        delete person.name;
+        alert(person.name);
+
+    </script>
+</head>
+<body>
+    <p>Note: this example only works in browsers that have implemented the ECMAScript 5 <code>Object.defineProperty()</code> method (IE9 and Firefox 4).</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Type Arguments Caller Example</title>
+    <script type="text/javascript">
+        
+        function outer(){
+            inner();
+        }
+        
+        function inner(){
+            alert(inner.caller);
+        }
+        
+        outer();
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

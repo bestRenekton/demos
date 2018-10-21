@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NodeIterator Example</title>
+        <script type="text/javascript">
+
+           function makeList() {
+               var div = document.getElementById("div1");
+               var iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, null, false);
+
+               var output = document.getElementById("text1");
+               var node = iterator.nextNode();
+               while (node !== null) {
+                   output.value += node.tagName + "\n";
+                   node = iterator.nextNode();
+               }
+
+           }
+
+        </script>
+    </head>
+    <body>
+        <div id="div1">
+            <p><b>Hello</b> world!</p>
+            <ul>
+                <li>List item 1</li>
+                <li>List item 2</li>
+                <li>List item 3</li>
+            </ul>
+        </div>
+        <textarea rows="10" cols="40" id="text1"></textarea><br />
+        <input type="button" value="Make List" onclick="makeList()" />
+    </body>
+</html>

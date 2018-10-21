@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation Example</title>
+</head>
+<body>
+    <p>This page is a demonstration of the Geolocation API. This works in the latest versions of all major browsers, but you may need to place this file on a web server to get it to work.</p>
+    <script>
+        window.onload = function(){
+            document.getElementById("geo-btn").onclick = function(){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    document.getElementById("output").innerHTML = "Latitude is " + position.coords.latitude +
+                        "<br>Longitude is " + position.coords.longitude;
+                }, function(error){
+                    document.getElementById("output").innerHTML = error.message || "An error occurred while trying to get location.";
+                });
+            };
+        };
+        
+    </script>
+    
+    <p><script>document.write(navigator.geolocation ? "Your browser supports the Geolocation API." : "Your browser does not support the Geolocation API.");</script></p>
+    <input type="button" value="Get Location" id="geo-btn">
+    <div id="output"></div>
+</body>
+</html>

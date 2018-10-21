@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Declaration Error Example</title>
+</head>
+<body>
+    <script type="text/javascript">
+    
+    var condition = true;
+    
+    //never do this!
+    if(condition){
+        function sayHi(){
+            alert("Hi!");
+        }
+    } else {
+        function sayHi(){
+            alert("Yo!");
+        }
+    }
+
+    sayHi();
+    </script>
+ 
+</body>
+</html>

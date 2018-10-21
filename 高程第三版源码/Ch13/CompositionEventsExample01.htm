@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Composition Events Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <input type="text" id="myText" />
+    <p>This example only works in browsers that support composition events. You'll need to use an input method editor (IME) to fire these events.</p>
+    <script type="text/javascript">
+        var textbox = document.getElementById("myText");
+        if (document.implementation.hasFeature("CompositionEvent", "3.0")){
+            EventUtil.addHandler(textbox, "compositionstart", function(event){
+                event = EventUtil.getEvent(event);
+                alert(event.data);     
+            });
+            EventUtil.addHandler(textbox, "compositionupdate", function(event){
+                event = EventUtil.getEvent(event);
+                alert(event.data);     
+            });
+            EventUtil.addHandler(textbox, "compositionend", function(event){
+                event = EventUtil.getEvent(event);
+                alert(event.data);     
+            });
+        } else {
+            document.write("<p>Your browser does not support composition events.</p>");
+        }
+    </script>
+</body>
+</html>

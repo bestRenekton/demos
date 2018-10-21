@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Field Pattern Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Try submitting the following form after typing some letters in the textbox. This only works in HTML5-compliant browsers.</p>
+    <script>
+        (function(){
+            var message = "Your browser does not support the pattern attribute.";
+            
+            if ("pattern" in document.createElement("input")){
+                message = "Your browser supports the pattern attribute";
+            }
+            document.write("<p>" + message + "</p>");
+            
+        })();
+    </script>
+    <form method="post" action="javascript:alert('Form submitted!')" id="myForm">
+        <label for="count">How many?</label> <input type="text" name="count" id="count" pattern="\d+" title="Please only use numbers" required>
+        <input type="submit" value="Submit Form"><br>
+        <input type="button" value="Check Validity" id="btnCheck"><input type="button" value="Will Validate?" id="btnWill">
+    </form>
+    <script>
+        EventUtil.addHandler(document.getElementById("btnCheck"), "click", function(event){
+            alert(document.forms[0].elements[0].checkValidity());
+        });    
+        EventUtil.addHandler(document.getElementById("btnWill"), "click", function(event){
+            alert(document.forms[0].elements[0].willValidate);
+        });    
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Typed Arrays Example</title>
+ </head>
+ <body>
+    <p>This only works in browsers that support typed arrays.</p>
+    <script>document.write("Your browser " + (typeof ArrayBuffer != "undefined" ? "supports" : "doesn't support") + " typed arrays.");</script>
+    <script>
+        window.onload = function(){
+            var uint16s = new Uint16Array(10);
+            uint16s[0] = 65537;
+            alert(uint16s[0]);  //1
+
+        };
+
+    </script>
+    </body>
+</html>

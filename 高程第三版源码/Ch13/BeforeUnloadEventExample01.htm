@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BeforeUnload Event Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <div id="myDiv">Try to navigate away from this page.</div>
+    <script type="text/javascript">
+        EventUtil.addHandler(window, "beforeunload", function(event){
+            event = EventUtil.getEvent(event);
+            var message = "I'm really going to miss you if you go.";
+            event.returnValue = message;
+            return message;
+        });
+
+    </script>
+</body>
+</html>

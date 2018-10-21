@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File API Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This page is a demonstration of the File API. This works in the latest versions of all major browsers, but you may need to place this file on a web server to get it to work.</p>
+    <p>Select one or more files in the field below.</p>
+    <input type="file" multiple id="files-list">
+    <script>
+        window.onload = function(){
+            var filesList = document.getElementById("files-list");
+            EventUtil.addHandler(filesList, "change", function(event){
+                var info = "",
+                    output = document.getElementById("output"),
+                    files = EventUtil.getTarget(event).files,
+                    i = 0,
+                    len = files.length;
+                
+                while (i < len){
+                    info += files[i].name + " (" + files[i].type + ", " + files[i].size + " bytes)<br>";
+                    i++;
+                }
+                
+                output.innerHTML = info;
+            });
+        };
+        
+    </script>
+    
+    <div id="output"></div>
+</body>
+</html>

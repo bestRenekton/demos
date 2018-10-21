@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Binding Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This only works in browsers that natively support <code>Function.prototype.bind()</code>.</p>
+    <input type="button" id="my-btn" value="Click Me" />
+    <script type="text/javascript">
+        var handler = {
+            message: "Event handled",
+        
+            handleClick: function(event){
+                alert(this.message + ":" + event.type);
+            }
+        };
+        
+        var btn = document.getElementById("my-btn");
+        EventUtil.addHandler(btn, "click", handler.handleClick.bind(handler));
+
+
+    </script>
+</body>
+</html>

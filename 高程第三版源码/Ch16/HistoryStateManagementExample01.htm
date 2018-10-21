@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>History State Management Example</title>
+    <script src="EventUtil.js"></script>
+    <style>
+        .current {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <p>Click one of the following buttons to change the location without unloading this page.</p>
+    <p>Note: This example uses HTML5 history, which is supported only in Firefox 4+, Safari 5+, and Chrome. This example will only work when served by a web server (not when loaded locally from a file).</p>
+    <p><input type="button" id="btn1" value="State 1"><input type="button" id="btn2" value="State 2"><input type="button" id="btn3" value="State 3"></p>
+    <p><strong>Name is </strong><span id="username"></span></p>
+    <script>
+    (function(){
+        var btn1 = document.getElementById("btn1"),
+            btn2 = document.getElementById("btn2"),
+            btn3 = document.getElementById("btn3"),
+            username = document.getElementById("username"),
+            lastBtn;
+    
+        function handleClick(event){
+            var target = EventUtil.getTarget(event),
+                state = null;
+            
+            if (target.className != "current"){
+                switch(target.id){
+                    case "btn1":
+                        state = { name: "Nicholas", btnId: target.id };
+                        history.pushState(state, "Nicholas' page", "nicholas.html");
+                        break;
+                    
+                    case "btn2":
+                        state = { name: "Greg", btnId: target.id };
+                        history.pushState(state, "Greg's page", "greg.html");
+                        break;
+                        
+                    case "btn3":
+                        state = { name: "Michael", btnId: target.id };
+                        history.pushState(state, "Michael's page", "michael.html");
+                        break;
+                }
+                setStateButton(target.id);
+                updateUsername(state.name);
+            }
+        }
+        
+        function updateUsername(name){
+            username.innerHTML = name;
+        }
+        
+        function setStateButton(btnId){
+            var newBtn = document.getElementById(btnId);
+            if (lastBtn){
+                lastBtn.className = "";
+                lastBtn = null;
+            }
+            
+            if (newBtn){
+                newBtn.className = "current";
+                lastBtn = newBtn;
+            }
+        }
+    
+        EventUtil.addHandler(btn1, "click", handleClick);
+        EventUtil.addHandler(btn2, "click", handleClick);
+        EventUtil.addHandler(btn3, "click", handleClick);
+        
+        EventUtil.addHandler(window, "popstate", function(event){
+            var state = event.state;
+            if (state){
+                updateUsername(state.name);
+                setStateButton(state.btnId);
+            } else {
+                updateUsername("");
+                setStateButton("");
+            }
+            
+        });
+    })();        
+    </script>
+</body>
+</html>

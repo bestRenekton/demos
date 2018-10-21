@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Non-Extensible Objects Example</title>
+</head>
+<body>
+    <p>This only works in browsers that natively support ECMAScript 5.</p>
+    <script>
+        var person = { name: "Nicholas" };
+        Object.preventExtensions(person);
+        
+        person.age = 29;
+        alert(person.age);
+    </script>
+</body>
+</html>

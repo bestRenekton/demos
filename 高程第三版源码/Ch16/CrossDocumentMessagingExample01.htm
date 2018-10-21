@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cross Document Messaging Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This example allows you to send data into and out of an iframe. Because this is a local example, the same-origin policy doesn't apply, but this does show the basic functionality.</p>
+    <p>This only works in browsers that support Cross Document Messaging.</p>
+    <div id="status"></div>
+    <div>
+        <input type="text" id="message" size="40"><input type="button" id="btn" value="Send to iframe">
+    </div>
+    <iframe width="400" height="300" id="inner" src="CrossDocumentMessagingExample01Inner.htm"></iframe>
+    <script>
+    EventUtil.addHandler(window, "message", function(event){
+        var status = document.getElementById("status");
+        
+        //you always check for origin, but it won't work on a local file
+        //if(event.origin == "http://www.example.com"){
+            status.innerHTML = "iframe said: " + event.data;        
+        //}
+    });
+    
+    EventUtil.addHandler(document.getElementById("btn"), "click", function(event){
+        var message = document.getElementById("message").value,
+            innerWindow = document.getElementById("inner").contentWindow;
+            
+        if (innerWindow.postMessage){
+            innerWindow.postMessage(message, "*");  //NOTE: Star only for local files, never do this on the Internet
+        } else {
+            alert("Your browser doesn't support Cross Document Messaging.");
+        }
+        
+    });
+    </script>
+</body>
+</html>

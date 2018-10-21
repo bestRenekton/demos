@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Worker Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This page is a demonstration of Web Workers. This is known to work in Internet Explorer 10+, Firefox 3.5+, Safari 4+, Opera 10.6+, Safari for iOS 5+, and Chrome.</p>
+    <p>Not all browsers allow the use of workers when a file is navigated to locally. If this example doesn't work in your browser, try running the files through a web server.</p>
+    <script>
+        (function(){
+        
+            var data = [23,4,7,9,2,14,6,651,87,41,7798,24],
+                worker = new Worker("WebWorkerExample01.js");
+                                
+            worker.onmessage = function(event){
+                alert(event.data);
+            };
+            
+            worker.postMessage(data);            
+        
+        })();
+        
+    </script>
+
+</body>
+</html>

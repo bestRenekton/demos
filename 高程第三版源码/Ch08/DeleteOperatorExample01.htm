@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Operator Example</title>
+</head>
+<body>
+    <p>Hello world!</p>
+    <script type="text/javascript">
+
+        var age = 29;
+        window.color = "red";
+        
+        //throws an error in IE < 9, returns false in all other browsers
+        delete window.age;
+
+        //throws an error in IE < 9, returns true in all other browsers
+        delete window.color;    //returns true
+        
+        alert(window.age);      //29
+        alert(window.color);    //undefined
+
+    </script>
+</body>
+</html>

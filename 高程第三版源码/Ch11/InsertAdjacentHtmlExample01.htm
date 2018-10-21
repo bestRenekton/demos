@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InnerHtml Example</title>
+</head>
+<body>
+    <div id="content">
+        <p>This is a <strong>paragraph</strong> with a list following it.</p>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+
+    <input type="button" value="Add HTML" onclick="addHTML()">
+
+    <script type="text/javascript">
+        function addHTML(){
+            var div = document.getElementById("content");
+            if (div.insertAdjacentHTML){
+                div.insertAdjacentHTML("beforeend", "<p>Hello world!</p>");
+            } else {
+                alert("insertAdjacentHTML() not supported in this browser");
+            }
+        }
+
+    </script>
+</body>
+</html>

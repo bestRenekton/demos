@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Stringify Example</title>
+</head>
+<body>
+    <p>This example serializes an object and passes in a filter function.</p>
+    <script type="text/javascript">
+        var book = {
+                       "title": "Professional JavaScript",
+                        "authors": [
+                            "Nicholas C. Zakas"
+                        ],
+                        edition: 3,
+                        year: 2011
+                   };
+
+        var jsonText = JSON.stringify(book, null, "--");
+        alert(jsonText);
+
+    </script>
+</body>
+</html>

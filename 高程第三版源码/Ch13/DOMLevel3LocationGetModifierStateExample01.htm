@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Level 3 getModifierState() Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <input type="text" id="myText" />
+    <script type="text/javascript">
+        var textbox = document.getElementById("myText");
+        EventUtil.addHandler(textbox, "keyup", function(event){
+            event = EventUtil.getEvent(event);
+
+            if (event.getModifierState){
+                alert(event.getModifierState("Shift"));    
+            }    
+        });
+    </script>
+</body>
+</html>

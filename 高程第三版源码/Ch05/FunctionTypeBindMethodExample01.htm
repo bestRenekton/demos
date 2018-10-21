@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Type bind() Method Example</title>
+    <script type="text/javascript">
+        
+        window.color = "red";
+        var o = { color: "blue" };
+                           
+        function sayColor(){
+            alert(this.color);
+        }
+        var objectSayColor = sayColor.bind(o);
+        objectSayColor();   //blue
+
+
+    </script>
+</head>
+<body>
+    <p>This example is known to work in Internet Explorer 9, Firefox 4, and Chrome 6.</p>
+</body>
+</html>

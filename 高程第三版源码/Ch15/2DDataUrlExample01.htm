@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Canvas Fill Rect Example</title>
+ </head>
+ <body>
+    <canvas id="drawing" width="200" height="200">Your browser doesn't support the canvas tag.</canvas>
+    <input type="button" value="Export" id="export-btn" >
+    <script type="text/javascript">
+        window.onload = function(){
+            var drawing = document.getElementById("drawing"),
+                btn     = document.getElementById("export-btn");
+            
+            //make sure <canvas> is completely supported
+            if (drawing.getContext){
+            
+                var context = drawing.getContext("2d");
+            
+                //draw a red rectangle
+                context.fillStyle = "#ff0000";
+                context.fillRect(10, 10, 50, 50);
+            
+                //draw a blue rectangle that's semi-transparent
+                context.fillStyle = "rgba(0,0,255,0.5)";
+                context.fillRect(30, 30, 50, 50);
+            }                
+            
+            btn.onclick = function(){
+                //get data URI of the image
+                var imgURI = drawing.toDataURL();
+                
+                //display the image
+                var image = document.createElement("img");
+                image.src = imgURI;
+                document.body.appendChild(image);    
+
+            };
+        };
+
+    </script>
+    <p>This example based on <a href="http://developer.mozilla.org/en/docs/Canvas_tutorial:Basic_usage">Mozilla's documentation</a></p>
+    <p>Click <strong>Export</strong> to export the image to an <code>img</code> element. Then, you can right-click and save the image locally.</p>
+    </body>
+</html>

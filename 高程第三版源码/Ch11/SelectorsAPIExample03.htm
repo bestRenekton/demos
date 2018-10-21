@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selectors API Example</title>
+</head>
+<body class="page1">
+
+    <script type="text/javascript">
+    
+        function matchesSelector(element, selector){
+            if (element.matchesSelector){
+                return element.matchesSelector(selector);
+            } else if (element.msMatchesSelector){
+                return element.msMatchesSelector(selector);
+            } else if (element.mozMatchesSelector){
+                return element.mozMatchesSelector(selector);
+            } else if (element.webkitMatchesSelector){
+                return element.webkitMatchesSelector(selector);
+            } else {
+                throw new Error("Not supported.");
+            }
+        }
+        
+        if (matchesSelector(document.body, "body.page1")){
+            alert("It's page 1!");
+        }
+
+
+    </script>
+</body>
+</html>

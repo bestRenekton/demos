@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selectors API Example</title>
+</head>
+<body>
+    <ul>
+        <li>First item</li>
+        <li class="selected">Second item</li>
+        <li>Third item</li>
+    </ul>
+    <script type="text/javascript">
+    
+        if (document.querySelector){
+        
+            //get the body element
+            var body = document.querySelector("body");
+            alert(body.tagName);
+                               
+            //get the element with the ID "myDiv"
+            var myDiv = document.querySelector("#myDiv");
+            alert(myDiv);
+                               
+            //get first element with a class of "selected"
+            var selected = document.querySelector(".selected");
+            alert(selected.innerHTML);
+                               
+            //get first image with class of "button"
+            var img = document.body.querySelector("img.button");
+            alert(img);
+        
+        
+        } else {
+            alert("Selectors API not supported in this browser");
+        }
+
+    </script>
+</body>
+</html>

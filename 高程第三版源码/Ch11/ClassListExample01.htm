@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>classList Example</title>
+    <style>
+        .highlight {
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="myDiv" class="init">Hello world!</div>
+    <input type="button" value="Add class" onclick="addClass()">
+    <input type="button" value="Remove class" onclick="removeClass()">
+    <input type="button" value="Toggle class" onclick="toggleClass()">
+    <input type="button" value="Contains class?" onclick="containsClass()">
+    <p>This demo works in Firefox 3.6 and Chrome 8.</p>
+    
+    <script type="text/javascript">
+        function addClass(){
+            var myDiv = document.getElementById("myDiv");
+            myDiv.classList.add("highlight");
+        }
+    
+        function removeClass(){
+            var myDiv = document.getElementById("myDiv");
+            myDiv.classList.remove("highlight");
+        }
+    
+        function toggleClass(){
+            var myDiv = document.getElementById("myDiv");
+            myDiv.classList.toggle("highlight");
+        }
+    
+        function containsClass(){
+            var myDiv = document.getElementById("myDiv");
+            alert(myDiv.classList.contains("highlight"));
+        }
+    
+    </script>
+    
+</body>
+</html>

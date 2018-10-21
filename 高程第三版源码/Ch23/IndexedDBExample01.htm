@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IndexedDB Example</title>
+</head>
+<body>
+    <p>This example works in Firefox 4+ and Chrome. Note that Firefox does not allow local files to access <code>indexedDB</code>, so you'll need to run this example through a web server to get it to work on Firefox (Chrome does not have this restriction).</code></p>
+    <script>
+    (function(){
+    
+        var indexedDB = window.indexedDB || window.msIndexedDB || window.mozIndexedDB || window.webkitIndexedDB,
+            request,
+            database;
+            
+        request = indexedDB.open("admin");
+        request.onerror = function(event){
+            alert("Something bad happened while trying to open: " + event.target.errorCode);
+        };
+        request.onsuccess = function(event){
+            database = event.target.result;
+            initializeDatabase();
+        };    
+    
+        function initializeDatabase(){
+            if (database.version != "1.0"){
+                request = database.setVersion("1.0");
+                request.onerror = function(event){
+                    alert("Something bad happened while trying to set version: " + event.target.errorCode);
+                };
+                request.onsuccess = function(event){
+                    alert("Database initialization complete. Database name: " + database.name + ", Version: " + database.version);
+                };
+            } else {
+                alert("Database already initialized. Database name: " + database.name + ", Version: " + database.version);
+            }
+        }
+    
+    })();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MozOrientation Event Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>This example only works in Firefox 3.6+ in devices such as Macbooks, Thinkpads, Windows Mobile, or Android.</p>
+    <div id="output"></div>
+    <script type="text/javascript">
+    EventUtil.addHandler(window, "MozOrientation", function(event){
+        var output = document.getElementById("output");
+        output.innerHTML = "X=" + event.x + ", Y=" + event.y + ", Z=" + event.z + "<br>";
+    });
+    </script>
+</body>
+</html>

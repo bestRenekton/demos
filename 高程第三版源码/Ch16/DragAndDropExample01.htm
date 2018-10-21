@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop Example</title>
+    <script src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Try dragging the image.</p>
+    <img id="smiley" src="smile.gif" style="-khtml-user-drag:element">.
+    <div id="output"></div>
+    <script>
+        var image = document.getElementById("smiley");
+        
+        function handleEvent(event){
+            document.getElementById("output").innerHTML += event.type + "<br>";
+        }
+
+        EventUtil.addHandler(image, "dragstart", handleEvent);
+        EventUtil.addHandler(image, "drag", handleEvent);
+        EventUtil.addHandler(image, "dragend", handleEvent);        
+
+    </script>
+</body>
+</html>

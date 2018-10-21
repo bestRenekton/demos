@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hash Change Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>Click each of these links to change the URL hash.</p>
+    <ul>
+        <li><a href="#up">Up</a></li>
+        <li><a href="#down">Down</a></li>
+    </ul>
+    <p>This example only works in browsers that <code>onhashchange</code>.</p>
+    <script type="text/javascript">
+        EventUtil.addHandler(window, "hashchange", function(event){
+            alert("Old URL: " + event.oldURL + "\nNew URL: " + event.newURL);
+        });
+    </script>
+</body>
+</html>

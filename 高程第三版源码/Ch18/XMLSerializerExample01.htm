@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XMLSerializer Example</title>
+</head>
+<body>
+    <p>This example will not work in Internet Explorer.</p>
+    <script type="text/javascript">
+    
+        var parser = new DOMParser();
+        var xmldom = parser.parseFromString("<root><child/></root>", "text/xml");
+        
+        //convert back into XML
+        var serializer = new XMLSerializer();
+        var xml = serializer.serializeToString(xmldom);
+        alert(xml);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Events Example</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+</head>
+<body>
+    <p>You are currently: <span id="status"><script>document.write(navigator.onLine ? "Online" : "Offline");</script></span></p>
+    <p>To change your status, click File -&gt; Work Offline. In supporting browsers ,the change is detected via events and the status above should change.</p>
+    <script>
+        EventUtil.addHandler(window, "online", function(){
+            document.getElementById("status").innerHTML = "Online";
+        });
+        EventUtil.addHandler(window, "offline", function(){
+            document.getElementById("status").innerHTML = "Offline";
+        });
+    </script>
+</body>
+</html>
