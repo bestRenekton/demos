@@ -1,0 +1,23 @@
+.todo{
+    .todo_title{
+        text-align: center;
+    }
+    .todo_head{
+        display: flex;
+        justify-content: center;
+        .input{
+            border: 1rpx solid #666;
+        }
+        .addBtn{
+            background: rgb(12, 8, 235);
+            color: #fff;
+        }
+        .delBtn{
+            background:red;
+            color: #fff;
+        }
+    }
+    .todo_body{
+        padding: 20rpx;
+    }
+}
