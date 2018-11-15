@@ -1,16 +1,22 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
+import { connect } from '@tarojs/redux'
+
+
+import { add, del } from '../../actions/todos'
 import './todo.scss'
 
-export default class Todo extends Component {
 
+
+
+class Todo extends Component {
   config = {
     navigationBarTitleText: 'TodoList'
   }
   constructor(props) {
     super(props)
     this.state = {
-      list: ['aaaaa', 'bbbb', 'c', 'dd'],
+      // list: ['aaaaa', 'bbbb', 'c', 'dd'],
       inputVal: null
     }
     this.inputHandler = this.inputHandler.bind(this);
@@ -29,22 +35,16 @@ export default class Todo extends Component {
     })
   }
   addItem() {
-    let { inputVal, list } = this.state;
-    list = list.concat(inputVal);
-    this.setState({
-      inputVal: null,
-      list
-    })
+    let { inputVal } = this.state;
+    this.props.onAdd(inputVal);
   }
   removeItem(index) {
-    let { list } = this.state;
-    list.splice(index, 1);
-    this.setState({
-      list
-    })
+    this.props.onDel(index)
   }
   render() {
-    let { list, inputVal } = this.state
+    let { inputVal } = this.state;
+    let { list } = this.props;
+    debugger
     return (
       <View className='todo'>
         <View className='todo_title'>TodoList</View>
@@ -56,7 +56,7 @@ export default class Todo extends Component {
           {
             list.map((e, i) => {
               return (
-                <View key={i}>{e} <Text onClick={this.removeItem.bind(this, i)} className='delBtn'>删除</Text></View>
+                <View key={e.id}>{e.text} <Text onClick={this.removeItem.bind(this, e.id)} className='delBtn'>删除</Text></View>
               )
             })
           }
@@ -66,6 +66,17 @@ export default class Todo extends Component {
   }
 }
 
+
+
+
+const mapStateToProps = (state) => ({
+  list: state.todos.list,
+})
+const mapDispatchToProps = {//传递函数要用on开头
+  onAdd: add,
+  onDel: del
+}
+export default Todo = connect(mapStateToProps, mapDispatchToProps)(Todo);
 
 
 
