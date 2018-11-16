@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1542353786034" clover="3.2.0">
+  <project timestamp="1542353786034" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="3" methods="7" coveredmethods="7" elements="24" coveredelements="23" complexity="0" loc="13" ncloc="13" packages="2" files="2" classes="2">
+      <package name="CheckboxWithLabel">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <file name="CheckboxWithLabel.js" path="E:\www\yyt\demos\Jest-Enzyme\src\component\CheckboxWithLabel\CheckboxWithLabel.js">
+          <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="Link">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
+        <file name="Link.js" path="E:\www\yyt\demos\Jest-Enzyme\src\component\Link\Link.js">
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="30" count="3" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
