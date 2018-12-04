@@ -8,7 +8,7 @@ const styles = {
     padding: '0.5rem 1rem',
     margin: '2rem',
     cursor: 'move',
-    float: 'left',
+    width:'200px'
 }
 
 /**
