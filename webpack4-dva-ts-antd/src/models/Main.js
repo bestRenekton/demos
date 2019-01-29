@@ -3,7 +3,9 @@ import { notification, message } from 'antd';
 
 export default {
   namespace: 'main',
-  state: {},
+  state: {
+    test: 1,
+  },
   subscriptions: {
     Init({ dispatch, history }) {
       history.listen((location) => {

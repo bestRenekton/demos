@@ -18,6 +18,9 @@ module.exports = {
     externals: {//引入三方包
         "testPlugin": "testPlugin"
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
     optimization: {
         splitChunks: {
             chunks: 'all'
