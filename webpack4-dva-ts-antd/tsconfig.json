@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "jsx": "react"
+    },
+    "include": [ //包含的编译目录
+        "./src/**/*"
+    ],
+    "exclude": [ //排出不编译的目录
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
