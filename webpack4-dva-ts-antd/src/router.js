@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'dva/router';
 import dynamic from 'dva/dynamic';
-import HomePage from './routes/HomePage.tsx';
 
 
 function RouterConfig({ history, app }) {
@@ -22,7 +21,6 @@ function RouterConfig({ history, app }) {
   return (
     <Router history={history}>
       <Switch>
-        {/* <Route path="/" component={HomePage} /> */}
         <Route path="/" component={Main} />
         {/* <Route path="/login" component={Login} /> */}
       </Switch>

@@ -1,7 +1,8 @@
-.btn{
-   background: burlywood;
-   transition: all .3s;
-}
-.p{
-   color: red;
+.page{
+   width:1200px;
+   margin: 0 auto;
+   padding: 20px;
+   .title,.tag{
+      text-align: center;
+   }
 }

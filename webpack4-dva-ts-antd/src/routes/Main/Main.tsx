@@ -1,24 +1,10 @@
-// import React from 'react';
 import * as React from "react";
 import { connect } from 'dva';
-// import styles from './Main.scss';
 import * as styles from './Main.scss';
 import * as immutable from 'immutable';
+import { Tag, Table } from "antd"
+import Example from '../../components/Example'
 
-
-interface IBtnProps {
-  name: string,
-  add: () => void,
-}
-const Btn: React.SFC<IBtnProps> = (props) => {
-  return (
-    <div>
-      <button className={styles.btn} onClick={props.add}>{props.name}</button>
-      <p className={styles.p}>ddd</p>
-
-    </div>
-  )
-}
 
 interface IProps {
   main: any,
@@ -26,23 +12,23 @@ interface IProps {
   dispatch: any
 }
 interface IState {
-  // count: number,
+  // some: number,
 }
 class Main extends React.PureComponent<IProps, IState> {
   constructor(props: any) {
     super(props)
     this.state = {
-      // count: 1,
+      // some: 1,
     }
     this.add = this.add.bind(this);
   }
   componentDidMount() {
-    // this.props.dispatch({
-    //   type: 'main/fetchInit',
-    //   payload: {
-    //     a: 1
-    //   }
-    // })
+    this.props.dispatch({
+      type: 'main/fetchInit',
+      payload: {
+        a: 1
+      }
+    })
   }
   // shouldComponentUpdate(nextProps: any, nextState: any) {
   //   return !(this.props === nextProps || immutable.is(this.props, nextProps)) ||
@@ -57,11 +43,40 @@ class Main extends React.PureComponent<IProps, IState> {
     console.log('main-render', this.props)
     let { main } = this.props;
     main = main.toJS();
-    let { count } = main;
+    let { count, list, content } = main;
+    const columns = [{
+      title: '姓名',
+      dataIndex: 'user_name',
+      key: 'user_name',
+    }, {
+      title: '年龄',
+      dataIndex: 'auth',
+      key: 'auth',
+    }, {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    }, {
+      title: '手机',
+      dataIndex: 'mobile',
+      key: 'mobile',
+    }];
+
     return (
-      <div>
-        redux中的count:{count}
-        <Btn name={"点我增加"} add={this.add} />
+      <div className={styles.page}>
+        <h1 className={styles.title}>ts-react-dva脚手架</h1>
+        <div className={styles.tag}>
+          <Tag color="volcano">ts3.2</Tag>
+          <Tag color="magenta">react16.7全家桶</Tag>
+          <Tag color="red">dva2.4</Tag>
+          <Tag color="orange">webpack4</Tag>
+          <Tag color="gold">antd3.13</Tag>
+          <Tag color="lime">scss</Tag>
+          <Tag color="green">fetch</Tag>
+          <Tag color="cyan">immutable</Tag>
+        </div>
+        <Table title={() => '这是一个antd-table'} loading={list.length > 0 ? false : true} dataSource={list} columns={columns} />
+        <Example content={content} name={'这是一个SFC组件'} count={count} add={this.add} />
       </div>
     )
   }

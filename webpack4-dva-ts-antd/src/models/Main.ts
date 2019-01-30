@@ -1,8 +1,8 @@
 import { message } from 'antd';
 import { DvaModel, Effects, Subscriptions, Action } from '../interfaces/index';
-import { fetchInit } from '../services/main'
 // import immutable, { Map, List } from 'immutable';
 import * as immutable from 'immutable';
+import { fetchInit, getUserList2 } from '../services/main'
 
 
 
@@ -10,7 +10,8 @@ const Model: DvaModel = {
   namespace: 'main',
   state: immutable.fromJS({
     count: 1,
-    list: [1, 2]
+    list: [],
+    content: null
   }),
   subscriptions: {
     Init(Subscriptions: Subscriptions) {
@@ -23,30 +24,24 @@ const Model: DvaModel = {
 
   effects: {
     *fetchInit(Action: Action, Effects: Effects) {
-      debugger
       const { type, payload } = Action;
       const { call, put, select } = Effects;
-      const data = yield call(fetchInit, { a: 1 });
-      yield put({ type: 'add', payload: { num: 3 } });
+      const dataBack = yield call(fetchInit, { a: 1 });
+      const dataBack2 = yield call(getUserList2, { a: 1 });
+      yield put({ type: 'loadList', payload: { list: dataBack.data.result, content: dataBack2.data.result.content } });
     },
-    // *fetch({ payload }, { call, put, select }) {  // eslint-disable-line
-    //   yield put({ type: 'save' });
-    // },
   },
 
   reducers: {
-    // save(state, action) {
-    //   return { ...state, ...action.payload };
-    // },
     add(state: any, action: Action) {
-      debugger
-      // const { state, action } = Reducers;
-      // let newS = JSON.parse(JSON.stringify(state));
-      // let { count } = newS;
-      // let { payload: { num } } = action;
-      // newS.count = count + 1;
       let count = state.get('count');
       let newState = state.set('count', count + 1)
+      return newState;
+    },
+    loadList(state: any, action: Action) {
+      let { payload: { list, content } } = action;
+      let count = state.get('count');
+      let newState = state.set('list', list).set('content', content)
       return newState;
     },
   },
