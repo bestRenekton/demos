@@ -16,7 +16,7 @@ module.exports = {
     //     filename: "[name].js"
     // },
     externals: {//引入三方包
-        "testPlugin": "testPlugin"
+        "testPlugin": "testPlugin",
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
@@ -29,6 +29,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                loader: 'ts-loader'
+            },
             {
                 test: /\.tsx$/,
                 loader: 'ts-loader'

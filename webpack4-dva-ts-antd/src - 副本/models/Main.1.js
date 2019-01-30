@@ -9,24 +9,6 @@ export default {
   subscriptions: {
     Init({ dispatch, history }) {
       history.listen((location) => {
-        console.log(location)
-        if (location.pathname === '/main') {
-          if (location.state) {
-
-          } else {
-            dispatch({//初始化列表
-              type: 'fetchInit',
-              payload: {
-                start: 0,
-                limit: 10,
-                keyWords: null,
-                dir: 'DESC',
-                sort: 'StartDT'
-                // current: 0
-              }
-            });
-          }
-        }
       });
     },
   },

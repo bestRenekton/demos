@@ -11,7 +11,11 @@ interface IBtnProps {
 }
 const Btn: React.SFC<IBtnProps> = (props) => {
   return (
-    <button className={styles.btn} onClick={props.add}>{props.name}</button>
+    <div>
+      <button className={styles.btn} onClick={props.add}>{props.name}</button>
+      <p className={styles.p}>ddd</p>
+
+    </div>
   )
 }
 

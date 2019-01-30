@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'dva/router';
 import dynamic from 'dva/dynamic';
+import HomePage from './routes/HomePage.tsx';
 
 
 function RouterConfig({ history, app }) {
@@ -8,15 +9,22 @@ function RouterConfig({ history, app }) {
     app,
     namespace: 'main',
     models: () => [import('./models/Main')],
-    component: () => import('./routes/Main.tsx'),
+    component: () => import('./routes/Main/Main'),
   });
-
+  // const Login = dynamic({
+  //   app,
+  //   namespace: 'login',
+  //   models: () => [import('./models/Login')],
+  //   component: () => import('./routes/Login/Login.tsx'),
+  // });
 
 
   return (
     <Router history={history}>
       <Switch>
+        {/* <Route path="/" component={HomePage} /> */}
         <Route path="/" component={Main} />
+        {/* <Route path="/login" component={Login} /> */}
       </Switch>
     </Router>
   );
