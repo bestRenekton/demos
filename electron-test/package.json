@@ -1,0 +1,28 @@
+{
+  "name": "ElectronTest",
+  "version": "1.0.0",
+  "description": "A Flexible and Easy-to-Use Building Management Platform",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "packager": "electron-packager . ElectronTest --overwrite --win=x32 --out  ./electron  --icon=icon.ico"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "yyt",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^2.0.0",
+    "electron-packager": "^12.1.0",
+    "electron-winstaller": "^2.6.4"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
