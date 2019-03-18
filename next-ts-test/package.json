@@ -1,0 +1,38 @@
+{
+  "name": "hyzcpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "set NODE_ENV=production && next start",
+    "export": "npm run build && next export"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "antd": "^3.15.0",
+    "express": "^4.16.4",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.3",
+    "next-redux-saga": "^4.0.1",
+    "next-redux-wrapper": "^3.0.0-alpha.2",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.2"
+  },
+  "devDependencies": {
+    "@zeit/next-typescript": "^1.1.1",
+    "qs": "^6.6.0",
+    "typescript": "^3.3.3333"
+  }
+}
