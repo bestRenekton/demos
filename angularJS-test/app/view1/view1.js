@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute', 'myApp.ui'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/view1', {
@@ -25,7 +25,7 @@ angular.module('myApp.view1', ['ngRoute'])
     $http({
       method: 'POST',
       url: 'https://www.yangyuetao.cn:8888/api/articleList',
-      data:{page:1},
+      data: { page: 1 },
     }).then(
       (res) => {
         console.log(res)
@@ -33,25 +33,15 @@ angular.module('myApp.view1', ['ngRoute'])
       (rej) => {
         console.log(rej)
       });
-    
-    // $scope.phones = [
-    //   {
-    //     'name': 'Nexus S',
-    //     'snippet': 'Fast just got faster with Nexus S.',
-    //     'age': 1
-    //   },
-    //   {
-    //     'name': 'Motorola XOOM? with Wi-Fi',
-    //     'snippet': 'The Next, Next Generation tablet.',
-    //     'age': 2
-    //   },
-    //   {
-    //     'name': 'MOTOROLA XOOM?',
-    //     'snippet': 'The Next, Next Generation tablet.',
-    //     'age': 3
-    //   }
-    // ];
-    $scope.query = "1";
+
+    $scope.query = "";
     $scope.orderOptions = ['name', 'age'];
     $scope.orderProp = $scope.orderOptions[0];
-  }]);
+    $scope.jack = {
+      name: 'Jackdfdf',
+      sex: 'Male'
+    };
+    $scope.alert = () => {
+      alert(111)
+    }
+  }])

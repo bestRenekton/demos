@@ -1,21 +1,32 @@
-<style >
+<style>
     .thumb {
         width: 100px;
     }
+    .listCard__content {
+        display: flex;
+    }
 </style>
 
-<p>This is the partial for view 1.</p>
+
+<my-title props="jack" alert="alert()">
+    <title1>title1这里是指令内部的内容。</title1>
+    <title2>title2这里是指令内部的内容。</title2>
+</my-title>
+
+
 <input ng-model="query">
 <select ng-model="orderProp">
     <option ng-repeat="option in orderOptions" value="{{option}}">{{option}}</option>
 </select>
+
 <ul>
     <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
-        <a href="#/phones/{{phone.id}}"><img class="thumb" ng-src="{{phone.imageUrl}}"></a>
+        <list-card props="phone"></list-card>
+        <!-- <a href="#/phones/{{phone.id}}"><img class="thumb" ng-src="{{phone.imageUrl}}"></a>
         <p>{{phone.name}}</p>
-        <p>{{phone.snippet}}</p>
+        <p>{{phone.snippet}}</p> -->
     </li>
 </ul>
-<pre id="custom-spacing">{{ {'name':'value'} | json }}</pre>
+<!-- <pre id="custom-spacing">{{ {'name':'value'} | json }}</pre>
 <p>Output long number: {{ 'sdfsdfsfsf' | limitTo:3 }}</p>
-<span id='number-default'>{{1234.567 | number:4}}</span><br>
+<span id='number-default'>{{1234.567 | number:4}}</span><br> -->
