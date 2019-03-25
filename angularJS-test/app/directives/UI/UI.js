@@ -1,4 +1,4 @@
-angular.module('myApp.ui', ['ngRoute'])
+angular.module('myApp.ui', [])
     .directive('myTitle', () => {
         return {
             restrict: 'ACE',//E元素名称，A属性：C类名，M注释

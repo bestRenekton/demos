@@ -2,7 +2,7 @@
   "_args": [
     [
       "angular-loader@1.7.8",
-      "/Volumes/D/www/yyt/demos/angularJS-test"
+      "D:\\phpStudy\\WWW\\yyt\\demos\\angularJS-test"
     ]
   ],
   "_from": "angular-loader@1.7.8",
@@ -26,7 +26,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/angular-loader/-/angular-loader-1.7.8.tgz",
   "_spec": "1.7.8",
-  "_where": "/Volumes/D/www/yyt/demos/angularJS-test",
+  "_where": "D:\\phpStudy\\WWW\\yyt\\demos\\angularJS-test",
   "author": {
     "name": "Angular Core Team",
     "email": "angular-core+npm@google.com"
