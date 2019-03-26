@@ -2,7 +2,7 @@
   "_args": [
     [
       "angular-mocks@1.7.8",
-      "D:\\phpStudy\\WWW\\yyt\\demos\\angularJS-test"
+      "/Volumes/D/www/yyt/demos/angularJS-test"
     ]
   ],
   "_development": true,
@@ -27,7 +27,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/angular-mocks/-/angular-mocks-1.7.8.tgz",
   "_spec": "1.7.8",
-  "_where": "D:\\phpStudy\\WWW\\yyt\\demos\\angularJS-test",
+  "_where": "/Volumes/D/www/yyt/demos/angularJS-test",
   "author": {
     "name": "Angular Core Team",
     "email": "angular-core+npm@google.com"

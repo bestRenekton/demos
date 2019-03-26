@@ -1,0 +1,15 @@
+<h1>test something</h1>
+<my-title props="jack" alert="alert()">
+  <title1>title1这里是指令内部的内容。</title1>
+  <title2>title2这里是指令内部的内容。</title2>
+</my-title>
+<pre id="custom-spacing">{{ {'name':'value'} | json }}</pre>
+<p>Output long number: {{ 'sdfsdfsfsf' | limitTo:3 }}</p>
+<span id='number-default'>{{1234.567 | number:4}}</span>
+<br>
+<button ng-click="getList()">点我加载列表</button>
+<div style="border:1px solid">
+  <span ng-if="!articles && !loading">暂无数据</span>
+  <span ng-if="loading">加载中...</span>
+  <p ng-repeat="article in articles">{{article.title}}</p>
+</div>

@@ -19,8 +19,8 @@ angular.module('myApp.ui', [])
             },
         }
     })
-    .directive('listCard',function(){
-        return{
+    .directive('listCard', function ($state) {
+        return {
             restrict: 'ACE',
             // replace: true,
             templateUrl: '/directives/UI/templates/ListCard.html',
@@ -29,6 +29,9 @@ angular.module('myApp.ui', [])
             },
             controller: function ($scope) {
                 $scope.stateName = 'haha'
+                $scope.go = function () {
+                    $state.go('tabs.view1Detail', {id:$scope.props.id});
+                }
             },
         }
     })

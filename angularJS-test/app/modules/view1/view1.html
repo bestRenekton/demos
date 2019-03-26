@@ -1,0 +1,28 @@
+<style>
+    .pages {
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+    .thumb {
+        width: 100px;
+    }
+
+    .listCard__content {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+</style>
+
+<div class="pages">
+    <input ng-model="query">
+    <select ng-model="orderProp">
+        <option ng-repeat="option in orderOptions" value="{{option}}">{{option}}</option>
+    </select>
+
+    <ul>
+        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+            <list-card props="phone"></list-card>
+        </li>
+    </ul>
+</div>
