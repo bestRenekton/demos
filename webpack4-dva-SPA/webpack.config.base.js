@@ -165,7 +165,7 @@ module.exports = {
     },
     plugins: [
         // new webpack.HotModuleReplacementPlugin()
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(),
         new copyWebpackPlugin([{//复制static到dist
             from: __dirname + '/src/static',//打包的静态资源目录地址
             to: './static' //打包到dist下面的static

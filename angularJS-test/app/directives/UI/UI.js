@@ -17,6 +17,10 @@ angular.module('myApp.ui', [])
             controller: function ($scope) {//字符串，或者function
                 $scope.stateName = 'haha'
             },
+            link:function($scope,$element,attr){//在link中主要操作DOM。执行顺序晚于controller
+                $scope.stateName = 'dfdf'
+                console.log($element.find('div'));
+            }
         }
     })
     .directive('listCard', function ($state) {

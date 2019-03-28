@@ -1,3 +1,18 @@
+<style>
+  .strike {
+    text-decoration: line-through;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .red {
+    color: red;
+  }
+</style>
+
+
 <h1>test something</h1>
 <my-title props="jack" alert="alert()">
   <title1>title1这里是指令内部的内容。</title1>
@@ -6,10 +21,25 @@
 <pre id="custom-spacing">{{ {'name':'value'} | json }}</pre>
 <p>Output long number: {{ 'sdfsdfsfsf' | limitTo:3 }}</p>
 <span id='number-default'>{{1234.567 | number:4}}</span>
+<span id='number-default'>{{date}}</span>
 <br>
 <button ng-click="getList()">点我加载列表</button>
 <div style="border:1px solid">
   <span ng-if="!articles && !loading">暂无数据</span>
   <span ng-if="loading">加载中...</span>
   <p ng-repeat="article in articles">{{article.title}}</p>
+</div>
+<form name="myForm">
+  <input type="radio" ng-model="color" value="red"> Red <br />
+  <input type="radio" ng-model="color" ng-value="specialValue" value="abc"> value不生效 <br />
+  <tt>color = {{color | json}}</tt><br />
+</form>
+
+<p ng-class="{strike: true, bold: true, red: false}">Map Syntax Example</p>
+<div ng-include="'/modules/view1/view1.html'"></div>
+
+<div class="animate-switch-container" ng-switch on="selection">
+  <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
+  <div class="animate-switch" ng-switch-when="home">Home Span</div>
+  <div class="animate-switch" ng-switch-default>default</div>
 </div>
