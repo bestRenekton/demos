@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './star.dart';
-import './about.dart';
+// void main() => runApp(new Timer());
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
+class Timer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -14,11 +11,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
-      //注册路由表
-      routes: {
-        "about": (context) => About(),
-        "star": (context) => Star(),
-      },
     );
   }
 }
@@ -57,30 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
-            FlatButton(
-              child: Text("star"),
-              textColor: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, 'star');
-                //导航到新路由
-                // Navigator.push(context,
-                //     new MaterialPageRoute(builder: (context) {
-                //   return new Star();
-                // }));
-              },
-            ),
-            FlatButton(
-              child: Text("about"),
-              textColor: Colors.blue,
-              onPressed: () {
-                //导航到新路由
-                Navigator.pushNamed(context, 'about');
-                // Navigator.push(context,
-                //     new MaterialPageRoute(builder: (context) {
-                //   return new About();
-                // }));
-              },
-            ),
+            
           ],
         ),
       ),
