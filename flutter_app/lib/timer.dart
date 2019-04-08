@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 
 class Timer extends StatelessWidget {
   @override
+  // Widget build(BuildContext context) {
+  //   return new MaterialApp(
+  //     title: 'Flutter Demo',
+  //     theme: new ThemeData(
+  //       primarySwatch: Colors.blue,
+  //     ),
+  //     home: new MyHomePage(title: 'Flutter Demo Home Page'),
+  //   );
+  // }
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+    return new MyHomePage(title: 'timer');
   }
 }
 
@@ -49,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
-            
           ],
         ),
       ),

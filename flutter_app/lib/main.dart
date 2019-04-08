@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import './star.dart';
 import './about.dart';
+import './timer.dart';
+import './assetsTest.dart';
 
 void main() => runApp(new MyApp());
 
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "about": (context) => About(),
         "star": (context) => Star(),
+        "timer": (context) => Timer(),
+        "assetsTest": (context) => AssetsTest(),
       },
     );
   }
@@ -32,13 +36,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +47,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
             FlatButton(
               child: Text("star"),
               textColor: Colors.blue,
@@ -70,25 +60,32 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             FlatButton(
+              child: Text("timer"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'timer');
+              },
+            ),
+            FlatButton(
               child: Text("about"),
               textColor: Colors.blue,
               onPressed: () {
-                //导航到新路由
+                // debugDumpApp();
+                // print('111');
                 Navigator.pushNamed(context, 'about');
-                // Navigator.push(context,
-                //     new MaterialPageRoute(builder: (context) {
-                //   return new About();
-                // }));
               },
             ),
+            FlatButton(
+              child: Text("assetsTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'assetsTest');
+              },
+            ),
+
           ],
         ),
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
