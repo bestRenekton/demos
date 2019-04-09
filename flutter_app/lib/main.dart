@@ -4,6 +4,8 @@ import './star.dart';
 import './about.dart';
 import './timer.dart';
 import './assetsTest.dart';
+import './stateTest.dart';
+import './basicWidget.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
         "star": (context) => Star(),
         "timer": (context) => Timer(),
         "assetsTest": (context) => AssetsTest(),
+        "stateTest": (context) => StateTest(),
+        "basicWidget": (context) => BasicWidget(),
       },
     );
   }
@@ -36,7 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -82,7 +85,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, 'assetsTest');
               },
             ),
-
+            FlatButton(
+              child: Text("stateTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'stateTest');
+              },
+            ),
+            FlatButton(
+              child: Text("basicWidget"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'basicWidget');
+              },
+            ),
           ],
         ),
       ),
