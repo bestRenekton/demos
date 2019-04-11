@@ -6,6 +6,9 @@ import './timer.dart';
 import './assetsTest.dart';
 import './stateTest.dart';
 import './basicWidget.dart';
+import './layoutWidget.dart';
+import './containerWidget.dart';
+import './scaffold.dart';
 
 void main() => runApp(new MyApp());
 
@@ -26,6 +29,9 @@ class MyApp extends StatelessWidget {
         "assetsTest": (context) => AssetsTest(),
         "stateTest": (context) => StateTest(),
         "basicWidget": (context) => BasicWidget(),
+        "layoutWidget": (context) => LayoutWidget(),
+        "containerWidget": (context) => ContainerWidget(),
+        "scaffoldTest": (context) => ScaffoldTest(),
       },
     );
   }
@@ -97,6 +103,27 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, 'basicWidget');
+              },
+            ),
+            FlatButton(
+              child: Text("layoutWidget"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'layoutWidget');
+              },
+            ),
+            FlatButton(
+              child: Text("containerWidget"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'containerWidget');
+              },
+            ),
+            FlatButton(
+              child: Text("scaffoldTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'scaffoldTest');
               },
             ),
           ],

@@ -7,13 +7,13 @@ class BasicWidget extends StatelessWidget {
         appBar: AppBar(
           title: Text("basicWidget"),
         ),
-        body: new Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        body: new ListView(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            // new TextTest(),
-            // new BtnTest(),
-            // new ImgTest(),
-            // new CheckBoxTest(),
+            new TextTest(),
+            new BtnTest(),
+            new ImgTest(),
+            new CheckBoxTest(),
             new FormTest(),
           ],
         ));
@@ -173,38 +173,88 @@ class FormTest extends StatefulWidget {
 }
 
 class _FormTest extends State<FormTest> {
+  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
+  FocusNode _emailFocus = new FocusNode();
+  FocusNode _passwordFocus = new FocusNode();
+  GlobalKey _formKey = new GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        TextField(
-          autofocus: true, //是否自动获取焦点
-          style: TextStyle(color: Colors.green, fontSize: 13.0), //编辑的文本样式
-          keyboardType: TextInputType.emailAddress, //输入框默认的键盘输入类型
-          textInputAction: TextInputAction.next, //键盘动作按钮图标(即回车键位图标)
-          maxLines: 1, //输入框的最大行数，默认为1；如果为null，则无行数限制。
-          maxLength: 20, //文本的最大长度，设置后右下角会显示输入的文本计数
-          maxLengthEnforced: true, //true时会阻止输入，为false时不会阻止输入但输入框会变红
-          onChanged: (v) => {print('value:$v')}, //内容改变时的回调函数,也可以通过controller来监听
-          onSubmitted: (v) => {print('submit:$v')}, //输入完成时触发
-          enabled: true,
-          cursorWidth: 1, //光标宽度
-          cursorRadius: Radius.circular(10.0), //光标圆角
-          cursorColor: Colors.red, //光标颜色
-          decoration: InputDecoration(
-              //外观
-              labelText: "Email",
-              hintText: "电子邮件地址",
-              hintStyle: TextStyle(color: Colors.red, fontSize: 13.0),
-              prefixIcon: Icon(Icons.email)),
-        ),
-        TextField(
-          decoration: InputDecoration(
-              labelText: "密码",
-              hintText: "您的登录密码",
-              prefixIcon: Icon(Icons.lock)),
-          obscureText: true, //隐藏显示，如密码
-        ),
+        Form(
+          key: _formKey,//设置globalKey，用于后面获取FormState
+          autovalidate: true,//开启自动校验
+          child: Column(
+            children: <Widget>[
+              TextField(
+                autofocus: true, //是否自动获取焦点
+                style: TextStyle(color: Colors.green, fontSize: 13.0), //编辑的文本样式
+                keyboardType: TextInputType.emailAddress, //输入框默认的键盘输入类型
+                textInputAction: TextInputAction.next, //键盘动作按钮图标(即回车键位图标)
+                maxLines: 1, //输入框的最大行数，默认为1；如果为null，则无行数限制。
+                maxLength: 20, //文本的最大长度，设置后右下角会显示输入的文本计数
+                maxLengthEnforced: true, //true时会阻止输入，为false时不会阻止输入但输入框会变红
+                onChanged: (v) =>
+                    {print('value:$v')}, //内容改变时的回调函数,也可以通过controller来监听
+                onSubmitted: (v) => {print('submit:$v')}, //输入完成时触发
+                controller: _emailController, //除了能监听文本变化外，它还可以设置默认值、选择文本
+                focusNode: _emailFocus, //关联focusNode1
+                enabled: true,
+                cursorWidth: 1, //光标宽度
+                cursorRadius: Radius.circular(10.0), //光标圆角
+                cursorColor: Colors.red, //光标颜色
+                decoration: InputDecoration(
+                    //外观
+                    labelText: "Email",
+                    hintText: "电子邮件地址",
+                    hintStyle: TextStyle(color: Colors.red, fontSize: 13.0),
+                    prefixIcon: Icon(Icons.email)),
+              ),
+              TextFormField(
+                  decoration: InputDecoration(
+                      labelText: "密码",
+                      hintText: "您的登录密码",
+                      prefixIcon: Icon(Icons.lock)),
+                  obscureText: true, //隐藏显示，如密码
+                  focusNode: _passwordFocus,
+                  controller: _passwordController,
+                  // onChanged: (v) => {},//托管表单之后就没有自己的onchanged事件了
+                  // onSubmitted: (v) => {},//托管表单之后就没有自己的onSubmitted事件了
+                  validator: (v) {
+                    return v.trim().length > 5 ? null : "密码不能少于6位";
+                  }),
+              FlatButton(
+                child: Text("controller print && 隐藏键盘"),
+                onPressed: () {
+                  _emailFocus.unfocus();
+                  _passwordFocus.unfocus();
+                  print('emailController:${_emailController.text}');
+                },
+              ),
+              FlatButton(
+                child: Text("next focus"),
+                onPressed: () =>
+                    {FocusScope.of(context).requestFocus(_passwordFocus)},
+                //FocusScope.of(context) 来获取widget树中默认的FocusScopeNode
+              ),
+              FlatButton(
+                  child: Text("submit"),
+                  onPressed: () {
+                    //在这里不能通过此方式获取FormState，context不对
+                    //print(Form.of(context));
+
+                    // 通过_formKey.currentState 获取FormState后��
+                    // 调用validate()方法校验用户名密码是否合法，校验
+                    // 通过后再提交数据。
+                    if ((_formKey.currentState as FormState).validate()) {
+                      //验证通过提交数据
+                    }
+                  }),
+            ],
+          ),
+        )
       ],
     );
   }

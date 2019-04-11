@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,8 +7,8 @@ class About extends StatelessWidget {
       appBar: AppBar(
         title: Text("ABOUT"),
       ),
-      body: Center(
-        child: Text("about"),
+      body: ListView(
+        children: <Widget>[Text('about')],
       ),
     );
   }
