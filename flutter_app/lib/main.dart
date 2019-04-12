@@ -9,6 +9,7 @@ import './basicWidget.dart';
 import './layoutWidget.dart';
 import './containerWidget.dart';
 import './scaffold.dart';
+import './scrollTest.dart';
 
 void main() => runApp(new MyApp());
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         "layoutWidget": (context) => LayoutWidget(),
         "containerWidget": (context) => ContainerWidget(),
         "scaffoldTest": (context) => ScaffoldTest(),
+        "scrollTest": (context) => ScrollTest(),
       },
     );
   }
@@ -124,6 +126,13 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, 'scaffoldTest');
+              },
+            ),
+            FlatButton(
+              child: Text("scrollTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'scrollTest');
               },
             ),
           ],
