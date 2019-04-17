@@ -7,8 +7,13 @@ class ScrollTest extends StatelessWidget {
       appBar: AppBar(
         title: Text("scrollTest"),
       ),
-      body: ListView(
-        children: <Widget>[new SingleChildScrollViewTest()],
+      body: Column(
+        children: <Widget>[
+          ListTile(title: Text("商品列表")),
+          Expanded(
+            child:new ListViewTest(),
+          ),
+        ],
       ),
     );
   }
@@ -38,6 +43,23 @@ class SingleChildScrollViewTest extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ListViewTest extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Widget divider1 = Divider(color: Colors.blue);
+    Widget divider2 = Divider(color: Colors.red);
+    return ListView.separated(
+      itemCount: 20,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(title: Text("$index"));
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return index % 2 == 0 ? divider1 : divider2;
+      },
     );
   }
 }
