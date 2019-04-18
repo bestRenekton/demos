@@ -11,6 +11,9 @@ import './containerWidget.dart';
 import './scaffold.dart';
 import './scrollTest.dart';
 import './customScrollTest.dart';
+import './scrollControllerTest.dart';
+import './willPopScopeTest.dart';
+import './themeTest.dart';
 
 void main() => runApp(new MyApp());
 
@@ -36,6 +39,9 @@ class MyApp extends StatelessWidget {
         "scaffoldTest": (context) => ScaffoldTest(),
         "scrollTest": (context) => ScrollTest(),
         "customScrollTest": (context) => CustomScrollTest(),
+        "scrollControllerTest": (context) => ScrollControllerTest(),
+        "willPopScopeTest": (context) => WillPopScopeTest(),
+        "themeTest": (context) => ThemeTest(),
       },
     );
   }
@@ -142,6 +148,27 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, 'customScrollTest');
+              },
+            ),
+            FlatButton(
+              child: Text("scrollControllerTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'scrollControllerTest');
+              },
+            ),
+            FlatButton(
+              child: Text("willPopScopeTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'willPopScopeTest');
+              },
+            ),
+            FlatButton(
+              child: Text("ThemeTest"),
+              textColor: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, 'themeTest');
               },
             ),
           ],
