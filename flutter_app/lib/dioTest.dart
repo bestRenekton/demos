@@ -20,7 +20,7 @@ class DioTestBody extends StatefulWidget {
 
 class _DioTestBody extends State<DioTestBody> {
   var arr;
-  var arr2 = {"address": 12313};
+  
   @override
   void initState() {
     super.initState();
