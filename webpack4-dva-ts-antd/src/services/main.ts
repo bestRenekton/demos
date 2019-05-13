@@ -10,10 +10,6 @@ export async function fetchInit(params: any) {
 }
 
 export async function getUserList2(params: any) {
-  return request(`User/getUserList2?${qs.stringify(params)}`, {
-    method: "get",
-    mode: 'cors',
-    traditional: true,
-  })
-
+  return request(`User/getUserList2?${qs.stringify(params)}`)
 }
+

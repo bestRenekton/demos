@@ -3,8 +3,9 @@
         "outDir": "./dist/",
         "sourceMap": true,
         "noImplicitAny": true,
+        "experimentalDecorators":true,
         "module": "commonjs",
-        "target": "es5",
+        "target": "ES5",
         "jsx": "react",
         "lib": [
             "es2015",
