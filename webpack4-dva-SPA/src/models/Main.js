@@ -1,5 +1,6 @@
-import axios from '../public/js/axios.js'
+import { getUserList, getUserList2 } from '../services/example'
 import { notification, message } from 'antd';
+
 
 export default {
   namespace: 'main',
@@ -30,31 +31,10 @@ export default {
   },
 
   effects: {
-    *fetchInit({ payload }, { call, put, select }) {  //首次加载
-      axios({
-        method: 'post',
-        url: `FormTemplate/GetForModify`,
-        data: payload
-      })
-        .then(function (res) {
-          if (res.name) {
-            message.success('载入成功！');
-            dispatch({
-              type: 'formBuilder/loadForm',
-              ...res
-            })
-          }
-          else {
-            message.error('错误：' + data.msg, 30);
-            dispatch({
-              type: 'formBuilder/loadFailed',
-            })
-            // yield put({ type: 'loadFailed' });
-          }
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
+    *fetchInit(action, { call, put, select }) {  //首次加载
+      const { type, payload } = action;
+      const dataBack = yield call(getUserList, payload);
+      const dataBack2 = yield call(getUserList2, payload);
     },
   },
 

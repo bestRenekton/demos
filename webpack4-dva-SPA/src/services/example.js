@@ -1,5 +1,17 @@
-import request from '../utils/request';
+import request from '../public/js/requestChoose';
+import qs from 'qs';
 
-export function query() {
-  return request('/api/users');
+export async function getUserList(params) { 
+  return request({
+    url: "User/getUserList",
+    method: "post",
+    data: params
+  });
 }
+
+export async function getUserList2(params) {
+  return request({
+    url:`User/getUserList2?${qs.stringify(params)}`
+  })
+}
+
