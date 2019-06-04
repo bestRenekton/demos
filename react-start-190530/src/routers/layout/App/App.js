@@ -3,7 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-
 import styles from './App.scss'
 import AppHeader from '../../../component/layout/AppHeader/AppHeader'
 import AppFooter from '../../../component/layout/AppFooter/AppFooter'
@@ -12,6 +11,11 @@ import My from '../../my/my'
 import { handleAdd, handleEdit } from '../../../actions/index'
 
 
+
+@connect(
+    state => ({ list: state.todos.list }),
+    { handleAdd, handleEdit }
+)
 class App extends Component {
     constructor(props) {
         super(props);
@@ -45,14 +49,14 @@ class App extends Component {
 }
 
 
-const mapStateToProps = (state) => ({
-    list: state.todos.list,
-})
-const mapDispatchToProps = {
-    handleAdd: handleAdd,
-    handleEdit: handleEdit
-}
-export default App = connect(mapStateToProps, mapDispatchToProps)(App);
-
+// const mapStateToProps = (state) => ({
+//     list: state.todos.list,
+// })
+// const mapDispatchToProps = {
+//     handleAdd: handleAdd,
+//     handleEdit: handleEdit
+// }
+// export default App = connect(mapStateToProps, mapDispatchToProps)(App);
+export default App
 
 
