@@ -1,5 +1,4 @@
-import React from 'react'
-import { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 // 使用
 export default function UseEventListenerHook() {
