@@ -1,7 +1,6 @@
-import React,{ useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 
-
-export default function Hooks(props) {
+export default function BasicHooks(props) {
     const [num, setNum] = useState(0);
 
     useEffect(() => {
@@ -19,9 +18,11 @@ export default function Hooks(props) {
             console.log('componentDidUpdate')
         }
     });
+
     return (
         <>
-            <div>Basics</div>            
+            <div>Basics</div>
+            <p onClick={() => { setNum(num + 1) }}>{num}</p>
         </>
     )
 }

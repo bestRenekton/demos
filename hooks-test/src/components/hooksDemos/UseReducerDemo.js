@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
 
-const initialState = {count: 0};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -13,8 +12,9 @@ function reducer(state, action) {
   }
 }
 
-function Counter({initialState}) {
+export default function UseReducerDemo({initialState}) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <>
       Count: {state.count}

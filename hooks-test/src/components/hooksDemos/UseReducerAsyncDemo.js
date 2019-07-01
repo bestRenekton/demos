@@ -34,6 +34,40 @@ const A = () => {
   );
 };
 
+
+
+function isPromise(obj) {
+  // return (
+  //   !!obj &&
+  //   (typeof obj === "object" || typeof obj === "function") &&
+  //   typeof obj.then === "function"
+  // );
+  return obj instanceof Promise
+}
+
+async function asyncFetch(p) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(p);
+    }, 1000);
+  });
+}
+
+function wrapperDispatch(dispatch) {
+  return function (action) {
+    if (isPromise(action.payload)) {
+      dispatch({ type: "loading_start" });
+      action.payload.then(v => {
+        dispatch({ type: action.type, payload: v });
+        dispatch({ type: "loading_end" });
+      });
+    } else {
+      dispatch(action);
+    }
+  };
+}
+
+
 function reducer(state, action) {
   switch (action.type) {
     case "click_async":
@@ -47,38 +81,7 @@ function reducer(state, action) {
       throw new Error();
   }
 }
-
-function isPromise(obj) {
-  return (
-    !!obj &&
-    (typeof obj === "object" || typeof obj === "function") &&
-    typeof obj.then === "function"
-  );
-}
-
-async function asyncFetch(p) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(p);
-    }, 1000);
-  });
-}
-
-function wrapperDispatch(dispatch) {
-  return function(action) {
-    if (isPromise(action.payload)) {
-      dispatch({ type: "loading_start" });
-      action.payload.then(v => {
-        dispatch({ type: action.type, payload: v });
-        dispatch({ type: "loading_end" });
-      });
-    } else {
-      dispatch(action);
-    }
-  };
-}
-
-export default function App() {
+export default function UseReducerAsyncDemo() {
   const [state, dispatch] = useReducer(reducer, { value: 0, loading: false });
   return (
     <>
