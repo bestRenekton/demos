@@ -3,13 +3,14 @@ import { createPortal } from 'react-dom';
 
 
 //使用
-// const Model = (props) => {
-//     return (
-//         <div>model</div>
-//     )
-// }
-
 // export default function App() {
+//     const ref = useRef();
+//     const Model = (props) => {
+//         return (
+//             <div ref={ref}>model</div>
+//         )
+//     }
+
 //     const Com = useCreatePortal(Model)
 //     return (
 //         <div>
@@ -18,6 +19,7 @@ import { createPortal } from 'react-dom';
 //         </div>
 //     );
 // }
+
 
 export default function useCreatePortal(Child) {
     const node = useRef(document.createElement('div'));
@@ -28,13 +30,9 @@ export default function useCreatePortal(Child) {
         }
     }, [])
     return (
-        <div>
-            {
-                createPortal(
-                    <Child />,
-                    node.current
-                )
-            }
-        </div>
+        createPortal(
+            <Child />,
+            node.current
+        )
     );
 }

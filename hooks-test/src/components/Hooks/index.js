@@ -9,6 +9,9 @@ import useCreatePortal from './useCreatePortal'
 import useKeyPress from './useKeyPress'
 import useDebounce from './useDebounce'
 import useThrottle from './useThrottle'
+import useOnClickOutside from './useOnClickOutside'
+import useAnimation from './useAnimation'
+import useHover from './useHover'
 
 export {
     useClientRect,
@@ -21,5 +24,8 @@ export {
     useCreatePortal,
     useKeyPress,
     useDebounce,
-    useThrottle
+    useThrottle,
+    useOnClickOutside,
+    useAnimation,
+    useHover
 }
