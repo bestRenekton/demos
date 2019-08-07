@@ -2,7 +2,15 @@
 # -*- coding: utf-8 -*-
 
 
+
 # =============================输入，输出========================================
+
+# python 2.x才存在这个问题,用raw_input才可以输入中文，python 3合并了raw_input功能到到input，删去了raw_input
+# name=raw_input('your name:')
+# print(name)
+
+
+
 # num1 =input('num1=')
 # num2=input('num2=')
 # num3=int(num1)*int(num2)
@@ -63,8 +71,11 @@
 # print (dic.get('c',-99))
 
 
-# s = set(1, 2, 3)
-# print (s)
+# s = set([11, 22, 33,22,11])
+# print(s) # set([33, 11, 22])
+# print (list(s)[1]) # 11
+
+
 
 
 # print(hex(1000))
@@ -102,6 +113,7 @@
 
 
 #===============================参数======================================
+
 # def calc(*numbers):
 #     sum = 0
 #     for n in numbers:
@@ -217,3 +229,69 @@
 #     print('测试失败!')
 # else:
 #     print('测试成功!')
+
+
+
+#===========================列表生成式============================
+# import os # 导入os模块，模块的概念后面讲到
+# print([d for d in os.listdir('.')])  # 遍历出当前目录下的所有文件和目录名
+
+#===========================生成器============================
+# g = (x * x for x in range(10))
+# for i,e in enumerate(g):
+#     print(i,e)
+
+
+#===========================map,reduce,filter============================
+# r=map(str,[1,2,2,3])
+# print(r)
+
+# def add(x,y):
+#     return x+y
+# r=reduce(add,[11,2,3])
+# print(r)
+
+# def is_odd(n):
+#     return n % 2 == 1
+# r=filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15])
+# print(r)
+
+
+#===========================装饰器============================
+# def log(func):
+#     def wrapper(*args, **kw):
+#         print('call %s():' % func.__name__) # 函数名
+#         return func(*args, **kw)
+#     return wrapper
+
+# @log
+# def now():
+#     print('aaaaa')
+    
+# now()
+
+#===========================偏函数============================
+# import functools
+# int2 = functools.partial(int, base=2)
+# print(int2('1000000'))
+# # 等价于
+# print(int('1000000',base=2))
+
+
+#===========================面向对象============================
+class Student(object):
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def print_score(self):
+        print('%s: %s' % (self.name, self.score))
+
+
+bart = Student('Bart Simpson', 59)
+lisa = Student('Lisa Simpson', 87)
+bart.print_score()
+lisa.print_score()
+
+print(bart)
+print(Student)
