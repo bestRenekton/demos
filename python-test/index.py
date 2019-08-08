@@ -279,19 +279,129 @@
 
 
 #===========================面向对象============================
-class Student(object):
-    def __init__(self, name, score):
-        self.name = name
-        self.score = score
+# class Student(object):
+#     def __init__(self, name, score):
+#         self.name = name
+#         self.score = score
 
-    def print_score(self):
-        print('%s: %s' % (self.name, self.score))
+#     def print_score(self):
+#         print('%s: %s' % (self.name, self.score))
 
 
-bart = Student('Bart Simpson', 59)
-lisa = Student('Lisa Simpson', 87)
-bart.print_score()
-lisa.print_score()
+# bart = Student('Bart Simpson', 59)
+# lisa = Student('Lisa Simpson', 87)
+# bart.print_score()
+# lisa.print_score()
 
-print(bart)
-print(Student)
+# print(bart)
+# print(Student)
+# print(dir('asdf'))
+
+#===========================__call__============================
+
+# class Student(object):
+#     def __init__(self, name):
+#         self.name = name
+#     def __str__(self):
+#         return 'Student object (name=%s)' % self.name
+#     __repr__ = __str__
+#     def __call__(self):
+#         print('12312312')
+
+# s=Student('aaa')
+# s()
+# print(callable(s))
+
+
+#===========================枚举============================
+# from enum import Enum
+# Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+# print(Month)
+
+
+#===========================错误处理============================
+# try:
+#     print('try...')
+#     r = 10 / 0
+#     print('result:', r)
+# except ZeroDivisionError as e:
+#     print('except:', e)
+# finally:
+#     print('finally...')
+# print('END')
+
+
+#===========================调试============================
+# def foo(s):
+#     n = int(s)
+#     assert n != 0, 'n is zero!'
+#     return 10 / n
+# print(foo('0'))    
+
+
+
+
+# import logging
+# logging.basicConfig(level=logging.INFO)
+# s = '0'
+# n = int(s)
+# logging.info('n = %d' % n)
+# print(10 / n)
+
+#===========================读取文件============================
+# try:
+#     f=open('./test.txt','r')
+#     str=f.read()
+#     print(str)
+# finally:
+#     if f:
+#         f.close()
+        
+# # 等价
+# with open('./test.txt', 'r') as f:
+#     print(f.read())
+#     # for line in f.readlines():
+#     #     print(line.strip()) # 把末尾的'\n'删掉
+
+# with open('./bus.png', 'rb') as f:
+#     print(f.read())
+    
+# with open('./test.txt', 'a+') as f:
+#     str=f.read()
+#     str=str+'\nHello, world!'
+#     f.write(str)
+
+#===========================StringIO============================
+
+# from io import StringIO
+# f=StringIO()
+# f.write('aaaa')
+# print(f.getvalue())
+
+#===========================操作文件，目录============================
+import os
+print(os.name) # 如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统。
+print(os.uname()) # 详细，uname()函数在Windows上不提供
+print(os.environ) # 环境变量
+print(os.path.abspath('.')) # 查看当前目录的绝对路径
+
+os.mkdir('./testdir') #创建文件夹
+os.rmdir('./testdir') #删除文件夹
+os.rename('test.txt', 'test.py') #重命名
+
+#把两个路径合成一个时，不要直接拼字符串，而要通过os.path.join()函数，这样可以正确处理不同操作系统的路径分隔符
+os.path.join('/Users/michael', 'testdir') 
+
+# 同样的道理，要拆分路径时，也不要直接去拆字符串，而要通过os.path.split()函数；后一部分总是最后级别的目录或文件名
+os.path.split('/Users/michael/testdir/file.txt')
+# ('/Users/michael/testdir', 'file.txt')
+
+# os.path.splitext()可以直接让你得到文件扩展名，很多时候非常方便：
+os.path.splitext('/path/to/file.txt')
+# ('/path/to/file', '.txt')
+
+# 列出当前目录下的所有目录
+[x for x in os.listdir('.') if os.path.isdir(x)]
+
+# 列出.py文件
+[x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
