@@ -379,29 +379,215 @@
 # print(f.getvalue())
 
 #===========================操作文件，目录============================
-import os
-print(os.name) # 如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统。
-print(os.uname()) # 详细，uname()函数在Windows上不提供
-print(os.environ) # 环境变量
-print(os.path.abspath('.')) # 查看当前目录的绝对路径
+# import os
+# print(os.name) # 如果是posix，说明系统是Linux、Unix或Mac OS X，如果是nt，就是Windows系统。
+# print(os.uname()) # 详细，uname()函数在Windows上不提供
+# print(os.environ) # 环境变量
+# print(os.path.abspath('.')) # 查看当前目录的绝对路径
 
-os.mkdir('./testdir') #创建文件夹
-os.rmdir('./testdir') #删除文件夹
-os.rename('test.txt', 'test.py') #重命名
+# os.mkdir('./testdir') #创建文件夹
+# os.rmdir('./testdir') #删除文件夹
+# os.rename('test.txt', 'test.py') #重命名
 
-#把两个路径合成一个时，不要直接拼字符串，而要通过os.path.join()函数，这样可以正确处理不同操作系统的路径分隔符
-os.path.join('/Users/michael', 'testdir') 
+# #把两个路径合成一个时，不要直接拼字符串，而要通过os.path.join()函数，这样可以正确处理不同操作系统的路径分隔符
+# os.path.join('/Users/michael', 'testdir') 
 
-# 同样的道理，要拆分路径时，也不要直接去拆字符串，而要通过os.path.split()函数；后一部分总是最后级别的目录或文件名
-os.path.split('/Users/michael/testdir/file.txt')
-# ('/Users/michael/testdir', 'file.txt')
+# # 同样的道理，要拆分路径时，也不要直接去拆字符串，而要通过os.path.split()函数；后一部分总是最后级别的目录或文件名
+# os.path.split('/Users/michael/testdir/file.txt')
+# # ('/Users/michael/testdir', 'file.txt')
 
-# os.path.splitext()可以直接让你得到文件扩展名，很多时候非常方便：
-os.path.splitext('/path/to/file.txt')
-# ('/path/to/file', '.txt')
+# # os.path.splitext()可以直接让你得到文件扩展名，很多时候非常方便：
+# os.path.splitext('/path/to/file.txt')
+# # ('/path/to/file', '.txt')
 
-# 列出当前目录下的所有目录
-[x for x in os.listdir('.') if os.path.isdir(x)]
+# # 列出当前目录下的所有目录
+# [x for x in os.listdir('.') if os.path.isdir(x)]
 
-# 列出.py文件
-[x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
+# # 列出.py文件
+# [x for x in os.listdir('.') if os.path.isfile(x) and os.path.splitext(x)[1]=='.py']
+
+
+
+#===========================进程============================
+# import os
+# print('Process (%s) start...' % os.getpid())# 20042
+# # Only works on Unix/Linux/Mac:
+# pid = os.fork() # 20043 和  0
+# if pid == 0: #子
+#     print('I am child process (%s) and my parent is %s.' % (os.getpid(), os.getppid()))
+# else:# 父
+#     print('I (%s) just created a child process (%s).' % (os.getpid(), pid))
+
+
+
+# from multiprocessing import Process
+# import os
+# # 子进程要执行的代码
+# def run_proc(name):
+#     print('Run child process %s (%s)...' % (name, os.getpid()))
+# if __name__=='__main__':
+#     print('Parent process %s.' % os.getpid())
+#     p = Process(target=run_proc, args=('test',))
+#     print('Child process will start.')
+#     p.start()# 子进程开始
+#     p.join()# 等待子进程结束后再继续往下运行
+#     print('Child process end.')
+
+
+
+# from multiprocessing import Pool
+# import os, time, random
+# def long_time_task(name):
+#     print('Run task %s (%s)...' % (name, os.getpid()))
+#     start = time.time()
+#     time.sleep(random.random() * 3)
+#     end = time.time()
+#     print('Task %s runs %0.2f seconds.' % (name, (end - start)))
+
+# if __name__=='__main__':
+#     print('Parent process %s.' % os.getpid())
+#     p = Pool(4)
+#     for i in range(5):
+#         p.apply_async(long_time_task, args=(i,))
+#     print('Waiting for all subprocesses done...')
+#     p.close()
+#     p.join()
+#     print('All subprocesses done.')
+
+
+# import subprocess
+
+# print('$ nslookup www.python.org')
+# r = subprocess.call(['nslookup', 'www.python.org'])
+# print('Exit code:', r)
+# # 等价 nslookup www.python.org
+
+
+
+# from multiprocessing import Process, Queue
+# import os, time, random
+# # 写数据进程执行的代码:
+# def write(q):
+#     print('Process to write: %s' % os.getpid())
+#     for value in ['A', 'B', 'C']:
+#         print('Put %s to queue...' % value)
+#         q.put(value)
+#         time.sleep(random.random())
+# # 读数据进程执行的代码:
+# def read(q):
+#     print('Process to read: %s' % os.getpid())
+#     while True:
+#         value = q.get(True)
+#         print('Get %s from queue.' % value)
+# if __name__=='__main__':
+#     # 父进程创建Queue，并传给各个子进程：
+#     q = Queue()
+#     pw = Process(target=write, args=(q,))
+#     pr = Process(target=read, args=(q,))
+#     # 启动子进程pw，写入:
+#     pw.start()
+#     # 启动子进程pr，读取:
+#     pr.start()
+#     # 等待pw结束:
+#     pw.join()
+#     # pr进程里是死循环，无法等待其结束，只能强行终止:
+#     pr.terminate()
+
+
+
+
+#===========================线程============================
+# import time, threading
+# # 新线程执行的代码:
+# def loop():
+#     print('thread %s is running...' % threading.current_thread().name)
+#     n = 0
+#     while n < 5:
+#         n = n + 1
+#         print('thread %s >>> %s' % (threading.current_thread().name, n))
+#         time.sleep(1)
+#     print('thread %s ended.' % threading.current_thread().name)
+# print('thread %s is running...' % threading.current_thread().name) # 永远返回当前线程的实例
+# t = threading.Thread(target=loop, name='LoopThread') #不起名字就自动给线程命名为Thread-1，Thread-2
+# t.start()
+# t.join()
+# print('thread %s ended.' % threading.current_thread().name)
+
+
+
+
+# import time, threading
+# # 假定这是你的银行存款:
+# balance = 0
+# def change_it(n):
+#     # 先存后取，结果应该为0:
+#     global balance
+#     balance = balance + n
+#     balance = balance - n
+# def run_thread(n):
+#     for i in range(100000):
+#         change_it(n)
+        
+# # 使用threading.Lock
+# lock = threading.Lock()
+# def run_thread(n):
+#     for i in range(100000):
+#         # 先要获取锁:
+#         lock.acquire()
+#         try:
+#             # 放心地改吧:
+#             change_it(n)
+#         finally:
+#             # 改完了一定要释放锁:
+#             lock.release()
+
+# t1 = threading.Thread(target=run_thread, args=(5,))
+# t2 = threading.Thread(target=run_thread, args=(8,))
+# t1.start()
+# t2.start()
+# t1.join()
+# t2.join()
+# print(balance)
+
+
+
+
+# import threading, multiprocessing
+# def loop():
+#     x = 0
+#     while True:
+#         x = x ^ 1
+
+# for i in range(multiprocessing.cpu_count()):
+#     t = threading.Thread(target=loop)
+#     t.start()
+
+
+
+#===========================datetime============================
+# from datetime import datetime
+# print(datetime.now()) #当前日期
+# print(datetime(2015, 4, 19, 12, 20)) #指定日期
+# print(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) #格式
+# print(datetime.now().timestamp()) #时间戳
+
+#===========================collections============================
+from collections import namedtuple,deque,defaultdict,OrderedDict
+# Point=namedtuple('Point',['x','y'])
+# p1=Point(1,2)
+# print(p1.x)
+
+
+# q=deque(['x','y'])
+# q.append('z')
+# q.appendleft('a')
+# print(q) # deque(['a', 'x', 'y', 'z'])
+
+# a=defaultdict(lambda:'a',{'key1':1})
+# print(a["key1"])
+# print(a["key2"])
+
+
+a=dict([('a',1),('b',2),('c',3)])
+b=OrderedDict([('a',1),('b',2),('c',3)])
+print(a,b) # ({'a': 1, 'c': 3, 'b': 2}, OrderedDict([('a', 1), ('b', 2), ('c', 3)]))
