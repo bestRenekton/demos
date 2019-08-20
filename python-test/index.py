@@ -588,6 +588,77 @@ from collections import namedtuple,deque,defaultdict,OrderedDict
 # print(a["key2"])
 
 
-a=dict([('a',1),('b',2),('c',3)])
-b=OrderedDict([('a',1),('b',2),('c',3)])
-print(a,b) # ({'a': 1, 'c': 3, 'b': 2}, OrderedDict([('a', 1), ('b', 2), ('c', 3)]))
+# a=dict([('a',1),('b',2),('c',3)])
+# b=OrderedDict([('a',1),('b',2),('c',3)])
+# print(a,b) # ({'a': 1, 'c': 3, 'b': 2}, OrderedDict([('a', 1), ('b', 2), ('c', 3)]))
+
+#===========================base64============================
+# import base64
+# b1=base64.b64encode(b'binary\x00string')
+# b2=base64.b64encode('adsb')
+# s=base64.b64decode(b'YmluYXJ5AHN0cmluZw==')
+# print(b1,b2,s)# ('YmluYXJ5AHN0cmluZw==', 'YWRzYg==', 'binary\x00string')
+
+# # 由于标准的Base64编码后可能出现字符+和/，在URL中就不能直接作为参数，所以又有一种"url safe"的base64编码，其实就是把字符+和/分别变成-和_：
+# sb1=base64.urlsafe_b64encode(b'i\xb7\x1d\xfb\xef\xff')
+# sb2=base64.urlsafe_b64decode('abcd--__')
+# print(sb1,sb2) # ('abcd--__', 'i\xb7\x1d\xfb\xef\xff')
+
+
+
+#===========================pillow============================
+
+# from PIL import Image, ImageFilter
+
+# im = Image.open('bus.png')
+# # 获得图像尺寸:
+# w, h = im.size
+# print('Original image size: %sx%s' % (w, h))
+# # 缩放到50%:
+# im.thumbnail((w//2, h//2))
+# print('Resize image to: %sx%s' % (w//2, h//2))
+# # 把缩放后的图像用jpeg格式保存:
+# im.save('thumbnail.png', 'png')
+
+# # # 应用模糊滤镜:
+# im2 = im.filter(ImageFilter.BLUR)
+# im2.save('blur.png', 'png')
+
+#===========================requests============================
+# import requests
+# r=requests.get('https://www.douban.com/')
+# status=r.status_code
+# text=r.text
+# url=r.url
+# print(url,status,text)
+
+# # 带参数
+# r=requests.get('https://www.douban.com/',params={'q': 'python', 'cat': '1001'})
+# # 需要传入HTTP Header时，我们传入一个dict作为headers参数：
+# r = requests.get('https://www.douban.com/', headers={'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit'})
+# # requests的方便之处还在于，对于特定类型的响应，例如JSON，可以直接获取：
+# r=requests.get('https://xxxx.json/')
+# print(r.json())
+# # 要发送POST请求，只需要把get()方法变成post()，然后传入data参数作为POST请求的数据：
+# r = requests.post('https://accounts.douban.com/login', data={'form_email': 'abc@example.com', 'form_password': '123456'})
+# # 要在请求中传入Cookie，只需准备一个dict传入cookies参数：
+# r = requests.get(url, cookies=cs)
+
+#===========================chardet============================
+# import chardet
+# # 检测编码
+# d1=chardet.detect(b'Hello, world!')
+# d2=chardet.detect('离离原上草，一岁一枯荣'.encode('gbk'))
+# print(d2,d2)
+#  # {'confidence': 1.0, 'language': '', 'encoding': 'ascii'}
+#  # confidence是正确率
+
+#===========================psutil============================
+# import psutil
+# cpu=psutil.cpu_count() # CPU逻辑数量
+# time=psutil.cpu_times() #统计CPU的用户／系统／空闲时间：
+# # psutil.cpu_count(logical=False) # CPU物理核心
+# # 2说明是双核超线程, 4则是4核非超线程
+# print(cpu,time) # (4, scputimes(user=77064.97, nice=0.0, system=50409.65, idle=867724.4))
+
+
